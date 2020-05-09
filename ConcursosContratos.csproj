@@ -43,7 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -89,6 +97,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Models\ModelConcursosContratos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelConcursosContratos.Context.cs</LastGenOutput>
+      <DependentUpon>ModelConcursosContratos.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModelConcursosContratos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelConcursosContratos.edmx</DependentUpon>
+      <LastGenOutput>ModelConcursosContratos.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -96,10 +114,152 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Afianzadora.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Anticipo.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Autoriza.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Año.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cancelado.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contratista.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contrato.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Convocatoria.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatosLicitacion.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatosPoder.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatosRepresenta.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Desicion.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DesicionFalla.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Direccion.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entidad.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Especialidad.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EspObra.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EstructuraFin.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Fianza.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FuenteFin.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inscrito.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelConcursosContratos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelConcursosContratos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelConcursosContratos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelConcursosContratos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelConcursosContratos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MontoFin.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MotivoCancelacion.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Municipio.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NivelObra.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OficiosAut.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Procedimiento.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Programa.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RegistroContratista.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RelacionEntidadRegion.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Responsabilidad.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Seguimiento.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblIdentificacion.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoContratista.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoContrato.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoObra.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VisitaProg.cs">
+      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <EntityDeploy Include="Models\ModelConcursosContratos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelConcursosContratos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelConcursosContratos.edmx.diagram">
+      <DependentUpon>ModelConcursosContratos.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -111,7 +271,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
