@@ -1,0 +1,32 @@
+﻿@using ConcursosContratos.Models
+@model List<UsuarioCLS>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(u => Model[0].usuario)</td>
+            @*<td>@Html.LabelFor(u => Model[0].contra)</td>*@
+            <td>@Html.LabelFor(u => Model[0].descripcion)</td>
+            <td>@Html.LabelFor(u => Model[0].correo)</td>
+            <td>@Html.LabelFor(u => Model[0].responsabilidad)</td>
+            <td>Operaciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model) 
+        { 
+        <tr>
+            <td>@item.usuario</td>
+            @*<td>@item.contra</td>*@
+            <td>@item.descripcion</td>
+            <td>@item.correo</td>
+            <td>@item.responsabilidad</td>
+            <td>
+                <a  class="btn btn-primary far fa-edit" onclick="Editar()" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></a>
+            
+                    <button type="button" onclick="Eliminar()" class="btn btn-danger far fa-trash-alt" data-toggle="modal" data-target="#exampleModalConfirmacion"></button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

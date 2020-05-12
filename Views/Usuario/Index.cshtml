@@ -1,0 +1,119 @@
+﻿@using ConcursosContratos.Models
+
+@model List<UsuarioCLS>
+@{
+    ViewBag.Title = "Index";
+    List<SelectListItem> listares = (List<SelectListItem>)ViewBag.listares;
+}
+
+<h2>USUARIOS</h2>
+<div class="row">
+    <div class="col-md-8">
+        @Html.Partial("_Lista", Model)
+    </div>
+    <div class="col-md-4">
+        <a class="btn btn-outline-primary btn-lg btn-block" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Nuevo
+        </a>
+        @using (Ajax.BeginForm("Guardar", "Usuario", null, new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "Guardar",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "divError"
+        },
+                    new
+                    {
+                        @id = "frmEditar"
+                    }))
+        {
+            @Html.Hidden("titulo")
+            <div class="collapse" id="collapseExample">
+                <div class=" card-body">
+                    <div class="form-horizontal">
+                        <div>
+                            @Html.Label("Nombre Usuario")
+                            @Html.TextBox("usuario", null, new { @class = "form-control" })
+                            @Html.ValidationMessage("usuario", null, new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.Label("Password")
+                            @Html.TextBox("contra", null, new { @class = "form-control" })
+                            @Html.ValidationMessage("contra", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.Label("Descripcion")
+                            @Html.TextBox("descripcion", null, new { @class = "form-control" })
+                            @Html.ValidationMessage("descripcion", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.Label("Correo")
+                            @Html.TextBox("correo", null, new { @class = "form-control" })
+                            @Html.ValidationMessage("correo", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            @Html.Label("Responsabilidad")
+                            @Html.DropDownList("idresponsabilidad", listares, new { @class = "form-control" })
+                            @Html.ValidationMessage("correo", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info mt-4" data-toggle="modal" data-target="#exampleModal">Guardar</button>
+                    <button id="modal" type="button" class="invisible" data-toggle="modal" data-target="#exampleModal"></button>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Verificar Campos!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div  id="divError" class="modal-body">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnClose" onclick="limpiar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Guardar(rpta) {
+        
+        if (rpta == 1) {
+            document.getElementById("btnClose").click();
+            alert("Se agrego correctamente");
+           
+
+        } else {
+            document.getElementById("modal").click();
+        }
+        
+    }
+  
+    function limpiar() {
+        document.getElementById("divError").innerHTML = "";
+        var controles = document.getElementsByClassName("form-control");
+        var control;
+        for (var i = 0; i <= controles.length; i++) {
+            control = controles[i];
+            control ="";
+        }
+    }
+    
+   
+</script>
