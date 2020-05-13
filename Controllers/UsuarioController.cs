@@ -8,35 +8,40 @@ using System.Text;
 using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using System.Data.Entity.Core.Metadata.Edm;
 
 namespace ConcursosContratos.Controllers
 {
     public class UsuarioController : Controller
     {
         // GET: Usuario
-        public ActionResult Index()
+        public ViewResult Index(int? page)
         {
             listaResponsabilidad();
-
-            List<UsuarioCLS> listaUsuario = new List<UsuarioCLS>();
+       
+            //List<UsuarioCLS> listaUsuario = new List<UsuarioCLS>();
             using(var bd= new CCDevEntities())
             {
-                listaUsuario = (from usuario in bd.Usuarios
+        var      listaUsuario = (from usuario in bd.Usuarios
                                 join responsabilidad in bd.Responsabilidads
                                 on usuario.IDRESPONSABILIDAD equals
                                 responsabilidad.IDRESPONSABILIDAD
                                 where usuario.ACTIVO == 1
                                 select new UsuarioCLS
                                 {
-                                   
+                                   idusuario=usuario.IDUSUARIO,
                                     usuario = usuario.USUARIO1,
                                     contra = usuario.CONTRA,
                                     descripcion = usuario.DESCRIPCION,
                                     correo = usuario.CORREO,
                                     responsabilidad=responsabilidad.RESPONSABILIDAD1
                                 }).ToList();
+                int pageSize = 8;
+                int pageNumber = (page ?? 1);
+                return View(listaUsuario.ToPagedList(pageNumber, pageSize));
             }
-            return View(listaUsuario);
+           
         }
         public void listaResponsabilidad()
         {
@@ -140,6 +145,93 @@ namespace ConcursosContratos.Controllers
             }
             return rpta;
 
+        }
+
+        public ActionResult Filtrar(string user,int? page)
+        {
+            
+            listaResponsabilidad();
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            using (var bd= new CCDevEntities()) {
+                if (user == null) { 
+            var    listItems = (from usuario in bd.Usuarios
+                                           join responsabilidad in bd.Responsabilidads
+                                           on usuario.IDRESPONSABILIDAD equals
+                                           responsabilidad.IDRESPONSABILIDAD
+                                           where usuario.ACTIVO == 1
+                                           select new UsuarioCLS
+                                           {
+                                               idusuario=usuario.IDUSUARIO,
+                                               usuario = usuario.USUARIO1,
+                                               contra = usuario.CONTRA,
+                                               descripcion = usuario.DESCRIPCION,
+                                               correo = usuario.CORREO,
+                                               responsabilidad = responsabilidad.RESPONSABILIDAD1
+                                           }).ToList();
+                    listItems = listItems.OrderBy(u => u.idusuario).ToList();
+              
+                    
+                    return PartialView("_Lista", listItems.ToPagedList(pageNumber, pageSize));
+                }
+                else
+                {
+                var   listItems = (from usuario in bd.Usuarios
+                                 join responsabilidad in bd.Responsabilidads
+                                 on usuario.IDRESPONSABILIDAD equals
+                                 responsabilidad.IDRESPONSABILIDAD
+                                 where usuario.ACTIVO == 1
+                                 &&(usuario.USUARIO1.Contains(user)
+                                   || usuario.DESCRIPCION.Contains(user)
+                                   || usuario.CORREO.Contains(user))
+                                   //||responsabilidad.RESPONSABILIDAD1.Contains(usuarioCLS.responsabilidad))
+                                   select new UsuarioCLS
+                                 {
+                                       idusuario = usuario.IDUSUARIO,
+                                       usuario = usuario.USUARIO1,
+                                     contra = usuario.CONTRA,
+                                     descripcion = usuario.DESCRIPCION,
+                                     correo = usuario.CORREO,
+                                     responsabilidad = responsabilidad.RESPONSABILIDAD1
+                                 }).ToList();
+                    listItems = listItems.OrderBy(u => u.idusuario).ToList();
+                    return PartialView("_Lista", listItems.ToPagedList(pageNumber, pageSize));
+                }
+            }
+           
+        }
+        public JsonResult recuperarDatos(int idusuario)
+        {
+            UsuarioCLS usuarioCLS = new UsuarioCLS();
+            using(var bd= new CCDevEntities())
+            {
+                Usuario usuario = bd.Usuarios.Where(u => u.IDUSUARIO == idusuario).First();
+                usuarioCLS.usuario = usuario.USUARIO1;
+        
+                usuarioCLS.descripcion = usuario.DESCRIPCION;
+                usuarioCLS.correo = usuario.CORREO;
+                usuarioCLS.idresponsabilidad = usuario.IDRESPONSABILIDAD;
+            }
+            return Json(usuarioCLS, JsonRequestBehavior.AllowGet);
+        }
+        public string Eliminar(int idusuario)
+        {
+
+            string rpta = "";
+
+            try
+            {
+                using (var bd = new CCDevEntities())
+                {
+                    Usuario usuario = bd.Usuarios.Where(u => u.IDUSUARIO == idusuario).First();
+                    usuario.ACTIVO = 0;
+                    rpta = bd.SaveChanges().ToString();
+                }
+            }catch(Exception ex)
+            {
+                rpta = "error "+ex;
+            }
+            return rpta;
         }
     }
 }

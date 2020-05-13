@@ -32,6 +32,7 @@ namespace ConcursosContratos.Models
        [Required]
         [DataType(DataType.MultilineText)]
         [StringLength(200, ErrorMessage = "Maximo es de {1}")]
+        [Display(Name = "Descripcion")]
         public string descripcion
         {
             get; set;
@@ -58,6 +59,7 @@ namespace ConcursosContratos.Models
         }
 
         //Adicional
+        [Display(Name = "Responsabilidad")]
         public string responsabilidad
         {
             get; set;

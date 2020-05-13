@@ -16,3 +16,21 @@ textarea {
     max-width: 280px;
 }
 
+
+li.nav-item:hover {
+    background-color: cadetblue;
+    border-radius:.5em;
+}
+.col-md-8 .form-control,
+.col-md-4 .form-control {
+    background-color: cadetblue;
+    border: none;
+    border-bottom: 2px solid;
+}
+
+    .col-md-8 .form-control:focus,
+    .col-md-4 .form-control:focus{
+        background-color: cadetblue;
+        border: none;
+        border-bottom: 1px solid;
+    }

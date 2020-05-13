@@ -1,32 +1,42 @@
-﻿@using ConcursosContratos.Models
-@model List<UsuarioCLS>
+﻿@using PagedList.Mvc
 
-<table class="table table-bordered table-hover">
-    <thead>
+@model PagedList.IPagedList<ConcursosContratos.Models.UsuarioCLS>
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="thead-dark">
         <tr>
-            <td>@Html.LabelFor(u => Model[0].usuario)</td>
+            <th>@Html.LabelFor(u => Model[0].usuario)</th>
             @*<td>@Html.LabelFor(u => Model[0].contra)</td>*@
-            <td>@Html.LabelFor(u => Model[0].descripcion)</td>
-            <td>@Html.LabelFor(u => Model[0].correo)</td>
-            <td>@Html.LabelFor(u => Model[0].responsabilidad)</td>
-            <td>Operaciones</td>
+            <th>@Html.LabelFor(u => Model[0].descripcion)</th>
+            <th>@Html.LabelFor(u => Model[0].correo)</th>
+            <th>@Html.LabelFor(u => Model[0].responsabilidad)</th>
+            <th>@Html.Label("Operaciones")</th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model) 
-        { 
-        <tr>
-            <td>@item.usuario</td>
-            @*<td>@item.contra</td>*@
-            <td>@item.descripcion</td>
-            <td>@item.correo</td>
-            <td>@item.responsabilidad</td>
-            <td>
-                <a  class="btn btn-primary far fa-edit" onclick="Editar()" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></a>
-            
-                    <button type="button" onclick="Eliminar()" class="btn btn-danger far fa-trash-alt" data-toggle="modal" data-target="#exampleModalConfirmacion"></button>
-            </td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+<td>@item.idusuario</td>
+              
+                @*<td>@item.contra</td>*@
+                <td>@item.descripcion</td>
+                <td>@item.correo</td>
+                <td>@item.responsabilidad</td>
+                <td>
+                    <a class="btn btn-primary far fa-edit" onclick="Editar(@item.idusuario)" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></a>
+
+                    <button type="button" onclick="Eliminar(@item.idusuario)" class="btn btn-danger far fa-trash-alt" data-toggle="modal" data-target="#Eliminar"></button>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
+<br />
+  Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page
+    }))
