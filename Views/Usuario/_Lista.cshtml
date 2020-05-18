@@ -2,7 +2,7 @@
 
 @model PagedList.IPagedList<ConcursosContratos.Models.UsuarioCLS>
 
-<table class="table table-bordered table-hover text-center">
+<table class="table table-bordered table-sm table-hover text-center">
     <thead class="thead-dark">
         <tr>
             <th>@Html.LabelFor(u => Model[0].usuario)</th>
@@ -16,16 +16,19 @@
     <tbody>
         @foreach (var item in Model)
         {
+        
+      
             <tr>
-<td>@item.idusuario</td>
-              
+                <td>@item.usuario</td>
                 @*<td>@item.contra</td>*@
                 <td>@item.descripcion</td>
                 <td>@item.correo</td>
                 <td>@item.responsabilidad</td>
                 <td>
-                    <a class="btn btn-primary far fa-edit" onclick="Editar(@item.idusuario)" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"></a>
-
+                    <a  class="invisible">  @item.idusuario</a>
+                    <button class="btn btn-primary far fa-edit collapsed" onclick="Editar(@item.idusuario)"  type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      
+                    </button>
                     <button type="button" onclick="Eliminar(@item.idusuario)" class="btn btn-danger far fa-trash-alt" data-toggle="modal" data-target="#Eliminar"></button>
                 </td>
             </tr>

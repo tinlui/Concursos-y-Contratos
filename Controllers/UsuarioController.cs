@@ -61,79 +61,81 @@ namespace ConcursosContratos.Controllers
         
         }
         [HttpPost]
-        public string Guardar(UsuarioCLS usuarioCLS)
+        public string Guardar(UsuarioCLS usuarioCLS, int? titulo)
         {
 
             string rpta = "";
 
             try
             {
-                if (!ModelState.IsValid)
+                using (var bd = new CCDevEntities())
                 {
-                    var query = (from state in ModelState.Values
-                                 from error in state.Errors
-                                 select error.ErrorMessage).ToList();
-                    //forma el html para pasarlo a la vista
-                    rpta += "<ul class='list-group'>";
-                    //los resultados de query se agregaran con un for each
-                    foreach (var item in query)
+                    using (var transaccion = new TransactionScope())
                     {
-                        rpta += "<li class='list-group-item text-danger'>" + item + "!!</li>";
-                    }
-                    rpta += "</ul>";
-                }
-                else
-                {
-                    using (var bd = new CCDevEntities())
-                    {
-
-                        int cantidad = 0;                       
-                        using(var transaccion = new TransactionScope())
+                        if (titulo.Equals(1))
                         {
-                            cantidad = bd.Usuarios.Where(u => u.USUARIO1 == usuarioCLS.usuario).Count();
-                            if (cantidad.Equals(0))
-                            {
-                                Usuario usuario = new Usuario();
-                                usuario.USUARIO1 = usuarioCLS.usuario;
-                                //conversion de la cadena a cifrado-----------//
-                                SHA256Managed sha = new SHA256Managed();
-                                byte[] byteContra = Encoding.Default.GetBytes(usuarioCLS.contra);
-                                byte[] byteContraCifrado = sha.ComputeHash(byteContra);
-                                string cadenaContraCifrada = BitConverter.ToString(byteContraCifrado).Replace("-", "");
-                                //--------------------------------------------//
-                                usuario.CONTRA = cadenaContraCifrada;
-                                usuario.DESCRIPCION = usuarioCLS.descripcion;
-                                usuario.CORREO = usuarioCLS.correo;
-                                usuario.IDRESPONSABILIDAD = usuarioCLS.idresponsabilidad;
-                                usuario.ACTIVO = 1;
-                                bd.Usuarios.Add(usuario);
-                                rpta = bd.SaveChanges().ToString();
-                               
-                                transaccion.Complete();
+                            int cant = 0;
 
-                                return rpta;
+                            cant = bd.Usuarios.Where(u => u.IDUSUARIO == usuarioCLS.idusuarioe).Count();
+                            if (cant.Equals(1))
+                            {
+                                //editar                            
+                                Usuario usuario = bd.Usuarios.Where(u => u.USUARIO1 == usuarioCLS.usuarioe).First();
+                                usuario.DESCRIPCION = usuarioCLS.descripcione;
+                                usuario.CORREO = usuarioCLS.correoe;
+                                usuario.IDRESPONSABILIDAD = usuarioCLS.idresponsabilidade;
+                                rpta = bd.SaveChanges().ToString();
+                                transaccion.Complete();
+                            }
+                        }
+                        else
+                        {
+                            if (!ModelState.IsValid)
+                            {
+                                var query = (from state in ModelState.Values
+                                             from error in state.Errors
+                                             select error.ErrorMessage).ToList();
+                                //forma el html para pasarlo a la vista
+                                rpta += "<ul class='list-group'>";
+                                //los resultados de query se agregaran con un for each
+                                foreach (var item in query)
+                                {
+                                    rpta += "<li class='list-group-item text-danger'>" + item + "!!</li>";
+                                }
+                                rpta += "</ul>";
                             }
                             else
                             {
-                                int cant = 0;
-                                cant = bd.Usuarios.Where(u => u.USUARIO1 == usuarioCLS.usuario && u.CORREO == usuarioCLS.correo).Count();
-                                if (cant.Equals(1))
+                                int cantidad = 0;
+
+                                cantidad = bd.Usuarios.Where(u => u.USUARIO1 == usuarioCLS.usuario).Count();
+                                if (cantidad.Equals(0))
                                 {
-                                    //editar                            
-                                    Usuario usuario = bd.Usuarios.Where(u => u.USUARIO1 == usuarioCLS.usuario && u.CORREO == usuarioCLS.correo).First();
+                                    Usuario usuario = new Usuario();
+                                    usuario.USUARIO1 = usuarioCLS.usuario;
+                                    //conversion de la cadena a cifrado-----------//
+                                    SHA256Managed sha = new SHA256Managed();
+                                    byte[] byteContra = Encoding.Default.GetBytes(usuarioCLS.contra);
+                                    byte[] byteContraCifrado = sha.ComputeHash(byteContra);
+                                    string cadenaContraCifrada = BitConverter.ToString(byteContraCifrado).Replace("-", "");
+                                    //--------------------------------------------//
+                                    usuario.CONTRA = cadenaContraCifrada;
                                     usuario.DESCRIPCION = usuarioCLS.descripcion;
                                     usuario.CORREO = usuarioCLS.correo;
                                     usuario.IDRESPONSABILIDAD = usuarioCLS.idresponsabilidad;
-                                    rpta = bd.SaveChanges().ToString();                                
-                                    transaccion.Complete();                              
+                                    usuario.ACTIVO = 1;
+                                    bd.Usuarios.Add(usuario);
+                                    rpta = bd.SaveChanges().ToString();
+
+                                    transaccion.Complete();
+
+                                    return rpta;
                                 }
                                 else
                                 {
                                     rpta = "ya existe el usuario";
                                 }
-                               
                             }
-
                         }
 
                     }
@@ -141,7 +143,7 @@ namespace ConcursosContratos.Controllers
             }
             catch (Exception ex)
             {
-                rpta = "Ocurrio un error: "+ex;
+                rpta = "Ocurrio un error: " + ex;
             }
             return rpta;
 
@@ -206,8 +208,8 @@ namespace ConcursosContratos.Controllers
             using(var bd= new CCDevEntities())
             {
                 Usuario usuario = bd.Usuarios.Where(u => u.IDUSUARIO == idusuario).First();
-                usuarioCLS.usuario = usuario.USUARIO1;
-        
+                usuarioCLS.idusuario = usuario.IDUSUARIO;
+                usuarioCLS.usuario = usuario.USUARIO1;      
                 usuarioCLS.descripcion = usuario.DESCRIPCION;
                 usuarioCLS.correo = usuario.CORREO;
                 usuarioCLS.idresponsabilidad = usuario.IDRESPONSABILIDAD;

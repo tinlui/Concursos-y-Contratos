@@ -64,5 +64,29 @@ namespace ConcursosContratos.Models
         {
             get; set;
         }
+        public int idusuarioe
+        {
+            get; set;
+        }
+        public string usuarioe
+        {
+            get; set;
+        }
+        public string contrae
+        {
+            get; set;
+        }
+        public string descripcione
+        {
+            get; set;
+        }
+        public string correoe
+        {
+            get; set;
+        }
+        public int? idresponsabilidade
+        {
+            get; set;
+        }
     }
 }

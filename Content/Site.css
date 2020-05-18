@@ -1,6 +1,7 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
+    background-color:#F5F5F5;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -8,29 +9,34 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+.badge-pill.badge-danger.col-md-6 {
+    background-color: #B22222;
 
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
 }
-
-
+.form-control::placeholder{
+    color: darkgrey;
+    font-weight: bold;
+}
 li.nav-item:hover {
     background-color: cadetblue;
-    border-radius:.5em;
+    border-radius: .5em;
 }
 .col-md-8 .form-control,
 .col-md-4 .form-control {
-    background-color: cadetblue;
+    background-color: #D3D3D3;
     border: none;
     border-bottom: 2px solid;
 }
 
     .col-md-8 .form-control:focus,
-    .col-md-4 .form-control:focus{
-        background-color: cadetblue;
+    .col-md-4 .form-control:focus {
+        background-color: #D3D3D3;
         border: none;
         border-bottom: 1px solid;
     }

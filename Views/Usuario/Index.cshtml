@@ -8,6 +8,7 @@
 }
 
 <h2>USUARIOS</h2>
+
 <div class="row ">
     <div class="col-md-8">
 
@@ -24,16 +25,15 @@
         {
 
             @Html.TextBox("user", null, new { placeholder = "Buscar", @class = "form-control mb-3" })
-          
+
             <div id="divFiltrar">
                 @Html.Partial("_Lista", Model)
             </div>
         }
     </div>
-    <div class="col-md-4">
-        <a id="nuevo" class="btn btn-outline-dark btn-lg btn-block" onclick="Agregar()" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Nuevo
-        </a>
+    <div class="accordion col-md-4" id="formularios">
+
+
         @using (Ajax.BeginForm("Guardar", "Usuario", null, new AjaxOptions
         {
             HttpMethod = "POST",
@@ -41,42 +41,86 @@
             InsertionMode = InsertionMode.Replace,
             UpdateTargetId = "divError"
         },
-                    new
-                    {
-                        @id = "frmEditar"
-                    }))
+           new
+           {
+               @id = "frmEditar"
+           }))
         {
-            @Html.Hidden("id")
-            <div class="collapse" id="collapseExample">
-                <div class=" card-body">
-                    <div class="form-horizontal">
-                        <div>
-                            @Html.TextBox("usuario", null, new { placeholder = "Nombre Usuario", @class = "form-control my-3" })
-                            @Html.ValidationMessage("usuario", null, new { @class = "text-danger" })
-                        </div>
-                        <div id="ocultar">
-                            @Html.TextBox("contra", null, new { placeholder = "Password", @class = "form-control my-3" })
-                            @Html.ValidationMessage("contra", new { @class = "text-danger" })
-                        </div>
-                        <div>
-                            @Html.TextBox("descripcion", null, new { placeholder = "Descripcion", @class = "form-control my-3" })
-                            @Html.ValidationMessage("descripcion", new { @class = "text-danger" })
-                        </div>
-                        <div>
-                            @Html.TextBox("correo", null, new { placeholder = "Correo", @class = "form-control my-3" })
-                            @Html.ValidationMessage("correo", new { @class = "text-danger" })
-                        </div>
-                        <div>
+            <div class="card-header" id="Nuevo">
+                <h2 class="mb-0">
+                    <button class="btn btn-dark btn-lg btn-block collapsed" onclick="Agregar()" type="button" data-toggle="collapse" data-target="#collapseNuevo" aria-expanded="true" aria-controls="collapseNuevo">
+                        Nuevo
+                    </button>
+                </h2>
+                @Html.Hidden("id")
+                <div id="collapseNuevo" class="collapse " aria-labelledby="Nuevo" data-parent="#formularios">
+                    <div class="card-body">
+                        <div class="form-horizontal">
+                            <div>
+                                @Html.TextBox("usuario", null, new { placeholder = "Nombre Usuario", @class = "form-control my-3" })
+                                @Html.ValidationMessage("usuario", null, new { @class = "text-danger" })
+                            </div>
+                            <div>
+                                @Html.TextBox("contra", null, new { placeholder = "Password", @class = "form-control my-3" })
+                                @Html.ValidationMessage("contra", new { @class = "text-danger" })
+                            </div>
+                            <div>
+                                @Html.TextBox("descripcion", null, new { placeholder = "Descripcion", @class = "form-control my-3" })
+                                @Html.ValidationMessage("descripcion", new { @class = "text-danger" })
+                            </div>
+                            <div>
+                                @Html.TextBox("correo", null, new { placeholder = "Correo", @class = "form-control my-3" })
+                                @Html.ValidationMessage("correo", new { @class = "text-danger" })
+                            </div>
+                            <div>
 
-                            @Html.DropDownList("idresponsabilidad", listares, new { @class = "form-control my-3" })
-                            @Html.ValidationMessage("responsabilidad", new { @class = "text-danger" })
+                                @Html.DropDownList("idresponsabilidad", listares, new { @class = "form-control my-3" })
+                                @Html.ValidationMessage("responsabilidad", new { @class = "text-danger" })
+                            </div>
                         </div>
+                        <button type="submit" class="btn btn-dark mt-4" data-toggle="modal" data-target="#exampleModal">Guardar</button>
+                        <button id="modal" type="button" class="invisible" data-toggle="modal" data-target="#exampleModal"></button>
                     </div>
-                    <button type="submit" class="btn btn-dark mt-4" data-toggle="modal" data-target="#exampleModal">Guardar</button>
-                    <button id="modal" type="button" class="invisible" data-toggle="modal" data-target="#exampleModal"></button>
                 </div>
+
             </div>
 
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-dark btn-lg btn-block collapsed" type="button">
+                        Editar
+                    </button>
+                </h2>
+                @Html.Hidden("titulo")
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#formularios">
+                    <div class="card-body">
+                        <div class="form-horizontal">
+                            <div style="display:none">
+                                @Html.TextBox("idusuarioe", null, new { placeholder = "Nombre Usuario", @class = "form-control my-3" })
+
+                            </div>
+                            <div>
+                                @Html.TextBox("usuarioe", null, new { placeholder = "Nombre Usuario", @class = "form-control my-3" })
+                            </div>
+                            <div id="ocultar">
+                                @Html.TextBox("contrae", null, new { placeholder = "Password", @class = "form-control my-3" })
+                            </div>
+                            <div>
+                                @Html.TextBox("descripcione", null, new { placeholder = "Descripcion", @class = "form-control my-3" })
+                            </div>
+                            <div>
+                                @Html.TextBox("correoe", null, new { placeholder = "Correo", @class = "form-control my-3" })
+                            </div>
+                            <div>
+                                @Html.DropDownList("idresponsabilidade", listares, new { @class = "form-control my-3" })
+                            </div>
+                        </div>
+                        <button type="submit" onclick="Agregar()" class="btn btn-dark mt-4" data-toggle="modal" data-target="#exampleModal">Guardar</button>
+                        <button id="modal" type="button" class="invisible" data-toggle="modal" data-target="#exampleModal"></button>
+                    </div>
+                </div>
+
+            </div>
         }
     </div>
 </div>
@@ -123,17 +167,21 @@
 </div>
 
 <script>
+
     var usuario = document.getElementById("user");
     usuario.onkeyup = function () {
         $("#frmFiltro").trigger("submit");
     }
     function Agregar() {
         limpiar();
-        document.getElementById("ocultar").style.display = "block";
-    }
-    function Guardar(rpta) {
 
-        if (rpta == 1) {
+        document.getElementById("ocultar").style.display = "block";
+        document.getElementById("titulo").value = 1
+        
+    }
+    function Guardar(titulo) {
+        console.log(titulo)
+        if (titulo == 1) {
             document.getElementById("btnClose").click();
             alert("Se agrego correctamente");
 
@@ -144,37 +192,39 @@
 
     }
     function Editar(id) {
-        //var colapsed = document.getElementById("nuevo").className;
-        //if (colapsed == "btn btn-outline-dark btn-lg btn-block collapsed") {
-        //    document.getElementById("nuevo").setAttribute("aria-expanded", "true");
-        //    document.getElementById("nuevo").classList.remove("collapsed");
-        //    document.getElementById("collapseExample").classList.remove("show");
-        //} else {
-        //    $("#nuevo").attr("aria-expanded", "false");
-        //}
+
+        //$('#collapseTwo').on('shown.bs.collapse', function () {
+        //    $('#collapseTwo').collapse('show');
+        //})
+
+        if ($('#collapseTwo').hasClass('collapse show') == true) {
+            $('#collapseTwo').removeClass('show')
+        }
+        
         limpiar();
         document.getElementById("id").value = id;
 
         //mandar datos al controlador
-        $.get("Usuario/recuperarDatos/?idusuario=" + id, function (data) {
-            document.getElementById("usuario").value = data.usuario;
-            document.getElementById("descripcion").value = data.descripcion;
-            document.getElementById("contra").value = "1";
-            document.getElementById("correo").value = data.correo;
-            document.getElementById("idresponsabilidad").value = data.idresponsabilidad;
+        $.get("recuperarDatos/?idusuario=" + id, function (data) {
+            document.getElementById("idusuarioe").value = data.idusuario;
+            document.getElementById("usuarioe").value = data.usuario;
+            document.getElementById("descripcione").value = data.descripcion;
+            document.getElementById("contrae").value = "1";
+            document.getElementById("correoe").value = data.correo;
+            document.getElementById("idresponsabilidade").value = data.idresponsabilidad;
         })
         document.getElementById("ocultar").style.display = "none";
     }
     function Eliminar(idusuario) {
-        document.getElementById("id").value = idusuario;   
+        document.getElementById("id").value = idusuario;
     }
     function EliminarRegistro() {
         var id = document.getElementById("id").value;
-       
+
         $.get("Usuario/Eliminar/?idusuario=" + id, function (data) {
             if (data == "1") {
                 alert("Eliminado correctamente");
-               
+
                 document.getElementById("btnCerrarConfirmacion").click();
                 $("#frmFiltro").trigger("submit");
             }
