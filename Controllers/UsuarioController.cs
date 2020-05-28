@@ -87,57 +87,58 @@ namespace ConcursosContratos.Controllers
                                 rpta = bd.SaveChanges().ToString();
                                 transaccion.Complete();
                             }
-                        }
-                        else
-                        {
-                            if (!ModelState.IsValid)
-                            {
-                                var query = (from state in ModelState.Values
-                                             from error in state.Errors
-                                             select error.ErrorMessage).ToList();
-                                //forma el html para pasarlo a la vista
-                                rpta += "<ul class='list-group'>";
-                                //los resultados de query se agregaran con un for each
-                                foreach (var item in query)
-                                {
-                                    rpta += "<li class='list-group-item text-danger'>" + item + "!!</li>";
-                                }
-                                rpta += "</ul>";
-                            }
                             else
                             {
-                                int cantidad = 0;
-
-                                cantidad = bd.Usuarios.Where(u => u.USUARIO1 == usuarioCLS.usuario).Count();
-                                if (cantidad.Equals(0))
+                                usuarioCLS.idresponsabilidade = 1;
+                                if (!ModelState.IsValid)
                                 {
-                                    Usuario usuario = new Usuario();
-                                    usuario.USUARIO1 = usuarioCLS.usuario;
-                                    //conversion de la cadena a cifrado-----------//
-                                    SHA256Managed sha = new SHA256Managed();
-                                    byte[] byteContra = Encoding.Default.GetBytes(usuarioCLS.contra);
-                                    byte[] byteContraCifrado = sha.ComputeHash(byteContra);
-                                    string cadenaContraCifrada = BitConverter.ToString(byteContraCifrado).Replace("-", "");
-                                    //--------------------------------------------//
-                                    usuario.CONTRA = cadenaContraCifrada;
-                                    usuario.DESCRIPCION = usuarioCLS.descripcion;
-                                    usuario.CORREO = usuarioCLS.correo;
-                                    usuario.IDRESPONSABILIDAD = usuarioCLS.idresponsabilidad;
-                                    usuario.ACTIVO = 1;
-                                    bd.Usuarios.Add(usuario);
-                                    rpta = bd.SaveChanges().ToString();
-
-                                    transaccion.Complete();
-
-                                    return rpta;
+                                    var query = (from state in ModelState.Values
+                                                 from error in state.Errors
+                                                 select error.ErrorMessage).ToList();
+                                    //forma el html para pasarlo a la vista
+                                    rpta += "<ul class='list-group'>";
+                                    //los resultados de query se agregaran con un for each
+                                    foreach (var item in query)
+                                    {
+                                        rpta += "<li class='list-group-item text-danger'>" + item + "!!</li>";
+                                    }
+                                    rpta += "</ul>";
                                 }
                                 else
                                 {
-                                    rpta = "ya existe el usuario";
+                                    int cantidad = 0;
+
+                                    cantidad = bd.Usuarios.Where(u => u.USUARIO1 == usuarioCLS.usuario).Count();
+                                    if (cantidad.Equals(0))
+                                    {
+                                        Usuario usuario = new Usuario();
+                                        usuario.USUARIO1 = usuarioCLS.usuario;
+                                        //conversion de la cadena a cifrado-----------//
+                                        SHA256Managed sha = new SHA256Managed();
+                                        byte[] byteContra = Encoding.Default.GetBytes(usuarioCLS.contra);
+                                        byte[] byteContraCifrado = sha.ComputeHash(byteContra);
+                                        string cadenaContraCifrada = BitConverter.ToString(byteContraCifrado).Replace("-", "");
+                                        //--------------------------------------------//
+                                        usuario.CONTRA = cadenaContraCifrada;
+                                        usuario.DESCRIPCION = usuarioCLS.descripcion;
+                                        usuario.CORREO = usuarioCLS.correo;
+                                        usuario.IDRESPONSABILIDAD = usuarioCLS.idresponsabilidad;
+                                        usuario.ACTIVO = 1;
+                                        bd.Usuarios.Add(usuario);
+                                        rpta = bd.SaveChanges().ToString();
+
+                                        transaccion.Complete();
+
+                                        return rpta;
+                                    }
+                                    else
+                                    {
+                                        rpta = "ya existe el usuario";
+                                    }
                                 }
                             }
                         }
-
+                     
                     }
                 }
             }

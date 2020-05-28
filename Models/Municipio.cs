@@ -25,6 +25,7 @@ namespace ConcursosContratos.Models
     
         public int IDMUNICIPIO { get; set; }
         public string MUNICIPIO1 { get; set; }
+        public Nullable<int> IDREGION { get; set; }
         public Nullable<int> IDENTIDAD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -34,6 +35,7 @@ namespace ConcursosContratos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contrato> Contratoes { get; set; }
         public virtual Entidad Entidad { get; set; }
+        public virtual Region Region { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OficiosAut> OficiosAuts { get; set; }
     }

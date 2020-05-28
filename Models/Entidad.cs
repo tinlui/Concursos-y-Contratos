@@ -18,7 +18,6 @@ namespace ConcursosContratos.Models
         public Entidad()
         {
             this.Municipios = new HashSet<Municipio>();
-            this.RelacionEntidadRegions = new HashSet<RelacionEntidadRegion>();
         }
     
         public int IDENTIDAD { get; set; }
@@ -27,7 +26,5 @@ namespace ConcursosContratos.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Municipio> Municipios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RelacionEntidadRegion> RelacionEntidadRegions { get; set; }
     }
 }

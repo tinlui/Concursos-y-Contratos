@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\OficioAutController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -153,6 +154,7 @@
     <Compile Include="Models\Cancelado.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CascadaMunCLS.cs" />
     <Compile Include="Models\Contratista.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
@@ -231,6 +233,7 @@
     <Compile Include="Models\OficiosAut.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OficiosAutCLS.cs" />
     <Compile Include="Models\Procedimiento.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
@@ -241,9 +244,6 @@
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RegistroContratista.cs">
-      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RelacionEntidadRegion.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Responsabilidad.cs">
@@ -300,6 +300,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Usuario\_Lista.cshtml" />
+    <Content Include="Views\OficioAut\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

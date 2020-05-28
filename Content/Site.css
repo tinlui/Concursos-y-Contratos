@@ -9,9 +9,10 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-.badge-pill.badge-danger.col-md-6 {
-    background-color: #B22222;
 
+.badge-pill.badge-danger.col-md-5 {
+    background-color: #B22222;
+    text-align: center;
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,

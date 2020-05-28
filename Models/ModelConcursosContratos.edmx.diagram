@@ -4,87 +4,85 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="629e769ad2ff47cca587dff90388d36d" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="CCDevModel.Responsabilidad" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Contratista" Width="1.5" PointX="5.25" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.DatosPoder" Width="1.5" PointX="12.75" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.DatosRepresenta" Width="1.5" PointX="7.5" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Especialidad" Width="1.5" PointX="8.25" PointY="34.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.RegistroContratista" Width="1.5" PointX="10.5" PointY="23.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.TblIdentificacion" Width="1.5" PointX="5.25" PointY="32.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.TipoContratista" Width="1.5" PointX="8.25" PointY="36.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Afianzadora" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Anticipo" Width="1.5" PointX="12.75" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Año" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Cancelado" Width="1.5" PointX="15.75" PointY="30.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Contrato" Width="1.5" PointX="8.25" PointY="27.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Convocatoria" Width="1.5" PointX="12.75" PointY="32.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.DatosLicitacion" Width="1.5" PointX="10.5" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Desicion" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.DesicionFalla" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Direccion" Width="1.5" PointX="8.25" PointY="39.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.EspObra" Width="1.5" PointX="8.25" PointY="42.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Fianza" Width="1.5" PointX="10.5" PointY="37.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Inscrito" Width="1.5" PointX="7.5" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.MotivoCancelacion" Width="1.5" PointX="13.5" PointY="40.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.NivelObra" Width="1.5" PointX="8.25" PointY="44.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Procedimiento" Width="1.5" PointX="8.25" PointY="47" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Seguimiento" Width="1.5" PointX="10.5" PointY="41.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.TipoContrato" Width="1.5" PointX="6" PointY="29.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.TipoObra" Width="1.5" PointX="8.25" PointY="49.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.VisitaProg" Width="1.5" PointX="12.75" PointY="36" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Entidad" Width="1.5" PointX="0.75" PointY="24.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Municipio" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Region" Width="1.5" PointX="0.75" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.RelacionEntidadRegion" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Autoriza" Width="1.5" PointX="8" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.EstructuraFin" Width="1.5" PointX="10.25" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.FuenteFin" Width="1.5" PointX="10.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.MontoFin" Width="1.5" PointX="12.5" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.OficiosAut" Width="1.5" PointX="10.25" PointY="18.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCDevModel.Programa" Width="1.5" PointX="8" PointY="12.5" IsExpanded="true" />
-        <AssociationConnector Association="CCDevModel.FK_Usuarios_Responsabilidad" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Contratista_Municipio" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosRepresenta_Contratista" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Inscrito_Contratista" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_RegistroContratista_Contratista" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosPoder_DatosRepresenta" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosPoder_Municipio" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosRepresenta_TblIdentificacion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_RegistroContratista_Especialidad" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_RegistroContratista_TipoContratista" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Anticipo_DatosLicitacion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_Año" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Cancelado_DatosLicitacion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Cancelado_MotivoCancelacion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Contrato_Municipio" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Contrato_OficiosAut" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Contrato_TipoContrato" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_Contrato" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Fianzas_Contrato" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Inscrito_Contrato" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Seguimiento_Desicion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Convocatoria_DatosLicitacion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_Direccion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_EspObra" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_NivelObra" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_Procedimiento" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_TipoContrato" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_TipoObra" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_VisitaProg_DatosLicitacion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Inscrito_Desicion" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Inscrito_DesicionFalla" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_Region_Municipio" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_RelacionEntidadRegion_Entidad" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_OficiosAut_Municipio" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_RelacionEntidadRegion_Region1" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_OficiosAut_Autoriza" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_MontoFin_EstructuraFin" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_MontoFin_FuenteFin" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_MontoFin_OficiosAut" ManuallyRouted="false" />
-        <AssociationConnector Association="CCDevModel.FK_OficiosAut_Programa" ManuallyRouted="false" />
+      <Diagram DiagramId="629e769ad2ff47cca587dff90388d36d" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="CCDevModel.Responsabilidad" Width="1.5" PointX="10.75" PointY="11.375" />
+        <EntityTypeShape EntityType="CCDevModel.Usuario" Width="1.5" PointX="13" PointY="11" />
+        <EntityTypeShape EntityType="CCDevModel.Contratista" Width="1.5" PointX="6" PointY="1" />
+        <EntityTypeShape EntityType="CCDevModel.DatosPoder" Width="1.5" PointX="13.5" PointY="5.5" />
+        <EntityTypeShape EntityType="CCDevModel.DatosRepresenta" Width="1.5" PointX="11.25" PointY="1.75" />
+        <EntityTypeShape EntityType="CCDevModel.Especialidad" Width="1.5" PointX="6" PointY="39.75" />
+        <EntityTypeShape EntityType="CCDevModel.RegistroContratista" Width="1.5" PointX="8.25" PointY="1.5" />
+        <EntityTypeShape EntityType="CCDevModel.TblIdentificacion" Width="1.5" PointX="9" PointY="7.5" />
+        <EntityTypeShape EntityType="CCDevModel.TipoContratista" Width="1.5" PointX="6" PointY="37.375" />
+        <EntityTypeShape EntityType="CCDevModel.Afianzadora" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CCDevModel.Anticipo" Width="1.5" PointX="7.5" PointY="27.625" />
+        <EntityTypeShape EntityType="CCDevModel.Año" Width="1.5" PointX="3" PointY="28.875" />
+        <EntityTypeShape EntityType="CCDevModel.Cancelado" Width="1.5" PointX="10.5" PointY="18.875" />
+        <EntityTypeShape EntityType="CCDevModel.Contrato" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="CCDevModel.Convocatoria" Width="1.5" PointX="7.5" PointY="19.625" />
+        <EntityTypeShape EntityType="CCDevModel.DatosLicitacion" Width="1.5" PointX="5.25" PointY="17.125" />
+        <EntityTypeShape EntityType="CCDevModel.Desicion" Width="1.5" PointX="6" PointY="6.625" />
+        <EntityTypeShape EntityType="CCDevModel.DesicionFalla" Width="1.5" PointX="6" PointY="9.375" />
+        <EntityTypeShape EntityType="CCDevModel.Direccion" Width="1.5" PointX="3" PointY="33.625" />
+        <EntityTypeShape EntityType="CCDevModel.EspObra" Width="1.5" PointX="3" PointY="10" />
+        <EntityTypeShape EntityType="CCDevModel.Fianza" Width="1.5" PointX="5.25" PointY="33.5" />
+        <EntityTypeShape EntityType="CCDevModel.Inscrito" Width="1.5" PointX="8.25" PointY="13.75" />
+        <EntityTypeShape EntityType="CCDevModel.MotivoCancelacion" Width="1.5" PointX="8.25" PointY="11.25" />
+        <EntityTypeShape EntityType="CCDevModel.NivelObra" Width="1.5" PointX="3" PointY="36.375" />
+        <EntityTypeShape EntityType="CCDevModel.Procedimiento" Width="1.5" PointX="3" PointY="19.375" />
+        <EntityTypeShape EntityType="CCDevModel.Seguimiento" Width="1.5" PointX="5.25" PointY="11.875" />
+        <EntityTypeShape EntityType="CCDevModel.TipoContrato" Width="1.5" PointX="0.75" PointY="15" />
+        <EntityTypeShape EntityType="CCDevModel.TipoObra" Width="1.5" PointX="3" PointY="31.25" />
+        <EntityTypeShape EntityType="CCDevModel.VisitaProg" Width="1.5" PointX="7.5" PointY="23.5" />
+        <EntityTypeShape EntityType="CCDevModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CCDevModel.Entidad" Width="1.5" PointX="1.5" PointY="7.5" />
+        <EntityTypeShape EntityType="CCDevModel.Municipio" Width="1.5" PointX="0.75" PointY="10.125" />
+        <EntityTypeShape EntityType="CCDevModel.Region" Width="1.5" PointX="1.5" PointY="5" />
+        <EntityTypeShape EntityType="CCDevModel.Autoriza" Width="1.5" PointX="1.5" PointY="25.875" />
+        <EntityTypeShape EntityType="CCDevModel.EstructuraFin" Width="1.5" PointX="1.75" PointY="39.375" />
+        <EntityTypeShape EntityType="CCDevModel.FuenteFin" Width="1.5" PointX="1.75" PointY="41.75" />
+        <EntityTypeShape EntityType="CCDevModel.MontoFin" Width="1.5" PointX="4" PointY="24.125" />
+        <EntityTypeShape EntityType="CCDevModel.OficiosAut" Width="1.5" PointX="0.75" PointY="18.375" />
+        <EntityTypeShape EntityType="CCDevModel.Programa" Width="1.5" PointX="1.5" PointY="23.5" />
+        <AssociationConnector Association="CCDevModel.FK_Usuarios_Responsabilidad" />
+        <AssociationConnector Association="CCDevModel.FK_Contratista_Municipio" />
+        <AssociationConnector Association="CCDevModel.FK_DatosRepresenta_Contratista" />
+        <AssociationConnector Association="CCDevModel.FK_Inscrito_Contratista" />
+        <AssociationConnector Association="CCDevModel.FK_RegistroContratista_Contratista" />
+        <AssociationConnector Association="CCDevModel.FK_DatosPoder_DatosRepresenta" />
+        <AssociationConnector Association="CCDevModel.FK_DatosPoder_Municipio" />
+        <AssociationConnector Association="CCDevModel.FK_DatosRepresenta_TblIdentificacion" />
+        <AssociationConnector Association="CCDevModel.FK_RegistroContratista_Especialidad" />
+        <AssociationConnector Association="CCDevModel.FK_RegistroContratista_TipoContratista" />
+        <AssociationConnector Association="CCDevModel.FK_Anticipo_DatosLicitacion" />
+        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_Año" />
+        <AssociationConnector Association="CCDevModel.FK_Cancelado_DatosLicitacion" />
+        <AssociationConnector Association="CCDevModel.FK_Cancelado_MotivoCancelacion" />
+        <AssociationConnector Association="CCDevModel.FK_Contrato_Municipio" />
+        <AssociationConnector Association="CCDevModel.FK_Contrato_OficiosAut" />
+        <AssociationConnector Association="CCDevModel.FK_Contrato_TipoContrato" />
+        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_Contrato" />
+        <AssociationConnector Association="CCDevModel.FK_Fianzas_Contrato" />
+        <AssociationConnector Association="CCDevModel.FK_Inscrito_Contrato" />
+        <AssociationConnector Association="CCDevModel.FK_Seguimiento_Desicion" />
+        <AssociationConnector Association="CCDevModel.FK_Convocatoria_DatosLicitacion" />
+        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_Direccion" />
+        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_EspObra" />
+        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_NivelObra" />
+        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_Procedimiento" />
+        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_TipoContrato" />
+        <AssociationConnector Association="CCDevModel.FK_DatosLicitacion_TipoObra" />
+        <AssociationConnector Association="CCDevModel.FK_VisitaProg_DatosLicitacion" />
+        <AssociationConnector Association="CCDevModel.FK_Inscrito_Desicion" />
+        <AssociationConnector Association="CCDevModel.FK_Inscrito_DesicionFalla" />
+        <AssociationConnector Association="CCDevModel.FK_Municipio_Entidad" />
+        <AssociationConnector Association="CCDevModel.FK_Entidad_Region" />
+        <AssociationConnector Association="CCDevModel.FK_OficiosAut_Municipio" />
+        <AssociationConnector Association="CCDevModel.FK_OficiosAut_Autoriza" />
+        <AssociationConnector Association="CCDevModel.FK_MontoFin_EstructuraFin" />
+        <AssociationConnector Association="CCDevModel.FK_MontoFin_FuenteFin" />
+        <AssociationConnector Association="CCDevModel.FK_MontoFin_OficiosAut" />
+        <AssociationConnector Association="CCDevModel.FK_OficiosAut_Programa" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

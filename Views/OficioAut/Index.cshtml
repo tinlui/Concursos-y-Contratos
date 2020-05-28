@@ -1,0 +1,120 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<ConcursosContratos.Models.OficiosAutCLS>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    List<SelectListItem> listaAut = (List<SelectListItem>)ViewBag.listaAut;
+    List<SelectListItem> listaProg = (List<SelectListItem>)ViewBag.listaProg;
+    List<SelectListItem> listaEdo = (List<SelectListItem>)ViewBag.listaEdo;
+
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>No. Licitacion</td>
+            <td>Tipo</td>
+            <td>No. Obra</td>
+            <td>No. Asignacion</td>
+            <td>Descripcion</td>
+            <td>Municipio</td>
+            <td>Of. Aut.</td>
+            <td>Fuente Fin.</td>
+            <td>Origen</td>
+            <td>Monto Aut</td>
+            <td>No. Contrato</td>
+            <td>Cancelado</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@Html.DropDownList("IdPrograma", listaProg, new { @class = "form-control form-control-sm my-3 col-md-3" })
+@Html.ValidationMessage("Progamado", new { @class = "text-danger" })
+
+@Html.DropDownList("IdAutoriza", listaAut, new { @class = "form-control form-control-sm my-3 col-md-4" })
+@Html.ValidationMessage("Autorizado", new { @class = "text-danger" })
+
+<div class="form-group">
+    @if (ViewBag.listaEdo != null)
+    {
+        @Html.DropDownList("EntidadId", listaEdo, new { @class = "form-control form-control-sm my-3 col-md-2", id = "Entidades" })
+        @Html.ValidationMessage("Entidad", new { @class = "text-danger" })
+    }
+</div>
+
+
+@Html.DropDownList("IDREGION", new SelectList(""), "<--Seleccionar-->", new { @class = "form-control form-control-sm my-3 col-md-2 invisible", id = "Regiones" })
+
+@*@Html.Hidden("idmunicipio", null, new { id = "idmunicipio" })*@
+<div class="form-group">
+    @Html.Label("idmunicipio", null, new { @class = "form-control", id = "idmunicipio" })
+    @Html.TextBox("municipio", null, new { placeholder = "Municipio", @class = "form-control my-3 invisible", id = "municipio" })
+    </div>
+<button type="button" class="btn btn-primary">Primary</button>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+        var entidad = $("#Entidades");
+        var regiones = $("#Regiones");
+        var mun = $("#municipio");
+        $(document).ready(function () {
+
+            entidad.change(function () {
+                regiones.empty();
+
+                if (entidad.val() >= 1) {
+                    $.get("/OficioAut/GetRegionList", { EntidadId: entidad.val() }, function (data) {
+                        regiones.append("<option value=0><--Seleccionar--></option>")
+                        $.each(data, function (index, row) {
+                            regiones.append("<option value='" + row.IDREGION + "'>" + row.REGION1 + "</option>")
+                        });
+                        regiones.removeClass("invisible");
+                    });
+                } else {
+                    regiones.addClass("invisible");
+                    regiones.innerHTML = "<--Seleccionar-->";
+                }
+            });
+        });
+        regiones.change(function () {
+            if (regiones.val() >= 1) {
+                mun.removeClass("invisible");
+            } else {
+                mun.addClass("invisible");
+                mun.innerHTML = "";
+            }
+        });
+        //mun.on("keyup", function () {
+        //    if (mun.length != 0) {
+        //        $.get("/OficioAut/GetMunicipioList", { RegionID: regiones.val(), municipio: mun.val() }, function (data) {
+        //            $.each(data, function (index, row) {
+        //                console.log(row.IDMUNICIPIO + "" + row.MUNICIPIO1)
+
+        //            });
+        //        });
+        //    }
+        //});
+        mun.autocomplete({
+            source: function (request, response) {
+                $.get("/OficioAut/GetMunicipioList", { RegionID: regiones.val(), municipio: mun.val() }, function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.MUNICIPIO1,value: item.IDMUNICIPIO };
+
+                    })
+                    )
+                })
+            }
+        })
+
+    </script>

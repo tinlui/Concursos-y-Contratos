@@ -18,6 +18,7 @@ namespace ConcursosContratos.Models
         public CCDevEntities()
             : base("name=CCDevEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -58,7 +59,6 @@ namespace ConcursosContratos.Models
         public virtual DbSet<Entidad> Entidads { get; set; }
         public virtual DbSet<Municipio> Municipios { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
-        public virtual DbSet<RelacionEntidadRegion> RelacionEntidadRegions { get; set; }
         public virtual DbSet<Autoriza> Autorizas { get; set; }
         public virtual DbSet<EstructuraFin> EstructuraFins { get; set; }
         public virtual DbSet<FuenteFin> FuenteFins { get; set; }

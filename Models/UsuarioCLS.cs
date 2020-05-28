@@ -64,7 +64,7 @@ namespace ConcursosContratos.Models
         {
             get; set;
         }
-        public int idusuarioe
+        public int? idusuarioe
         {
             get; set;
         }
