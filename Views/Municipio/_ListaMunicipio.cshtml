@@ -1,0 +1,35 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<ConcursosContratos.Models.MunicipioCLS>
+
+<table class="table table-bordered table-sm table-hover text-center">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.LabelFor(u => Model[0].Municipio)</th>
+            <th>@Html.LabelFor(u => Model[0].Entidad)</th>
+            <th>@Html.LabelFor(u => Model[0].Region)</th>
+            <th><i class="fas fa-file-medical btn btn-outline-light" data-toggle="modal" data-target="#exampleModal" data-placement="right" title="Agregar"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Municipio</td>
+            <td>@item.Entidad</td>
+            <td>@item.Region</td>
+            <td>
+                <button class="btn btn-primary far fa-edit collapsed" onclick="Editar()" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                </button>
+                <button type="button" onclick="Eliminar()" class="btn btn-danger far fa-trash-alt" data-toggle="modal" data-target="#Eliminar"></button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+  Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page
+    }))

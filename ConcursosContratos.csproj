@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\MunicipioController.cs" />
     <Compile Include="Controllers\OficioAutController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,6 +228,7 @@
     <Compile Include="Models\Municipio.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MunicipioCLS.cs" />
     <Compile Include="Models\NivelObra.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
@@ -301,6 +303,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Usuario\_Lista.cshtml" />
     <Content Include="Views\OficioAut\Index.cshtml" />
+    <Content Include="Views\Municipio\Index.cshtml" />
+    <Content Include="Views\Municipio\_ListaMunicipio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

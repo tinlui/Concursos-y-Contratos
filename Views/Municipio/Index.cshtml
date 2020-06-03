@@ -1,0 +1,86 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<ConcursosContratos.Models.MunicipioCLS>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    List<SelectListItem> listaEntidad = (List<SelectListItem>)ViewBag.listaEntidad;
+    List<SelectListItem> listaRegion = (List<SelectListItem>)ViewBag.listaRegion;
+}
+
+<h2>MUNICIPIOS</h2>
+
+@using (Ajax.BeginForm("Filtrar", "Municipio", null, new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "FiltrarMunicipio",
+    InsertionMode = InsertionMode.Replace
+},
+new
+{
+    @id = "frmFiltro"
+}))
+{
+    <div class="list-group d-flex w-25 my-3">
+        <div class="list-group-item">
+            <small class="badge badge-pill badge-info">Buscar</small>
+            @Html.TextBox("municipiobuscar", null, new { placeholder = "Municipio", @class = "form-control mb-3" })
+        </div>
+    </div>
+    <div id="FiltrarMunicipio">
+        @Html.Partial("_ListaMunicipio", Model)
+    </div>
+}
+
+
+
+
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registro Municipio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <small class="badge badge-warning text-black-50">Registrar Entidad al hacer clic en el boton correspondiente para agregar</small>
+                <div class="form-group row">
+                    @Html.DropDownList("IdEntidad", listaEntidad, new { @class = "form-control form-control-sm my-3 mx-3" })
+                    <button type="button" onclick="RegistroEnt()" class="btn btn-primary btn-sm h-25 mt-3">
+                        <i class="far fa-plus-square "></i>
+                    </button>                 
+                </div>
+                    @Html.DropDownList("IdRegion", listaRegion, new { @class = "form-control form-control-sm my-3" })
+                  
+                @Html.TextBox("municipio", null, new { placeholder = "Municipio", @class = "form-control mb-3" })
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var busqueda = $("#municipiobuscar");
+    busqueda.keyup(function () {
+        $("#frmFiltro").trigger("submit");
+    })
+    function RegistroEnt() {
+        const { value: formValues } = Swal.fire({
+            title: 'Region',
+            html:
+                '<input id="swal-input1" class="swal2-input">',
+            focusConfirm: false,
+            preConfirm: () => {
+                return [
+                    document.getElementById('swal-input1').value
+                ]
+            }
+        })
+    }
+</script>

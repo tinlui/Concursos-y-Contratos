@@ -17,7 +17,7 @@ namespace ConcursosContratos.Controllers
         {
             listaAutoriza();
             listaPrograma();
-            listaEstado(); 
+       
             
             using (var bd = new CCDevEntities())
             {
@@ -65,7 +65,7 @@ namespace ConcursosContratos.Controllers
                           Text = item.AUTORIZA1,
                           Value = item.IDAUTORIZA.ToString()
                       }).ToList();
-            listItems.Insert(0, new SelectListItem { Text = "<--Seleccionar-->" });
+            listItems.Insert(0, new SelectListItem { Text = "<--Autorización-->" });
             ViewBag.listaAut = listItems;
         }
     }
@@ -81,48 +81,14 @@ namespace ConcursosContratos.Controllers
                                  Text = item.PROGRAMA1,
                                  Value = item.IDPROGRAMA.ToString()
                              }).ToList();
-                listItems.Insert(0, new SelectListItem { Text = "<--Seleccionar-->" });
+                listItems.Insert(0, new SelectListItem { Text = "<--Programa-->" });
                 ViewBag.listaProg = listItems;
             }
         }
 
-  public void listaEstado()
-        {
-            List<SelectListItem> listItems;
-            using (var bd= new CCDevEntities())
-            {
-                listItems = (from item in bd.Entidads
-                             select new SelectListItem
-                             {
-                                 Text = item.ENTIDAD1,
-                                 Value = item.IDENTIDAD.ToString()
-                             }).ToList();
-                listItems.Insert(0, new SelectListItem { Text = "<--Seleccionar-->" });
-                ViewBag.listaEdo = listItems;
-            }
-        }
 
-        public JsonResult GetRegionList(int EntidadId)
-        {
-          
-            using (var bd = new CCDevEntities())
-            {
-                //RegionList = bd.Regions.Where(x => x.IDREGION == RegionId).ToList();
-                var RegionList = bd.Regions
-                    .Join(bd.Municipios,
-                    region => region.IDREGION,
-                    municipio => municipio.IDREGION,
-                   (region, municipio) => new { region.IDREGION, region.REGION1, municipio })
-                .Where(x => x.municipio.IDENTIDAD == EntidadId)
-                .GroupBy(x => x.IDREGION)
-                 .Select(x => x.FirstOrDefault()).ToList();
-               
-                return Json(RegionList, JsonRequestBehavior.AllowGet);
-            }
-           
-        }
 
-        public JsonResult GetMunicipioList(int RegionID, string municipio)
+        public JsonResult GetMunicipioList( string municipio)
         {
            
             using(var bd= new CCDevEntities())
@@ -132,12 +98,47 @@ namespace ConcursosContratos.Controllers
                      region => region.IDREGION,
                     m => m.IDREGION,
                       (region, municipio1) => new { municipio1.IDMUNICIPIO, municipio1.MUNICIPIO1, region.IDREGION })
-                    .Where(x => x.IDREGION == RegionID)
                     .Where(x => x.MUNICIPIO1.Contains(municipio)).ToList();
 
                 return Json(MunicipioList, JsonRequestBehavior.AllowGet);
                     
             }
         }
+
+        //public void listaEstado()
+        //{
+        //    List<SelectListItem> listItems;
+        //    using (var bd = new CCDevEntities())
+        //    {
+        //        listItems = (from item in bd.Entidads
+        //                     select new SelectListItem
+        //                     {
+        //                         Text = item.ENTIDAD1,
+        //                         Value = item.IDENTIDAD.ToString()
+        //                     }).ToList();
+        //        listItems.Insert(0, new SelectListItem { Text = "<--Seleccionar-->" });
+        //        ViewBag.listaEdo = listItems;
+        //    }
+        //}
+
+        //public JsonResult GetRegionList(int EntidadId)
+        //{
+
+        //    using (var bd = new CCDevEntities())
+        //    {
+        //        //RegionList = bd.Regions.Where(x => x.IDREGION == RegionId).ToList();
+        //        var RegionList = bd.Regions
+        //            .Join(bd.Municipios,
+        //            region => region.IDREGION,
+        //            municipio => municipio.IDREGION,
+        //           (region, municipio) => new { region.IDREGION, region.REGION1, municipio })
+        //        .Where(x => x.municipio.IDENTIDAD == EntidadId)
+        //        .GroupBy(x => x.IDREGION)
+        //         .Select(x => x.FirstOrDefault()).ToList();
+
+        //        return Json(RegionList, JsonRequestBehavior.AllowGet);
+        //    }
+
+        //}
     }
 }
