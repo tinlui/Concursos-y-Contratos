@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConcursosContratos.Models
 {
     public class OficiosAutCLS
     {
+        [Required]
         public string OficioAut
         {
             get;set;
         }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? FecAutorizacion
         {
             get;set;
         }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? FecRecibido
         {
             get; set;

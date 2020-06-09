@@ -7,61 +7,70 @@
     ViewBag.Title = "Index";
     List<SelectListItem> listaAut = (List<SelectListItem>)ViewBag.listaAut;
     List<SelectListItem> listaProg = (List<SelectListItem>)ViewBag.listaProg;
-    
+
 
 }
 
-<h2>Index</h2>
-
-<table>
-    <thead>
-        <tr>
-            <td>No. Licitacion</td>
-            <td>Tipo</td>
-            <td>No. Obra</td>
-            <td>No. Asignacion</td>
-            <td>Descripcion</td>
-            <td>Municipio</td>
-            <td>Of. Aut.</td>
-            <td>Fuente Fin.</td>
-            <td>Origen</td>
-            <td>Monto Aut</td>
-            <td>No. Contrato</td>
-            <td>Cancelado</td>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+<h2>Oficio Autorizacion</h2>
 
 
-<div class="form-group">
-    @*@if (ViewBag.listaEdo != null)
-    {
-        @Html.DropDownList("EntidadId", listaEdo, new { @class = "form-control form-control-sm my-3 col-md-2", id = "Entidades" })
-        @Html.ValidationMessage("Entidad", new { @class = "text-danger" })
-    }
+<div class="list-group list-group-horizontal my-3">
+    <div class="list-group-item invisible">
+        <div class="container form-group">
 
-    @Html.DropDownList("IDREGION", new SelectList(""), "<--Seleccionar-->", new { @class = "form-control form-control-sm my-3 col-md-2 invisible", id = "Regiones" })*@
+            @Html.TextBox("OficioAut", null, new { placeholder = "No. de Oficio", @class = "form-control my-3 " })
+            @Html.Editor("FecAutorizacion", new { htmlAttributes = new { placeholder = "Fecha del Oficio", @class = "form-control" } })
+            @Html.Editor("FecRecibido", new { htmlAttributes = new { placeholder = "Fecha de Recibido", @class = "form-control my-3" } })
 
-    @Html.Hidden("idmunicipio")
-    @Html.TextBox("municipio", null, new { placeholder = "Municipio", @class = "form-control my-3 ", id = "municipio" })
+            @Html.TextBox("NumAsignacion", null, new { placeholder = "No. de Asignación", @class = "form-control my-3 " })
+
+            @Html.TextBox("NumObra", null, new { placeholder = "No. de Obra", @class = "form-control my-3 " })
+
+            @Html.TextBox("DescObra", null, new { placeholder = "Descripcion de Obra", @class = "form-control my-3 " })
+
+
+            @Html.Hidden("idmunicipio")
+            @Html.TextBox("municipio", null, new { placeholder = "Municipio", @class = "form-control my-3 ", id = "municipio" })
+
+
+            @Html.DropDownList("IdPrograma", listaProg, new { @class = "form-control form-control-sm my-3 " })
+            @Html.ValidationMessage("Progamado", new { @class = "text-danger" })
+
+            @Html.DropDownList("IdAutoriza", listaAut, new { @class = "form-control form-control-sm my-3 " })
+            @Html.ValidationMessage("Autorizado", new { @class = "text-danger" })
+        </div>
+
+        <button type="button" class="btn btn-outline-primary btn-sm btn-block">Fuente financiamento>>>></button>
+    </div>
+    <div class="list-group-item ">
+        <button type="button" class="btn btn-outline-primary">Agregar</button>
+        <table class="invisible">
+            <thead>
+                <tr>
+                    <th>Fuente Financiamento</th>
+                    <th>Origen</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 </div>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+                integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+                crossorigin="anonymous"></script>
 
-@Html.DropDownList("IdPrograma", listaProg, new { @class = "form-control form-control-sm my-3 col-md-3" })
-@Html.ValidationMessage("Progamado", new { @class = "text-danger" })
-
-@Html.DropDownList("IdAutoriza", listaAut, new { @class = "form-control form-control-sm my-3 col-md-4" })
-@Html.ValidationMessage("Autorizado", new { @class = "text-danger" })
-<button type="button" class="btn btn-primary" onclick="Verid()">Primary</button>
-
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"
-        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-        crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script>
     //var entidad = $("#Entidades");
     //var regiones = $("#Regiones");
     var mun = $("#municipio");
@@ -78,6 +87,34 @@
     //        }
     //})
 
+    $(function () {
+
+        $("#FecAutorizacion").datepicker({
+            dateFormat: "dd/mm/yy",
+            showAnim: "fold"
+        });
+        $("#FecRecibido").datepicker({
+            dateFormat: "dd/mm/yy",
+            showAnim: "fold"
+        });
+    });
+    $("#FecRecibido").change(function () {
+        var fec1 = $("#FecAutorizacion");
+        var fec2 = $("#FecRecibido");
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'center',
+            showConfirmButton: false
+        })
+        console.log(fec1.val(), fec2.val())
+        if (fec1.val() > fec2.val()) {
+            Toast.fire({
+                icon: 'error',
+                title: 'No puede ser menor a la Fecha del Oficio!!'
+            })
+        }
+    })
     mun.autocomplete({
         source: function (request, response) {
             $.ajax({
@@ -99,13 +136,13 @@
             });
         },
         select: function (e, i) {
-         
+
                 $("#idmunicipio").val(i.item.id);
-          
+
         }
     });
     mun.change(function () {
-       
+
         if ($("#idmunicipio").val() < 1) {
             Swal.fire({
                 title: 'No existe',
@@ -114,15 +151,16 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, ir a agregarlo!'})
-        
+                confirmButtonText: '@Html.ActionLink("Si, ir a agregarlo!", "Index", "Municipio", new { area = "" }, new { @class = " text-white mr-2" }) '})
+
         } else {
             console.log("existe")
         }
         $("#idmunicipio").val("");
-     
+
 
     })
+
     //$(document).ready(function () {
 
     //    entidad.change(function () {
@@ -160,4 +198,4 @@
     //        });
     //    }
     //});
-</script>
+        </script>
