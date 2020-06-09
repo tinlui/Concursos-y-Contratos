@@ -14,44 +14,39 @@ namespace ConcursosContratos.Controllers
     public class MunicipioController : Controller
     {
 
-        public void listaEntidad()
+        public JsonResult listaRegion(int Entidadid)
         {
-            List<SelectListItem> listItems;
             using (var bd = new CCDevEntities())
             {
-                listItems = (from item in bd.Entidads
-                             select new SelectListItem
-                             {
-                                 Text = item.ENTIDAD1,
-                                 Value = item.IDENTIDAD.ToString()
-                             }).ToList();
-                listItems.Insert(0, new SelectListItem { Text = "<--Entidad-->" });
-                ViewBag.listaEntidad = listItems;
+                var listItems = bd.Municipios
+                              .Join(bd.Regions,
+                             mun => mun.IDREGION,
+                             ent => ent.IDREGION,
+                             (mun, ent) => new { ent.IDREGION, ent.REGION1, mun })
+                              .Where(x => x.mun.IDENTIDAD == Entidadid)
+                              .GroupBy(x => x.IDREGION)
+                              .Select(x => x.FirstOrDefault()).ToList();
+
+                return Json(listItems, JsonRequestBehavior.AllowGet);
             }
         }
 
-        public void listaRegion()
+        public JsonResult listaEntidad()
         {
-            List<SelectListItem> listItems;
+          
             using (var bd = new CCDevEntities())
             {
-
-                listItems = (from item in bd.Regions
-                             select new SelectListItem
-                             {
-                                 Text = item.REGION1,
-                                 Value = item.IDREGION.ToString()
-                             }).ToList();
-                listItems.Insert(0, new SelectListItem { Text = "<--Region-->" });
-                ViewBag.listaRegion = listItems;
+                var regionList =(from item in bd.Entidads
+                                 select new SelectListItem { Text=item.ENTIDAD1,Value=item.IDENTIDAD.ToString() }).ToList();
+                return Json(regionList, JsonRequestBehavior.AllowGet);
             }
         }
 
         // GET: Municipio
         public ViewResult Index(int? page)
         {
-            listaEntidad();
-            listaRegion();
+        
+
             using (var bd = new CCDevEntities())
             {
                 var listaMunicipios = (from m in bd.Municipios
@@ -77,8 +72,6 @@ namespace ConcursosContratos.Controllers
 
         public ActionResult Filtrar(string municipiobuscar, int? page)
         {
-            listaEntidad();
-            listaRegion();
             int pageSize = 10;
             int pageNumber = (page ?? 1);
 
@@ -123,5 +116,97 @@ namespace ConcursosContratos.Controllers
                 }
             }
         }
+        #region Insert
+
+        public string GuardarEntidad(string ent)
+        {
+
+            string rpta = "";
+            try
+            {
+                using (var bd = new CCDevEntities())
+                {
+                    using (var transaccion = new TransactionScope())
+                    {
+                        int cant = 0;
+                        cant = bd.Entidads.Where(r => r.ENTIDAD1 == ent).Count();
+                        if (cant.Equals(1))
+                        {
+                            rpta = "0";
+                        }
+                        else
+                        {
+                            Entidad entidad = new Entidad();
+                            entidad.IDENTIDAD = bd.Entidads.Max(e => e.IDENTIDAD) + 1;
+                            entidad.ENTIDAD1 = ent;
+                            bd.Entidads.Add(entidad);
+                            rpta = bd.SaveChanges().ToString();
+                            transaccion.Complete();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return rpta = "error: " + ex;
+            }
+            return rpta;
+        }
+
+        public string GuardarMunicipio(MunicipioCLS municipioCLS)
+        {
+            string rpta = "";
+            
+            try
+            {
+                using (var bd = new CCDevEntities())
+                {
+                    using (var transaccion = new TransactionScope())
+                    {
+                        int cant = 0;
+                        cant = bd.Municipios.Where(m => m.MUNICIPIO1.Contains(municipioCLS.Municipio)).Count();
+                        if (cant.Equals(1))
+                        {
+                            rpta = "Ya existe";
+                        }
+                        else
+                        {
+                            if (!ModelState.IsValid)
+                            {
+                                var query = (from state in ModelState.Values
+                                             from error in state.Errors
+                                             select error.ErrorMessage).ToList();
+                                //forma el html para pasarlo a la vista
+                               
+                                //los resultados de query se agregaran con un for each
+                                foreach (var item in query)
+                                {
+                                    rpta +=  " "+item + "!!";
+                                }
+                             
+                            }
+                            else
+                            {
+                                Municipio municipio = new Municipio();
+                                municipio.IDMUNICIPIO = bd.Municipios.Max(m => m.IDMUNICIPIO) + 1;
+                                municipio.MUNICIPIO1 = municipioCLS.Municipio;
+                                municipio.IDREGION = municipioCLS.IdRegion;
+                                municipio.IDENTIDAD = municipioCLS.IdEntidad;
+                                bd.Municipios.Add(municipio);
+                                rpta = bd.SaveChanges().ToString();
+                                transaccion.Complete();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                rpta = "error" + ex;
+            }
+            return rpta;
+        }
+
+        #endregion
     }
 }

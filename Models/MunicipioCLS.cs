@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace ConcursosContratos.Models
 {
@@ -11,7 +13,7 @@ namespace ConcursosContratos.Models
         {
             get; set;
         }
-
+     
         public string Municipio
         {
             get; set;

@@ -60,6 +60,7 @@ namespace ConcursosContratos.Controllers
             }
         
         }
+
         [HttpPost]
         public string Guardar(UsuarioCLS usuarioCLS, int? titulo)
         {
