@@ -17,8 +17,9 @@ namespace ConcursosContratos.Controllers
         {
             listaAutoriza();
             listaPrograma();
-       
-            
+            listaFuenteFin();
+
+
             using (var bd = new CCDevEntities())
             {
                 var listaOficioAut = (from oa in bd.OficiosAuts
@@ -86,8 +87,6 @@ namespace ConcursosContratos.Controllers
             }
         }
 
-
-
         public JsonResult GetMunicipioList( string municipio)
         {
            
@@ -105,6 +104,37 @@ namespace ConcursosContratos.Controllers
             }
         }
 
+        /// <FuenteFinanciamiento>
+        /// 
+        public void listaFuenteFin()
+        {
+            List<SelectListItem> listItems;
+            using (var bd = new CCDevEntities())
+            {
+                listItems = (from item in bd.FuenteFins
+                             select new SelectListItem
+                             {
+                                 Text = item.FUENTEFIN1,
+                                 Value = item.IDFUENTEFIN.ToString()
+                             }).ToList();
+                listItems.Insert(0, new SelectListItem { Text = "<--Financiamiento-->" });
+                ViewBag.listaFuenteFin = listItems;
+            }
+        }
+        public JsonResult ShowOrigen(int idFuenteFin)
+        {
+            string origen = "";
+            using (var bd = new CCDevEntities())
+            {
+                FuenteFin fuenteFin = bd.FuenteFins.Where(f => f.IDFUENTEFIN == idFuenteFin).First();
+                int idest = Convert.ToInt32(fuenteFin.ORIGEN);
+
+                EstructuraFin estructuraFin = bd.EstructuraFins.Where(ef => ef.IDESTRUCTURAFIN == idest).First();
+                origen = estructuraFin.ESTRUCTURAFIN1;
+            }
+            return Json(origen, JsonRequestBehavior.AllowGet);
+        }
+        /// </summary>
         //public void listaEstado()
         //{
         //    List<SelectListItem> listItems;
@@ -140,5 +170,8 @@ namespace ConcursosContratos.Controllers
         //    }
 
         //}
+        #region Insert
+
+        #endregion
     }
 }

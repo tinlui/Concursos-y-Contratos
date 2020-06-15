@@ -7,44 +7,49 @@
     ViewBag.Title = "Index";
     List<SelectListItem> listaAut = (List<SelectListItem>)ViewBag.listaAut;
     List<SelectListItem> listaProg = (List<SelectListItem>)ViewBag.listaProg;
-
+    List<SelectListItem> listaFuenteFin = (List<SelectListItem>)ViewBag.listaFuenteFin;
 
 }
 
 <h2>Oficio Autorizacion</h2>
 
 
-<div class="list-group list-group-horizontal my-3">
-    <div class="list-group-item invisible">
-        <div class="container form-group">
+<div class="list-group list-group-horizontal my-3  col-lg-12 ">
+    <div class="list-group-item border-0  col-lg-2 ">
+       
+            @Html.TextBox("OficioAut", null, new { placeholder = "No. de Oficio", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.Editor("FecAutorizacion", new { htmlAttributes = new { placeholder = "Fecha del Oficio", @class = "form-control-sm my-1 col-lg-12" } })
+            @Html.Editor("FecRecibido", new { htmlAttributes = new { placeholder = "Fecha de Recibido", @class = "form-control-sm my-1 col-lg-12" } })
 
-            @Html.TextBox("OficioAut", null, new { placeholder = "No. de Oficio", @class = "form-control my-3 " })
-            @Html.Editor("FecAutorizacion", new { htmlAttributes = new { placeholder = "Fecha del Oficio", @class = "form-control" } })
-            @Html.Editor("FecRecibido", new { htmlAttributes = new { placeholder = "Fecha de Recibido", @class = "form-control my-3" } })
+            @Html.TextBox("NumAsignacion", null, new { placeholder = "No. de Asignación", @class = "form-control-sm my-1 col-lg-12" })
 
-            @Html.TextBox("NumAsignacion", null, new { placeholder = "No. de Asignación", @class = "form-control my-3 " })
+            @Html.TextBox("NumObra", null, new { placeholder = "No. de Obra", @class = "form-control-sm my-1 col-lg-12" })
 
-            @Html.TextBox("NumObra", null, new { placeholder = "No. de Obra", @class = "form-control my-3 " })
-
-            @Html.TextBox("DescObra", null, new { placeholder = "Descripcion de Obra", @class = "form-control my-3 " })
+            @Html.TextArea("DescObra", null, new { placeholder = "Descripcion de Obra", @class = "form-control-sm my-1 col-lg-12" })
 
 
             @Html.Hidden("idmunicipio")
-            @Html.TextBox("municipio", null, new { placeholder = "Municipio", @class = "form-control my-3 ", id = "municipio" })
+            @Html.TextBox("municipio", null, new {  placeholder = "Municipio", @class = "form-control-sm my-1 col-lg-12", id = "municipio" })
 
 
-            @Html.DropDownList("IdPrograma", listaProg, new { @class = "form-control form-control-sm my-3 " })
+            @Html.DropDownList("IdPrograma", listaProg, new { @class = "form-control form-control-sm my-1 col-lg-12" })
             @Html.ValidationMessage("Progamado", new { @class = "text-danger" })
 
-            @Html.DropDownList("IdAutoriza", listaAut, new { @class = "form-control form-control-sm my-3 " })
+            @Html.DropDownList("IdAutoriza", listaAut, new { @class = "form-control form-control-sm my-1 col-lg-12" })
             @Html.ValidationMessage("Autorizado", new { @class = "text-danger" })
-        </div>
+     
 
-        <button type="button" class="btn btn-outline-primary btn-sm btn-block">Fuente financiamento>>>></button>
+        <button type="button" class="btn btn-outline-primary  btn-block btn-sm">Fuente financiamento>>>></button>
     </div>
-    <div class="list-group-item ">
-        <button type="button" class="btn btn-outline-primary">Agregar</button>
-        <table class="invisible">
+    <div class="list-group-item border-0  col-lg-4">
+        <div class="form-row">
+            @Html.DropDownList("IdFuenteFin", listaFuenteFin, new { @class = " form-control-sm my-1  col-lg-5" })
+            @Html.TextBox("Origen", null, new { placeholder = "Origen", @class = "form-control-sm my-1 ml-2  col-lg-2", @readonly = "readonly" })
+
+            @Html.TextBox("monto", null, new { placeholder = "Monto", @class = "form-control-sm my-1 ml-2 col-lg-3" })
+        </div>
+        <button type="button" onclick="GuardarMonto()" class="btn btn-sm btn-success">Agregar</button>
+        <table>
             <thead>
                 <tr>
                     <th>Fuente Financiamento</th>
@@ -62,18 +67,37 @@
         </table>
 
     </div>
+    <div class="list-group-item border-0 col-lg-6">
+        <table>
+            <thead>
+                <tr>
+                    <th>Fuente Financiamento</th>
+                    <th>Origen</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-                integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-                crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    ///-------------------Oficio Autorizacion-------------------------///////
     //var entidad = $("#Entidades");
     //var regiones = $("#Regiones");
-    var mun = $("#municipio");
     //    mun.autocomplete({
     //    source: function (request, response) {
     //        $.get("/OficioAut/GetMunicipioList", { municipio: mun.val() }, function (data) {
@@ -87,20 +111,33 @@
     //        }
     //})
 
+    var mun = $("#municipio");
+    var fec1 = $("#FecAutorizacion");
+    var fec2 = $("#FecRecibido");
+
+
     $(function () {
 
-        $("#FecAutorizacion").datepicker({
+        fec1.datepicker({
             dateFormat: "dd/mm/yy",
             showAnim: "fold"
         });
-        $("#FecRecibido").datepicker({
+        fec2.datepicker({
             dateFormat: "dd/mm/yy",
             showAnim: "fold"
         });
+        $('#monto').keydown(function (event) {
+            if (event.keyCode < 48 || event.keyCode > 57) {
+                if (event.keyCode < 96 || event.keyCode > 105) {
+                    if (event.keyCode != 46 && event.keyCode != 8 && event.keyCode != 37 && event.keyCode != 39 && event.keyCode != 190) {
+                        event.preventDefault();
+                    }
+                }
+            }
+        })
     });
-    $("#FecRecibido").change(function () {
-        var fec1 = $("#FecAutorizacion");
-        var fec2 = $("#FecRecibido");
+    fec2.change(function () {
+   
 
         const Toast = Swal.mixin({
             toast: true,
@@ -161,6 +198,31 @@
 
     })
 
+    function GuardarFinanciamiento() {
+
+    }
+    ///--------------------------------------------///////
+
+
+
+    ////Fuente Financiamiento
+
+    var Fuente = $('#IdFuenteFin');
+    Fuente.change(function () {
+        $('#Origen').innerHTML = "";
+        $.get("/OficioAut/ShowOrigen", { idFuenteFin: Fuente.val() }, function (data) {
+            console.log(data)
+            $('#Origen').val(data);
+        })
+        
+    })
+   
+    function GuardarMonto() {
+
+    console.log($('#monto').val())
+    }
+
+    //////
     //$(document).ready(function () {
 
     //    entidad.change(function () {
@@ -198,4 +260,4 @@
     //        });
     //    }
     //});
-        </script>
+</script>

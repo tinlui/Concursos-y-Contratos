@@ -266,6 +266,7 @@
     <Compile Include="Models\MontoFin.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MontoFinCLS.cs" />
     <Compile Include="Models\MotivoCancelacion.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
