@@ -18,7 +18,6 @@ namespace ConcursosContratos.Models
         public CCDevEntities()
             : base("name=CCDevEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -29,12 +28,15 @@ namespace ConcursosContratos.Models
         public virtual DbSet<Responsabilidad> Responsabilidads { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Contratista> Contratistas { get; set; }
+        public virtual DbSet<DatosMoral> DatosMorals { get; set; }
         public virtual DbSet<DatosPoder> DatosPoders { get; set; }
         public virtual DbSet<DatosRepresenta> DatosRepresentas { get; set; }
         public virtual DbSet<Especialidad> Especialidads { get; set; }
+        public virtual DbSet<InfoCapital> InfoCapitals { get; set; }
         public virtual DbSet<RegistroContratista> RegistroContratistas { get; set; }
         public virtual DbSet<TblIdentificacion> TblIdentificacions { get; set; }
         public virtual DbSet<TipoContratista> TipoContratistas { get; set; }
+        public virtual DbSet<TipoPersona> TipoPersonas { get; set; }
         public virtual DbSet<Afianzadora> Afianzadoras { get; set; }
         public virtual DbSet<Anticipo> Anticipoes { get; set; }
         public virtual DbSet<Año> Año { get; set; }

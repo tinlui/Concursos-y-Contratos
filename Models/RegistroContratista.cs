@@ -20,14 +20,20 @@ namespace ConcursosContratos.Models
         public Nullable<System.DateTime> FECHAEXPEDICION { get; set; }
         public Nullable<System.DateTime> FECHAVIGENCIA { get; set; }
         public Nullable<decimal> CAPITAL { get; set; }
-        public Nullable<int> INFCAPITAL { get; set; }
+        public Nullable<int> IDINFOCAPITAL { get; set; }
         public Nullable<System.DateTime> FECHAINF { get; set; }
         public Nullable<int> IDCONTRATISTA { get; set; }
         public Nullable<int> IDTIPO { get; set; }
         public Nullable<int> IDESPECIALIDAD { get; set; }
+        public Nullable<int> IDREPRESENTA { get; set; }
+        public Nullable<int> IDTIPOPERSONA { get; set; }
+        public Nullable<int> ACTIVO { get; set; }
     
         public virtual Contratista Contratista { get; set; }
+        public virtual DatosRepresenta DatosRepresenta { get; set; }
         public virtual Especialidad Especialidad { get; set; }
+        public virtual InfoCapital InfoCapital { get; set; }
         public virtual TipoContratista TipoContratista { get; set; }
+        public virtual TipoPersona TipoPersona { get; set; }
     }
 }

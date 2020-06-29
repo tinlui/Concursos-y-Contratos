@@ -12,21 +12,18 @@ namespace ConcursosContratos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Direccion
+    public partial class TipoPersona
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Direccion()
+        public TipoPersona()
         {
-            this.DatosLicitacions = new HashSet<DatosLicitacion>();
+            this.RegistroContratistas = new HashSet<RegistroContratista>();
         }
     
-        public int IDDIRECCION { get; set; }
-        public string DIRECCION1 { get; set; }
-        public string TIPO { get; set; }
-        public Nullable<int> IDMUNICIPIO { get; set; }
+        public int IDTIPOPERSONA { get; set; }
+        public string TIPOPERSONA1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatosLicitacion> DatosLicitacions { get; set; }
-        public virtual Municipio Municipio { get; set; }
+        public virtual ICollection<RegistroContratista> RegistroContratistas { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace ConcursosContratos.Models
         public DatosRepresenta()
         {
             this.DatosPoders = new HashSet<DatosPoder>();
+            this.RegistroContratistas = new HashSet<RegistroContratista>();
         }
     
         public int IDREPRESENTA { get; set; }
@@ -26,12 +27,14 @@ namespace ConcursosContratos.Models
         public string NIDEN { get; set; }
         public Nullable<int> ACREDITA { get; set; }
         public Nullable<int> NACREDITA { get; set; }
-        public Nullable<int> IDCONTRATISTA { get; set; }
         public Nullable<int> IDIDENTIFICACION { get; set; }
+        public Nullable<int> IDCONTRATISTA { get; set; }
     
         public virtual Contratista Contratista { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatosPoder> DatosPoders { get; set; }
         public virtual TblIdentificacion TblIdentificacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RegistroContratista> RegistroContratistas { get; set; }
     }
 }

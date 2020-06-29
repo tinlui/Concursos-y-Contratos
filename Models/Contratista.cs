@@ -17,6 +17,7 @@ namespace ConcursosContratos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Contratista()
         {
+            this.DatosMorals = new HashSet<DatosMoral>();
             this.DatosRepresentas = new HashSet<DatosRepresenta>();
             this.Inscritoes = new HashSet<Inscrito>();
             this.RegistroContratistas = new HashSet<RegistroContratista>();
@@ -36,9 +37,10 @@ namespace ConcursosContratos.Models
         public Nullable<int> IDMUNICIPIO { get; set; }
         public string CORREO { get; set; }
         public Nullable<int> AÑO { get; set; }
-        public Nullable<int> ACTIVO { get; set; }
     
         public virtual Municipio Municipio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DatosMoral> DatosMorals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatosRepresenta> DatosRepresentas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

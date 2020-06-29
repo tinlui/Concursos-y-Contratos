@@ -45,7 +45,10 @@ li.nav-item:hover {
     border: none;
     border-bottom: 1px solid;
 }
-    
+.alerta-faltante {
+    border: none;
+    border-bottom: 2px solid #dc3545 !important;
+}
     .col-md-8 .form-control:focus,
     .col-md-4 .form-control:focus {
         background-color: #D3D3D3;

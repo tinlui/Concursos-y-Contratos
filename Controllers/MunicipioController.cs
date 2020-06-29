@@ -188,7 +188,6 @@ namespace ConcursosContratos.Controllers
                             else
                             {
                                 Municipio municipio = new Municipio();
-                                municipio.IDMUNICIPIO = bd.Municipios.Max(m => m.IDMUNICIPIO) + 1;
                                 municipio.MUNICIPIO1 = municipioCLS.Municipio;
                                 municipio.IDREGION = municipioCLS.IdRegion;
                                 municipio.IDENTIDAD = municipioCLS.IdEntidad;

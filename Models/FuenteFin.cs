@@ -22,8 +22,9 @@ namespace ConcursosContratos.Models
     
         public int IDFUENTEFIN { get; set; }
         public string FUENTEFIN1 { get; set; }
-        public string ORIGEN { get; set; }
+        public Nullable<int> IDESTRUCTURAFIN { get; set; }
     
+        public virtual EstructuraFin EstructuraFin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MontoFin> MontoFins { get; set; }
     }
