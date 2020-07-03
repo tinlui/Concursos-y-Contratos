@@ -15,28 +15,29 @@
 
    
    </head>
-<body >
-        <h1 class="badge-pill badge-danger col-md-5">Concursos y Contratos</h1>
+<body class="">
+        <h1 class="badge-pill badge-danger text-center">Concursos y Contratos</h1>
     <nav style="background-color:lavender" class="navbar navbar-fixed-top navbar-dark bg-dark navbar-expand-lg ">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center " id="navbarNavDropdown">
-            <ul class="nav  ">
-                <li class="nav-item">
-                    @Html.ActionLink(" ", "Index", "Usuario", new { area = "" }, new { @class = "text-center navbar-brand nav-link fas fa-home" })
+            <ul class="nav   nav-justified col-lg-12">
+                <li class="nav-item col-lg-1">
+                    @Html.ActionLink(" ", "Index", "Usuario", new { area = "" }, new { @class = "text-center navbar-brand nav-link fas fa-home " })
+                    
                 </li>
-                <li class="nav-item">
+                <li class="nav-item col-lg-2">
                     @Html.ActionLink("Usuario", "Index", "Usuario", new { area = "" }, new { @class = "navbar-brand nav-link " })
                 </li>
-                <li class="nav-item">
+                <li class="nav-item col-lg-3">
                     @Html.ActionLink("Licitaciones", "Index", "Usuario", new { area = "" }, new { @class = "navbar-brand nav-link " })
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Oficios Autorizacion", "Index", "Usuario", new { area = "" }, new { @class = "navbar-brand nav-link " })
+                <li class="nav-item col-lg-3">
+                    @Html.ActionLink("Oficios Autorizacion", "Index", "OficioAut", new { area = "" }, new { @class = "navbar-brand nav-link " })
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Contratistas", "Index", "Usuario", new { area = "" }, new { @class = "navbar-brand nav-link " })
+                <li class="nav-item col-lg-3">
+                    @Html.ActionLink("Contratistas", "Index", "Contratistas", new { area = "" }, new { @class = "navbar-brand nav-link " })
                 </li>
             </ul>
         </div>

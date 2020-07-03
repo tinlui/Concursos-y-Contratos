@@ -192,6 +192,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CargaMasivaController.cs" />
+    <Compile Include="Controllers\ContratistasController.cs" />
     <Compile Include="Controllers\MunicipioController.cs" />
     <Compile Include="Controllers\OficioAutController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\Contratista.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContratistaCLS.cs" />
     <Compile Include="Models\Contrato.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
@@ -369,6 +371,7 @@
     <Content Include="Views\CargaMasiva\Index.cshtml" />
     <Content Include="Views\OficioAut\_CargaMasiva.cshtml" />
     <Content Include="Views\OficioAut\_CargaMasivaMonto.cshtml" />
+    <Content Include="Views\Contratistas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
