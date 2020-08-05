@@ -177,6 +177,7 @@
       <DependentUpon>ModelConcursosContratos.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\funcionesContratistas.js" />
     <Content Include="Scripts\funcionesMunicipio.js" />
     <Content Include="Scripts\funcionesOficioAut.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
