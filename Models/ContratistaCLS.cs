@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConcursosContratos.Models
 {
@@ -11,8 +12,8 @@ namespace ConcursosContratos.Models
         {
             get;set;
         }
-
-        public string RazonSocial
+        [Required]
+        public string Nombre
         {
             get;set;
         }
@@ -47,7 +48,7 @@ namespace ConcursosContratos.Models
             get;set;
         }
 
-        public string Cp
+        public int Cp
         {
             get;set;
         }
@@ -61,7 +62,10 @@ namespace ConcursosContratos.Models
         {
             get;set;
         }
-
+        [StringLength(100, ErrorMessage = "Maximo es de {1}")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        [Display(Name = "E-Mail")]
         public string Correo
         {
             get;set;

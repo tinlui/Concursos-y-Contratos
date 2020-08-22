@@ -170,3 +170,4 @@ $("#IdRegion").change(function () {
     var remover = $(".list-group-item");
     remover.removeClass("invisible")
 }
+

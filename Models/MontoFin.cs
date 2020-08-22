@@ -17,7 +17,6 @@ namespace ConcursosContratos.Models
         public int IDMONTOFIN { get; set; }
         public Nullable<int> IDOFICIOSAUT { get; set; }
         public Nullable<int> IDFUENTEFIN { get; set; }
-        public Nullable<int> IDESTRUCTURAFIN { get; set; }
         public Nullable<decimal> MONTO { get; set; }
     
         public virtual FuenteFin FuenteFin { get; set; }

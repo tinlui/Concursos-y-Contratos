@@ -25,18 +25,17 @@ namespace ConcursosContratos.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Especialidad> Especialidads { get; set; }
+        public virtual DbSet<TblIdentificacion> TblIdentificacions { get; set; }
         public virtual DbSet<Responsabilidad> Responsabilidads { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
         public virtual DbSet<Contratista> Contratistas { get; set; }
         public virtual DbSet<DatosMoral> DatosMorals { get; set; }
         public virtual DbSet<DatosPoder> DatosPoders { get; set; }
         public virtual DbSet<DatosRepresenta> DatosRepresentas { get; set; }
-        public virtual DbSet<Especialidad> Especialidads { get; set; }
         public virtual DbSet<InfoCapital> InfoCapitals { get; set; }
         public virtual DbSet<RegistroContratista> RegistroContratistas { get; set; }
-        public virtual DbSet<TblIdentificacion> TblIdentificacions { get; set; }
         public virtual DbSet<TipoContratista> TipoContratistas { get; set; }
-        public virtual DbSet<TipoPersona> TipoPersonas { get; set; }
         public virtual DbSet<Afianzadora> Afianzadoras { get; set; }
         public virtual DbSet<Anticipo> Anticipoes { get; set; }
         public virtual DbSet<Año> Año { get; set; }
@@ -57,7 +56,6 @@ namespace ConcursosContratos.Models
         public virtual DbSet<TipoContrato> TipoContratoes { get; set; }
         public virtual DbSet<TipoObra> TipoObras { get; set; }
         public virtual DbSet<VisitaProg> VisitaProgs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Entidad> Entidads { get; set; }
         public virtual DbSet<Municipio> Municipios { get; set; }
         public virtual DbSet<Region> Regions { get; set; }

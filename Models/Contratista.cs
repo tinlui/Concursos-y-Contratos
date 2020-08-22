@@ -25,9 +25,8 @@ namespace ConcursosContratos.Models
     
         public int IDCONTRATISTA { get; set; }
         public string RFC { get; set; }
-        public string RAZONSOCIAL { get; set; }
+        public string NOMBRE { get; set; }
         public string TELEFONO { get; set; }
-        public string FAX { get; set; }
         public string CALLE { get; set; }
         public string NOEXTERIOR { get; set; }
         public string NOINTERIOR { get; set; }

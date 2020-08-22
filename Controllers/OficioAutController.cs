@@ -161,13 +161,9 @@ namespace ConcursosContratos.Controllers
                                 join ff in bd.FuenteFins
                                 on mf.IDFUENTEFIN
                                 equals ff.IDFUENTEFIN
-                                join ef in bd.EstructuraFins
-                                on mf.IDESTRUCTURAFIN
-                                equals ef.IDESTRUCTURAFIN
                                 where mf.IDOFICIOSAUT == oficioId
                                 select new MontoFinCLS { 
                                     FuenteFin=ff.FUENTEFIN1,
-                                    EstructuraFin = ef.ESTRUCTURAFIN1,
                                     Monto=mf.MONTO
                               
                                 }).ToList();
@@ -302,7 +298,6 @@ namespace ConcursosContratos.Controllers
                           
                             montoFin.IDOFICIOSAUT = montoFinCLS.IdOficioSAut;
                             montoFin.IDFUENTEFIN = montoFinCLS.IdFuenteFin;
-                            montoFin.IDESTRUCTURAFIN = montoFinCLS.IdEstructuraFin;
                             montoFin.MONTO = montoFinCLS.Monto;
 
                             bd.MontoFins.Add(montoFin);

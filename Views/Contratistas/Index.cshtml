@@ -1,6 +1,8 @@
-﻿
+﻿@using ConcursosContratos.Models
+@model List<ContratistaCLS>
 @{
     ViewBag.Title = "Index";
+    List<SelectListItem> listarMun = (List<SelectListItem>)ViewBag.listarMun;
 }
 
 
@@ -12,11 +14,6 @@
             <button class="btn btn-info" type="button" id="buscar">Buscar</button>
         </div>
     </div>
-    @*<div class="form-row">
-            @Html.TextBox("Contratista", null, new { placeholder = "Ingrese Razon Social o RFC", @class = "form-control ml-5 mb-3" })
-            <input type="button" class=" btn btn-info" value="Buscar" />
-        </div>*@
-
 </div>
 <div id="msform">
     <ul id="progressbar">
@@ -28,12 +25,9 @@
     <fieldset>
         <h3 class="fs-title">Datos Generales</h3>
         <div id="Generales" class="col-lg-12 row">
-            <div class="form-group pl-5">
-                @Html.CheckBox("IsMoral", false, new { @class = "" })
-                @Html.Label("Persona Moral", new { @class = "ml-1 badge badge-light" })
-            </div>
-            @Html.TextBox("RazonSocial", null, new { placeholder = "RAZON SOCIAL", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("Rfc", null, new { placeholder = "RFC", @class = "form-control-sm my-1 col-md-12" })
+
+            @Html.TextBox("Nombre", null, new { placeholder = "NOMBRE O RAZON SOCIAL", @class = "form-control-sm my-1 col-md-12", required = "required" })
+            @Html.TextBox("Rfc", null, new { placeholder = "RFC", @class = "form-control-sm my-1 col-md-12", required = "required" })
             @Html.TextBox("Curp", null, new { placeholder = "CURP", @class = "form-control-sm my-1 col-md-12" })
             @Html.TextBox("Telefono", null, new { placeholder = "TELEFONO", @class = "form-control-sm my-1 col-md-12" })
             @Html.TextBox("Correo", null, new { placeholder = "CORREO", @class = "form-control-sm my-1 col-md-12" })
@@ -42,61 +36,103 @@
             @Html.TextBox("NoInterior", null, new { placeholder = "NUM INTERIOR", @class = "form-control-sm my-1 col-md-6" })
             @Html.TextBox("Colonia", null, new { placeholder = "COLONIA", @class = "form-control-sm my-1 col-md-9" })
             @Html.TextBox("Cp", null, new { placeholder = "CP", @class = "form-control-sm my-1 col-md-3" })
+            @*@Html.ValidationMessage("Cp", new { @class = "text-danger" })*@
 
-            @Html.TextBox("IdMunicipio", null, new { placeholder = "MUNICIPIO", @class = "form-control-sm my-1 col-md-12" })
+            @Html.DropDownList("IdMunicipio", listarMun, new { @class = "form-control-sm my-1 col-md-12 ", required = "required" })
 
-            @Html.TextBox("Año", null, new { placeholder = "AÑO DE REGISTRO", @class = "form-control-sm my-1 col-md-12" })
+            @Html.TextBox("Year", null, new { placeholder = "AÑO DE REGISTRO", @class = "form-control-sm my-1 col-md-12" })
+            <div class="form-group pl-5">
+                @Html.CheckBox("IsMoral", false, new { @class = "" })
+                @Html.Label("Persona Moral", new { @class = "ml-1 badge badge-light" })
+            </div>
         </div>
-        <input id="DataGeneral" type="button" name="next" class="next btn btn-info mt-2" value="Next" />
+        <input type="button" class="btn btn-success mt-2 invisible" onclick="GuardarNombre()" value="Guardar" />
+        <input id="DataGeneral" type="button" onclick="GuardarContratista()"  class=" btn btn-info mt-2 invisible " value="Next" />
+        <input id="inv" type="button" name="next" class="next btn btn-info mt-2 invisible" value="pat" />
     </fieldset>
     <fieldset>
         <h3 class="fs-title">Registro</h3>
         <div id="Registro" class="col-lg-12 row">
-            @Html.TextBox("REGCONTRALORIAFOLIO", null, new { placeholder = "NO. DE FOLIO", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("REGCONTRALORIAINGREGSO", null, new { placeholder = "NO. DE INGRESO", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("FECHAEXPEDICION", null, new { placeholder = "F. EXPEDICION", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("FECHAVIGENCIA", null, new { placeholder = "F. VIGENCIA", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("IDESPECIALIDAD", null, new { placeholder = "ESPECIALIDAD", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("IDTIPO", null, new { placeholder = "TIPO DE REGISTRO", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("CAPITAL", null, new { placeholder = "CAP CONTABLE", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("IDINFOCAPITAL", null, new { placeholder = "INF DEL CAPITAL", @class = "form-control-sm my-1 col-md-12" })
-            @Html.TextBox("FECHAINF", null, new { placeholder = "A LA FECHA", @class = "form-control-sm my-1 col-md-12" })
+            @Html.Hidden("NombreRegCont")
+            @Html.TextBox("RegContraloriaFolio", null, new { placeholder = "NO. DE FOLIO", @class = "form-control-sm my-1 col-md-12" })
+            @Html.TextBox("RegContraloriaIngreso", null, new { placeholder = "NO. DE INGRESO", @class = "form-control-sm my-1 col-md-12" })
+            @Html.Editor("FechaExpedicion", new { htmlAttributes = new { @class = "form-control-sm my-1 col-md-12", @type = "date" } })
+            @Html.Editor("FechaVigencia", new { htmlAttributes = new { @class = "form-control-sm my-1 col-md-12", @type = "date" } })
+            <select id="IdEspecialidad" class="form-control form-control-sm my-1 ">
+            </select>
+            <select id="IdTipo" class="form-control form-control-sm my-1 ">
+            </select>
+            @Html.TextBox("Capital", null, new { placeholder = "CAP CONTABLE", @class = "form-control-sm my-1 col-md-12" })
+            <select id="IdInfoCapital" class="form-control form-control-sm my-1 ">
+            </select>
+            @Html.Editor("FechaInf", new { htmlAttributes = new { @class = "form-control-sm my-1 col-md-12", @type = "date" } })
             <div class="form-group pt-2">
-                @Html.CheckBox("IsActivo", false, new { @class = "" })
+                @Html.CheckBox("Activo", false, new { @class = "" })
                 @Html.Label("Activo", new { @class = "ml-1 badge badge-light" })
             </div>
         </div>
-            <input type="button" name="previous" class="previous action-button" value="Previous" />
-            <input type="submit" id="DataRegistro" name="next" class="next btn action-button" value="Next" />
+        <input type="button" name="previous" class="previous btn btn-warning mt-2" value="Previous" />
+        <input id="DataRegistro" type="button" onclick="GuardaRegistro()"  class=" btn btn-info mt-2 " value="Next" />
+        <input id="inv2" type="button" name="next" class="next btn btn-info mt-2 invisible" value="pat" />
     </fieldset>
     <fieldset>
         <h3 class="fs-title">Representante</h3>
         <div id="Representa" class="col-lg-12 row">
-            @Html.TextBox("Representa", null, new { placeholder = "Contratista Que Representa", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("NombreRepresenta", null, new { placeholder = "Nombre Del Representante", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("Puesto", null, new { placeholder = "Puesto que ocupa", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("Acredita", null, new { placeholder = "Acredita con", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("IdAcredita", null, new { placeholder = "No. Acredita", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("IdentificaCon", null, new { placeholder = "Identifica con", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("IdIDentifica", null, new { placeholder = "No. Identificacion", @class = "form-control-sm my-1 col-lg-12" })
-
+            @Html.Hidden("NombreRep")
+            @Html.TextBox("Representada", null, new { placeholder = "Representada Por", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.TextBox("Puesto", null, new { placeholder = "En Su Caracter De", @class = "form-control-sm my-1 col-lg-12" })
+            <select id="Acredita" class="form-control form-control-sm my-1 col-lg-6">
+            </select>
+            @Html.TextBox("NAcredita", null, new { placeholder = "No. Acredita", @class = "form-control-sm my-1 col-lg-6" })
+            <select id="IdIdentificacion" class="form-control form-control-sm my-1 col-lg-6">
+            </select>
+            @Html.TextBox("NIden", null, new { placeholder = "No. Identificación", @class = "form-control-sm my-1 col-lg-6" })
         </div>
         <input type="button" name="previous" class="previous  btn btn-warning mt-2" value="Previous" />
-        <input type="submit" id="DataPoder" name="submit" class="next btn btn-info mt-2" value="Submit" />
+        <input type="submit" id="DataPoder" onclick="GuardaRepresentante()"  class="btn btn-info mt-2" value="Next" />
+        <input  type="button" id="inv3" name="next" class="next btn btn-info mt-2 invisible" value="pat" />
     </fieldset>
     <fieldset>
         <h3 class="fs-title">Poder</h3>
-        <div id="Representa" class="col-lg-12 row">
-            @Html.TextBox("PODEREP", null, new { placeholder = "Escritura Pública No.", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("FECHA", null, new { placeholder = "Con Fecha", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("NOTARIONO", null, new { placeholder = "Notario Público No.", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("NOTARIONOMBRE", null, new { placeholder = "Nombre Notario", @class = "form-control-sm my-1 col-lg-12" })
-            @Html.TextBox("MUNICIPIO", null, new { placeholder = "En la Ciudad", @class = "form-control-sm my-1 col-lg-12" })
+        <div id="Poder" class="col-lg-12 row">
+            @Html.Hidden("NombrePod")
+            @Html.TextBox("PoderRep", null, new { placeholder = "Escritura Pública No.", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.TextBox("Fecha", null, new { placeholder = "Con Fecha", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.TextBox("NotarioNo", null, new { placeholder = "Notario Público No.", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.TextBox("NotarioNombre", null, new { placeholder = "Nombre Notario", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.TextBox("IdMunPoder", null, new { placeholder = "En la Ciudad", @class = "form-control-sm my-1 col-lg-12" })
 
         </div>
         <input type="button" name="previous" class="previous  btn btn-warning mt-2" value="Previous" />
-        <input type="submit" id="DataRepresenta" name="submit" class="submit btn btn-info mt-2" value="Submit" />
+        <input type="submit" id="DataRepresenta" name="submit" onclick="GuardaPoder()" class="submit btn btn-info mt-2" value="Submit" />
     </fieldset>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content col-md-6">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Persona Moral</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" text-center ">
+                        @Html.TextBox("NombreCont", null, new {  @class = "my-1 form-control-sm  col-lg-12", @readonly = "readonly" })
+                        @Html.TextBox("ActaConstitutiva", null, new { placeholder = "ESCRITURA CONSTITUTIVA NO.", @class = "form-control-sm my-1 col-md-12" })
+                        @Html.Editor("FechaActa", new { htmlAttributes = new { placeholder = "DE FECHA", @class = "form-control-sm my-1 col-md-12", @type = "date" } })
+                        @Html.TextBox("NotarioNum", null, new { placeholder = "NOTARIO PUBLICO NO.", @class = "form-control-sm my-1 col-md-12" })
+                        @Html.TextBox("NotarioNombre", null, new { placeholder = "NOMBRE DEL NOTARIO", @class = "form-control-sm my-1 col-md-12" })
+                      @Html.TextBox("RegPublico", null, new { placeholder = "INSCRITA EN EL REGISTRO PUBLICO BAJO PARTIDA NO.", @class = "form-control-sm my-1 col-md-12" })
+                    @Html.DropDownList("IdMunicipio2", listarMun, new { placeholder = "EN LA CIUDAD DE", @class = "form-control-sm my-1 col-md-12" })
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="GuardaMoral()">Guardar</button>
+                </div>
+            </div>
+    </div>
+</div>
 <script src="~/Scripts/funcionesContratistas.js"></script>

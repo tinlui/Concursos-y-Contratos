@@ -289,6 +289,7 @@
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MontoFinCLS.cs" />
+    <Compile Include="Models\MoralCLS.cs" />
     <Compile Include="Models\MotivoCancelacion.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
@@ -303,6 +304,7 @@
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OficiosAutCLS.cs" />
+    <Compile Include="Models\PoderCLS.cs" />
     <Compile Include="Models\Procedimiento.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
@@ -315,13 +317,12 @@
     <Compile Include="Models\RegistroContratista.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegistroContratistaCLS.cs" />
+    <Compile Include="Models\RepresentaCLS.cs" />
     <Compile Include="Models\Responsabilidad.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Seguimiento.cs">
-      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblIdentificacion.cs">
@@ -334,9 +335,6 @@
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoObra.cs">
-      <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TipoPersona.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
