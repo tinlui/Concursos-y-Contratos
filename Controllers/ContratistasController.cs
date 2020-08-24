@@ -91,7 +91,16 @@ namespace ConcursosContratos.Controllers
                 ViewBag.listarMun = listaMun;
             }
         }
+        public JsonResult GetConsultaContratista(string contratistaCon)
+        {
+      using(var bd = new CCDevEntities())
+            {
+                var ContratistaList = bd.Contratistas
+                    .Where(c => c.NOMBRE.Contains(contratistaCon) || c.RFC.Contains(contratistaCon)).ToList();
+                return Json(ContratistaList, JsonRequestBehavior.AllowGet);
+            }
 
+        }
         public string GuardarNombreContratista(ContratistaCLS contratistaCLS)
         {
             string rpta = "";

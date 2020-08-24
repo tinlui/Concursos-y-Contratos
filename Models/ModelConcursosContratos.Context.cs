@@ -18,6 +18,7 @@ namespace ConcursosContratos.Models
         public CCDevEntities()
             : base("name=CCDevEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -1,5 +1,7 @@
 ﻿//jQuery time
 //--------------------------------------------//
+var consulta = $('#contratistaConsulta');
+var idC = $('#idCon');
 // Generales
 var nombre = $('#Nombre');
 var rfc = $('#Rfc');
@@ -51,7 +53,7 @@ var nombreRep = $("#NombreRep");
 var poderRep = $('#PoderRep');
 var fecha = $('#Fecha');
 var notarioNo = $('#NotarioNo');
-var notarioNombre = $('#NotarioNombre');
+var notarioNombre = $('#NotarioNomb');
 var municipio = $('#IdMunPoder');
 var NombrePod = $('#NombrePod');
 // BOTONES DE NEXT Y PREV
@@ -131,7 +133,30 @@ idMun.on('change', function () {
 //				Campos validacion		//
 //--------------------------------------------//
 nombre.requerido();
-
+consulta.autocomplete({
+	source: function (request, response) {
+		$.ajax({
+			url: '/Contratistas/GetConsultaContratista',
+			dataType: 'json',
+			type: 'POST',
+			data: { contratistaCon: consulta.val() },
+			success: function (data) {
+				response($.map(data, function (item) {
+				return { label: item.NOMBRE, value: item.NOMBRE, id: item.IDCONTRATISTA }
+				}))
+			},
+			error: function (response) {
+				console.log(response.responseText);
+			},
+			failure: function (response) {
+				console.log(response.responseText)
+			}
+		})
+	},
+	select: function (e, i) {
+		idC.val(i.item.id);
+    }
+});
 function FormularioValidacion(evento) {
 //	// cada vez que clickas un boton. Automaticamente se invoca con un parametro
 //	// que es el Evento. el cual tiene una propiedad (entre otras) llamada target

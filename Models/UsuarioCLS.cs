@@ -84,9 +84,9 @@ namespace ConcursosContratos.Models
         {
             get; set;
         }
-        public int? idresponsabilidade
-        {
-            get; set;
-        }
+        //public int? idresponsabilidade
+        //{
+        //    get; set;
+        //}
     }
 }

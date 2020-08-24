@@ -84,13 +84,13 @@ namespace ConcursosContratos.Controllers
                                 Usuario usuario = bd.Usuarios.Where(u => u.USUARIO1 == usuarioCLS.usuarioe).First();
                                 usuario.DESCRIPCION = usuarioCLS.descripcione;
                                 usuario.CORREO = usuarioCLS.correoe;
-                                usuario.IDRESPONSABILIDAD = usuarioCLS.idresponsabilidade;
+                                //usuario.IDRESPONSABILIDAD = usuarioCLS.idresponsabilidade;
                                 rpta = bd.SaveChanges().ToString();
                                 transaccion.Complete();
                             }
                             else
                             {
-                                usuarioCLS.idresponsabilidade = 1;
+                                //usuarioCLS.idresponsabilidade = 1;
                                 if (!ModelState.IsValid)
                                 {
                                     var query = (from state in ModelState.Values
