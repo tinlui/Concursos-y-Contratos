@@ -1,0 +1,53 @@
+﻿@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "CargaMasiva", FormMethod.Post, new
+    {
+        enctype = "multipart/form-data"
+    }))
+    {
+        <input type="file"  accept=".csv" name="postedFile" />
+        <input type="submit" value="Import" />
+    }
+<form id="uploadForm" name="uploadForm" enctype="multipart/form-data">
+    <label for="uploadFile">Upload Your File</label>
+    <input type="file" accept=".csv" name="uploadFile" id="uploadFile">
+</form>
+</body>
+</html>
+<script>
+    $('#uploadFile').change(function () {
+        var fd = {};
+        var file = this.files[0];
+      
+        var fileName = this.files[0].name;
+        var fileSize = this.files[0].size;
+        var fileType = this.files[0].type;
+        fd = { fileName, fileSize, fileType }
+        console.log(fd)
+        console.log(file)
+      
+        if (file) {
+            var reader = new FileReader();
+            reader.readAsText(file);
+
+            console.log(reader)
+        } else {
+            $.get("/OficioAut/CargaMasivaUp", { postedFile: fd }, function (data) {
+                console.log(data);
+
+            })
+
+        }
+       
+    });
+</script>

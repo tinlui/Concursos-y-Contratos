@@ -1,0 +1,162 @@
+﻿@using ConcursosContratos.Models
+@model List<ContratistaCLS>
+@{
+    ViewBag.Title = "Index";
+    List<SelectListItem> listarMun = (List<SelectListItem>)ViewBag.listarMun;
+}
+
+
+<div class="consultaCont">
+    <h2>Contratistas</h2>
+    <div class="input-group mb-3 ml-4">
+        @Html.TextBox("contratistaConsulta", null, new { placeholder = "Ingrese Razon Social o RFC", @class = "form-control", aria_label = "Ingrese Razon Social o RFC", aria_describedby = "buscar" })
+        @Html.Hidden("idCon")
+        <div class="input-group-append">
+            <button class="btn btn-info" type="button" id="buscar" data-toggle="modal" data-target="#exampleModal">Buscar</button>
+        </div>
+    </div>
+</div>
+<div id="msform">
+    <ul id="progressbar">
+        <li class="active">Datos Generales</li>
+        <li>Registro</li>
+        <li>Representante</li>
+        <li>Poder</li>
+    </ul>
+    <fieldset>
+        <h3 class="fs-title">Datos Generales</h3>
+        <div id="Generales" class="col-lg-12 row">
+
+            @Html.TextBox("Nombre", null, new { placeholder = "NOMBRE O RAZON SOCIAL", @class = "form-control-sm my-1 col-md-12", required = "required" })
+            @Html.TextBox("Rfc", null, new { placeholder = "RFC", @class = "form-control-sm my-1 col-md-12", required = "required" })
+            @Html.TextBox("Curp", null, new { placeholder = "CURP", @class = "form-control-sm my-1 col-md-12" })
+            @Html.TextBox("Telefono", null, new { placeholder = "TELEFONO", @class = "form-control-sm my-1 col-md-12" })
+            @Html.TextBox("Correo", null, new { placeholder = "CORREO", @class = "form-control-sm my-1 col-md-12" })
+            @Html.TextBox("Calle", null, new { placeholder = "CALLE", @class = "form-control-sm my-1 col-md-12" })
+            @Html.TextBox("NoExterior", null, new { placeholder = "NUM EXTERIOR", @class = "form-control-sm my-1 col-md-6" })
+            @Html.TextBox("NoInterior", null, new { placeholder = "NUM INTERIOR", @class = "form-control-sm my-1 col-md-6" })
+            @Html.TextBox("Colonia", null, new { placeholder = "COLONIA", @class = "form-control-sm my-1 col-md-9" })
+            @Html.TextBox("Cp", null, new { placeholder = "CP", @class = "form-control-sm my-1 col-md-3" })
+            @*@Html.ValidationMessage("Cp", new { @class = "text-danger" })*@
+
+            @Html.DropDownList("IdMunicipio", listarMun, new { @class = "form-control-sm my-1 col-md-12 ", required = "required" })
+
+            @Html.TextBox("Year", null, new { placeholder = "AÑO DE REGISTRO", @class = "form-control-sm my-1 col-md-12" })
+            <div class="form-group pl-5">
+                @Html.CheckBox("IsMoral", false, new { @class = "" })
+                @Html.Label("Persona Moral", new { @class = "ml-1 badge badge-light" })
+            </div>
+        </div>
+        <input type="button" class="btn btn-success mt-2 invisible" onclick="GuardarNombre()" value="Guardar" />
+        <input id="DataGeneral" type="button" onclick="GuardarContratista()" class=" btn btn-info mt-2 invisible " value="Next" />
+        <input id="inv" type="button" name="next" class="next btn btn-info mt-2 invisible" value="pat" />
+    </fieldset>
+    <fieldset>
+        <h3 class="fs-title">Registro</h3>
+        <div id="Registro" class="col-lg-12 row">
+            @Html.Hidden("NombreRegCont")
+            @Html.TextBox("RegContraloriaFolio", null, new { placeholder = "NO. DE FOLIO", @class = "form-control-sm my-1 col-md-12" })
+            @Html.TextBox("RegContraloriaIngreso", null, new { placeholder = "NO. DE INGRESO", @class = "form-control-sm my-1 col-md-12" })
+            @Html.Editor("FechaExpedicion", new { htmlAttributes = new { @class = "form-control-sm my-1 col-md-12", @type = "date" } })
+            @Html.Editor("FechaVigencia", new { htmlAttributes = new { @class = "form-control-sm my-1 col-md-12", @type = "date" } })
+            <select id="IdEspecialidad" class="form-control form-control-sm my-1 ">
+            </select>
+            <select id="IdTipo" class="form-control form-control-sm my-1 ">
+            </select>
+            @Html.TextBox("Capital", null, new { placeholder = "CAP CONTABLE", @class = "form-control-sm my-1 col-md-12" })
+            <select id="IdInfoCapital" class="form-control form-control-sm my-1 ">
+            </select>
+            @Html.Editor("FechaInf", new { htmlAttributes = new { @class = "form-control-sm my-1 col-md-12", @type = "date" } })
+            <div class="form-group pt-2">
+                @Html.CheckBox("Activo", false, new { @class = "" })
+                @Html.Label("Activo", new { @class = "ml-1 badge badge-light" })
+            </div>
+        </div>
+        <input type="button" name="previous" class="previous btn btn-warning mt-2" value="Previous" />
+        <input id="DataRegistro" type="button" onclick="GuardaRegistro()" class=" btn btn-info mt-2 " value="Next" />
+        <input id="inv2" type="button" name="next" class="next btn btn-info mt-2 invisible" value="pat" />
+    </fieldset>
+    <fieldset>
+        <h3 class="fs-title">Representante</h3>
+        <div id="Representa" class="col-lg-12 row">
+            @Html.Hidden("NombreRep")
+            @Html.TextBox("Representada", null, new { placeholder = "Representada Por", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.TextBox("Puesto", null, new { placeholder = "En Su Caracter De", @class = "form-control-sm my-1 col-lg-12" })
+            <select id="Acredita" class="form-control form-control-sm my-1 col-lg-6">
+            </select>
+            @Html.TextBox("NAcredita", null, new { placeholder = "No. Acredita", @class = "form-control-sm my-1 col-lg-6" })
+            <select id="IdIdentificacion" class="form-control form-control-sm my-1 col-lg-6">
+            </select>
+            @Html.TextBox("NIden", null, new { placeholder = "No. Identificación", @class = "form-control-sm my-1 col-lg-6" })
+        </div>
+        <input type="button" name="previous" class="previous  btn btn-warning mt-2" value="Previous" />
+        <input type="submit" id="DataPoder" onclick="GuardaRepresentante()" class="btn btn-info mt-2" value="Next" />
+        <input type="button" id="inv3" name="next" class="next btn btn-info mt-2 invisible" value="pat" />
+    </fieldset>
+    <fieldset>
+        <h3 class="fs-title">Poder</h3>
+        <div id="Poder" class="col-lg-12 row">
+            @Html.Hidden("NombrePod")
+            @Html.TextBox("PoderRep", null, new { placeholder = "Escritura Pública No.", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.Editor("Fecha", new { htmlAttributes = new { @class = "form-control-sm my-1 col-md-12", @type = "date" } })
+            @Html.TextBox("NotarioNo", null, new { placeholder = "Notario Público No.", @class = "form-control-sm my-1 col-lg-12" })
+            @Html.TextBox("NotarioNomb", null, new { placeholder = "Nombre Notario", @class = "form-control-sm my-1 col-lg-12" })
+
+            @Html.DropDownList("IdMunPoder", listarMun, new { @class = "form-control-sm my-1 col-md-12 " })
+        </div>
+        <input type="button" name="previous" class="previous  btn btn-warning mt-2" value="Previous" />
+        <input type="submit" id="DataRepresenta" name="submit" onclick="GuardaPoder()" class="submit btn btn-info mt-2" value="Submit" />
+    </fieldset>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content col-md-6">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Persona Moral</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class=" text-center ">
+                    @Html.TextBox("NombreCont", null, new { @class = "my-1 form-control-sm  col-lg-12", @readonly = "readonly" })
+                    @Html.TextBox("ActaConstitutiva", null, new { placeholder = "ESCRITURA CONSTITUTIVA NO.", @class = "form-control-sm my-1 col-md-12" })
+                    @Html.Editor("FechaActa", new { htmlAttributes = new { @class = "form-control-sm my-1 col-md-12", @type = "date" } })
+                    @Html.TextBox("NotarioNum", null, new { placeholder = "NOTARIO PUBLICO NO.", @class = "form-control-sm my-1 col-md-12" })
+                    @Html.TextBox("NotarioNombre", null, new { placeholder = "NOMBRE DEL NOTARIO", @class = "form-control-sm my-1 col-md-12" })
+                    @Html.TextBox("RegPublico", null, new { placeholder = "INSCRITA EN EL REGISTRO PUBLICO BAJO PARTIDA NO.", @class = "form-control-sm my-1 col-md-12" })
+                    @Html.DropDownList("IdMunicipio2", listarMun, new { placeholder = "EN LA CIUDAD DE", @class = "form-control-sm my-1 col-md-12" })
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="GuardaMoral()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Selecciona una opcion para la busqueda
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Modificar Datos</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ver en PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/funcionesContratistas.js"></script>
+

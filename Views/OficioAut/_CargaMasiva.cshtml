@@ -1,0 +1,13 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<ConcursosContratos.Models.OficiosAutCLS>
+
+<span class="badge badge-pill badge-primary">Oficios Autorizacion</span>
+<div class="form-row">
+
+    <input type="file" class="form-control" accept=".csv" name="postedFile" />
+    <input type="submit" class="btn btn-success ml-2 " value="Import" />
+</div>
+<div class="alert alert-warning mt-3" role="alert">
+    @ViewBag.Mensaje
+</div>
