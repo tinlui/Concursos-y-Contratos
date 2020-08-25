@@ -212,6 +212,11 @@
     <Content Include="Models\ModelConcursosContratos.edmx.diagram">
       <DependentUpon>ModelConcursosContratos.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\interstate-black-cond.otf" />
+    <Content Include="fonts\interstate-light-italic.otf" />
+    <Content Include="fonts\interstate-regular-comp.otf" />
+    <Content Include="fonts\interstate-thin-italic.otf" />
+    <Content Include="fonts\MyriadPro-Semibold.otf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\funcionesContratistas.js" />
     <Content Include="Scripts\funcionesMunicipio.js" />
@@ -232,6 +237,7 @@
     <Compile Include="Controllers\ContratistasController.cs" />
     <Compile Include="Controllers\MunicipioController.cs" />
     <Compile Include="Controllers\OficioAutController.cs" />
+    <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -417,6 +423,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Auxiliar\" />
+    <Folder Include="Views\Pdg\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
