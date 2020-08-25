@@ -29,20 +29,31 @@
             <PropertyRef Name="IDCONTRATISTA" />
           </Key>
           <Property Name="IDCONTRATISTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RFC" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="RAZONSOCIAL" Type="varchar" MaxLength="350" />
+          <Property Name="RFC" Type="varchar" MaxLength="15" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="350" />
           <Property Name="TELEFONO" Type="varchar" MaxLength="30" />
-          <Property Name="FAX" Type="varchar" MaxLength="30" />
           <Property Name="CALLE" Type="varchar" MaxLength="350" />
           <Property Name="NOEXTERIOR" Type="varchar" MaxLength="8" />
           <Property Name="NOINTERIOR" Type="varchar" MaxLength="4" />
           <Property Name="COLONIA" Type="varchar" MaxLength="25" />
           <Property Name="CP" Type="int" />
-          <Property Name="CURP" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="CURP" Type="varchar" MaxLength="18" />
           <Property Name="IDMUNICIPIO" Type="int" />
           <Property Name="CORREO" Type="varchar" MaxLength="250" />
           <Property Name="AÑO" Type="int" />
-          <Property Name="ACTIVO" Type="int" />
+        </EntityType>
+        <EntityType Name="DatosMoral">
+          <Key>
+            <PropertyRef Name="IDDATOSMORAL" />
+          </Key>
+          <Property Name="IDDATOSMORAL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACTACONSTITUTIVA" Type="int" />
+          <Property Name="FECHAACTA" Type="datetime" />
+          <Property Name="NOTARIONUM" Type="int" />
+          <Property Name="NOTARIONOMBRE" Type="varchar" MaxLength="250" />
+          <Property Name="REGPUBLICO" Type="int" />
+          <Property Name="IDMUNICIPIO" Type="int" />
+          <Property Name="IDCONTRATISTA" Type="int" />
         </EntityType>
         <EntityType Name="DatosPoder">
           <Key>
@@ -72,8 +83,8 @@
           <Property Name="NIDEN" Type="varchar" MaxLength="35" />
           <Property Name="ACREDITA" Type="int" />
           <Property Name="NACREDITA" Type="int" />
-          <Property Name="IDCONTRATISTA" Type="int" />
           <Property Name="IDIDENTIFICACION" Type="int" />
+          <Property Name="IDCONTRATISTA" Type="int" />
         </EntityType>
         <EntityType Name="Especialidad">
           <Key>
@@ -81,6 +92,13 @@
           </Key>
           <Property Name="IDESPECIALIDAD" Type="int" Nullable="false" />
           <Property Name="ESPECIALIDAD" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="InfoCapital">
+          <Key>
+            <PropertyRef Name="IDINFOCAPITAL" />
+          </Key>
+          <Property Name="IDINFOCAPITAL" Type="int" Nullable="false" />
+          <Property Name="INFOCAPITAL" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="RegistroContratista">
           <Key>
@@ -91,12 +109,13 @@
           <Property Name="REGCONTRALORIAINGREGSO" Type="varchar" MaxLength="20" />
           <Property Name="FECHAEXPEDICION" Type="datetime" />
           <Property Name="FECHAVIGENCIA" Type="datetime" />
-          <Property Name="CAPITAL" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="INFCAPITAL" Type="int" />
+          <Property Name="CAPITAL" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="IDINFOCAPITAL" Type="int" />
           <Property Name="FECHAINF" Type="datetime" />
           <Property Name="IDCONTRATISTA" Type="int" />
           <Property Name="IDTIPO" Type="int" />
           <Property Name="IDESPECIALIDAD" Type="int" />
+          <Property Name="ACTIVO" Type="bit" />
         </EntityType>
         <EntityType Name="TblIdentificacion">
           <Key>
@@ -125,11 +144,11 @@
           </Key>
           <Property Name="IDANTICIPO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDDATOSLICITACION" Type="int" />
-          <Property Name="ANTICIPO" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="ANTICIPOINICIO" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="ANTICIPOMATERIALES" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="IVA" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="CAPITALMINIMO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ANTICIPO" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="ANTICIPOINICIO" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="ANTICIPOMATERIALES" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="IVA" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="CAPITALMINIMO" Type="decimal" Precision="15" Scale="2" />
         </EntityType>
         <EntityType Name="Año">
           <Key>
@@ -194,11 +213,11 @@
           <Property Name="NOTASACLARATORIAS" Type="varchar(max)" />
           <Property Name="IDPROCEDIMIENTO" Type="int" />
           <Property Name="IDAÑO" Type="int" />
-          <Property Name="IDSOLICITANTETC" Type="int" />
           <Property Name="IDTIPOOBRA" Type="int" />
           <Property Name="IDNIVELOBRA" Type="int" />
           <Property Name="IDESPOBRA" Type="int" />
           <Property Name="IDDIRECCION" Type="int" />
+          <Property Name="IDSOLICITANTETC" Type="int" />
         </EntityType>
         <EntityType Name="Desicion">
           <Key>
@@ -236,14 +255,14 @@
           </Key>
           <Property Name="IDFIANZA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ANUM" Type="int" />
-          <Property Name="AIMPORTE" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AIMPORTE" Type="decimal" Precision="15" Scale="2" />
           <Property Name="AFECHA" Type="datetime" />
           <Property Name="IDAFIANZADORAA" Type="int" />
           <Property Name="CNUMERO" Type="int" />
-          <Property Name="CIMPORTE" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CIMPORTE" Type="decimal" Precision="15" Scale="2" />
           <Property Name="CFECHA" Type="datetime" />
-          <Property Name="IDAFIAZADORAC" Type="int" />
           <Property Name="IDCONTRATO" Type="int" />
+          <Property Name="IDAFIAZADORAC" Type="int" />
         </EntityType>
         <EntityType Name="Inscrito">
           <Key>
@@ -254,12 +273,12 @@
           <Property Name="IDCONTRATISTA" Type="int" />
           <Property Name="ATECNICA" Type="int" />
           <Property Name="AECONOMICA" Type="int" />
-          <Property Name="AECONOMICAMONTO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AECONOMICAMONTO" Type="decimal" Precision="15" Scale="2" />
           <Property Name="AFALLO" Type="int" />
           <Property Name="TECMOTIVO" Type="varchar" MaxLength="100" />
           <Property Name="ECOMOTIVO" Type="varchar" MaxLength="100" />
           <Property Name="TIEMPOEJE" Type="int" />
-          <Property Name="FALLO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FALLO" Type="decimal" Precision="15" Scale="2" />
           <Property Name="IDDESICIONFALLA" Type="int" />
           <Property Name="IDDESICION" Type="int" />
           <Property Name="GANADOR" Type="int" />
@@ -269,7 +288,7 @@
             <PropertyRef Name="IDMOTIVOCANCELACION" />
           </Key>
           <Property Name="IDMOTIVOCANCELACION" Type="int" Nullable="false" />
-          <Property Name="MOTIVOCANCELACION" Type="varchar" MaxLength="25" />
+          <Property Name="MOTIVOCANCELACION" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="NivelObra">
           <Key>
@@ -313,7 +332,7 @@
           </Key>
           <Property Name="IDTIPOCONTRATO" Type="int" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="250" />
-          <Property Name="TIPOCONRTO" Type="varchar" MaxLength="4" />
+          <Property Name="TIPOCONTRATO" Type="varchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="TipoObra">
           <Key>
@@ -338,29 +357,18 @@
           <Property Name="ACTFALLAFECHA" Type="datetime" />
           <Property Name="ACTFALLAHORA" Type="varchar" MaxLength="12" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Entidad">
           <Key>
             <PropertyRef Name="IDENTIDAD" />
           </Key>
           <Property Name="IDENTIDAD" Type="int" Nullable="false" />
           <Property Name="ENTIDAD" Type="varchar" MaxLength="30" />
-          <Property Name="ABREVIACION" Type="varchar" MaxLength="9" />
         </EntityType>
         <EntityType Name="Municipio">
           <Key>
             <PropertyRef Name="IDMUNICIPIO" />
           </Key>
-          <Property Name="IDMUNICIPIO" Type="int" Nullable="false" />
+          <Property Name="IDMUNICIPIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MUNICIPIO" Type="varchar" MaxLength="35" />
           <Property Name="IDREGION" Type="int" />
           <Property Name="IDENTIDAD" Type="int" />
@@ -391,24 +399,23 @@
             <PropertyRef Name="IDFUENTEFIN" />
           </Key>
           <Property Name="IDFUENTEFIN" Type="int" Nullable="false" />
-          <Property Name="FUENTEFIN" Type="varchar" MaxLength="40" />
-          <Property Name="ORIGEN" Type="varchar" MaxLength="1" />
+          <Property Name="FUENTEFIN" Type="varchar" MaxLength="25" />
+          <Property Name="IDESTRUCTURAFIN" Type="int" />
         </EntityType>
         <EntityType Name="MontoFin">
           <Key>
             <PropertyRef Name="IDMONTOFIN" />
           </Key>
-          <Property Name="IDMONTOFIN" Type="int" Nullable="false" />
+          <Property Name="IDMONTOFIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDOFICIOSAUT" Type="int" />
           <Property Name="IDFUENTEFIN" Type="int" />
-          <Property Name="IDESTRUCTURAFIN" Type="int" />
-          <Property Name="MONTO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MONTO" Type="decimal" Precision="15" Scale="2" />
         </EntityType>
         <EntityType Name="OficiosAut">
           <Key>
             <PropertyRef Name="IDOFICIOSAUT" />
           </Key>
-          <Property Name="IDOFICIOSAUT" Type="int" Nullable="false" />
+          <Property Name="IDOFICIOSAUT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OFICIOAUT" Type="varchar" MaxLength="25" />
           <Property Name="FECAUTORIZACION" Type="datetime" />
           <Property Name="FECRECIBIDO" Type="datetime" />
@@ -416,7 +423,7 @@
           <Property Name="NUMOBRA" Type="int" />
           <Property Name="DESCOBRA" Type="varchar(max)" />
           <Property Name="IDAUTORIZA" Type="int" />
-          <Property Name="MONTOAUTORIZADO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MONTOAUTORIZADO" Type="decimal" Precision="15" Scale="2" />
           <Property Name="IDPROGRAMA" Type="int" />
           <Property Name="IDMUNICIPIO" Type="int" />
         </EntityType>
@@ -619,6 +626,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DatosMoral_Contratista">
+          <End Role="Contratista" Type="Self.Contratista" Multiplicity="0..1" />
+          <End Role="DatosMoral" Type="Self.DatosMoral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contratista">
+              <PropertyRef Name="IDCONTRATISTA" />
+            </Principal>
+            <Dependent Role="DatosMoral">
+              <PropertyRef Name="IDCONTRATISTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DatosMoral_Municipio">
+          <End Role="Municipio" Type="Self.Municipio" Multiplicity="0..1" />
+          <End Role="DatosMoral" Type="Self.DatosMoral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipio">
+              <PropertyRef Name="IDMUNICIPIO" />
+            </Principal>
+            <Dependent Role="DatosMoral">
+              <PropertyRef Name="IDMUNICIPIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DatosPoder_DatosRepresenta">
           <End Role="DatosRepresenta" Type="Self.DatosRepresenta" Multiplicity="0..1" />
           <End Role="DatosPoder" Type="Self.DatosPoder" Multiplicity="*" />
@@ -667,7 +698,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Entidad_Region">
+        <Association Name="FK_Direccion_Municipio">
+          <End Role="Municipio" Type="Self.Municipio" Multiplicity="0..1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipio">
+              <PropertyRef Name="IDMUNICIPIO" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="IDMUNICIPIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entidad_Municipio">
           <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
           <End Role="Municipio" Type="Self.Municipio" Multiplicity="*" />
           <ReferentialConstraint>
@@ -688,6 +731,18 @@
             </Principal>
             <Dependent Role="Fianzas">
               <PropertyRef Name="IDCONTRATO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FuenteFin_EstructuraFin">
+          <End Role="EstructuraFin" Type="Self.EstructuraFin" Multiplicity="0..1" />
+          <End Role="FuenteFin" Type="Self.FuenteFin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstructuraFin">
+              <PropertyRef Name="IDESTRUCTURAFIN" />
+            </Principal>
+            <Dependent Role="FuenteFin">
+              <PropertyRef Name="IDESTRUCTURAFIN" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -739,18 +794,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MontoFin_EstructuraFin">
-          <End Role="EstructuraFin" Type="Self.EstructuraFin" Multiplicity="0..1" />
-          <End Role="MontoFin" Type="Self.MontoFin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EstructuraFin">
-              <PropertyRef Name="IDESTRUCTURAFIN" />
-            </Principal>
-            <Dependent Role="MontoFin">
-              <PropertyRef Name="IDESTRUCTURAFIN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MontoFin_FuenteFin">
           <End Role="FuenteFin" Type="Self.FuenteFin" Multiplicity="0..1" />
           <End Role="MontoFin" Type="Self.MontoFin" Multiplicity="*" />
@@ -772,18 +815,6 @@
             </Principal>
             <Dependent Role="MontoFin">
               <PropertyRef Name="IDOFICIOSAUT" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Municipio_Entidad">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
-          <End Role="Municipio" Type="Self.Municipio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entidad">
-              <PropertyRef Name="IDENTIDAD" />
-            </Principal>
-            <Dependent Role="Municipio">
-              <PropertyRef Name="IDENTIDAD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -823,6 +854,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Region_Municipio">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
+          <End Role="Municipio" Type="Self.Municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="IDENTIDAD" />
+            </Principal>
+            <Dependent Role="Municipio">
+              <PropertyRef Name="IDENTIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RegistroContratista_Contratista">
           <End Role="Contratista" Type="Self.Contratista" Multiplicity="0..1" />
           <End Role="RegistroContratista" Type="Self.RegistroContratista" Multiplicity="*" />
@@ -844,6 +887,18 @@
             </Principal>
             <Dependent Role="RegistroContratista">
               <PropertyRef Name="IDESPECIALIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroContratista_InfoCapital">
+          <End Role="InfoCapital" Type="Self.InfoCapital" Multiplicity="0..1" />
+          <End Role="RegistroContratista" Type="Self.RegistroContratista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoCapital">
+              <PropertyRef Name="IDINFOCAPITAL" />
+            </Principal>
+            <Dependent Role="RegistroContratista">
+              <PropertyRef Name="IDINFOCAPITAL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -899,9 +954,11 @@
           <EntitySet Name="Responsabilidad" EntityType="Self.Responsabilidad" Schema="admon" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="admon" store:Type="Tables" />
           <EntitySet Name="Contratista" EntityType="Self.Contratista" Schema="contratistas" store:Type="Tables" />
+          <EntitySet Name="DatosMoral" EntityType="Self.DatosMoral" Schema="contratistas" store:Type="Tables" />
           <EntitySet Name="DatosPoder" EntityType="Self.DatosPoder" Schema="contratistas" store:Type="Tables" />
           <EntitySet Name="DatosRepresenta" EntityType="Self.DatosRepresenta" Schema="contratistas" store:Type="Tables" />
           <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="contratistas" store:Type="Tables" />
+          <EntitySet Name="InfoCapital" EntityType="Self.InfoCapital" Schema="contratistas" store:Type="Tables" />
           <EntitySet Name="RegistroContratista" EntityType="Self.RegistroContratista" Schema="contratistas" store:Type="Tables" />
           <EntitySet Name="TblIdentificacion" EntityType="Self.TblIdentificacion" Schema="contratistas" store:Type="Tables" />
           <EntitySet Name="TipoContratista" EntityType="Self.TipoContratista" Schema="contratistas" store:Type="Tables" />
@@ -925,16 +982,15 @@
           <EntitySet Name="TipoContrato" EntityType="Self.TipoContrato" Schema="contratos" store:Type="Tables" />
           <EntitySet Name="TipoObra" EntityType="Self.TipoObra" Schema="contratos" store:Type="Tables" />
           <EntitySet Name="VisitaProg" EntityType="Self.VisitaProg" Schema="contratos" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="entidades" store:Type="Tables" />
           <EntitySet Name="Municipio" EntityType="Self.Municipio" Schema="entidades" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="entidades" store:Type="Tables" />
-          <EntitySet Name="Autoriza" EntityType="Self.Autoriza" Schema="financiamento" store:Type="Tables" />
-          <EntitySet Name="EstructuraFin" EntityType="Self.EstructuraFin" Schema="financiamento" store:Type="Tables" />
-          <EntitySet Name="FuenteFin" EntityType="Self.FuenteFin" Schema="financiamento" store:Type="Tables" />
-          <EntitySet Name="MontoFin" EntityType="Self.MontoFin" Schema="financiamento" store:Type="Tables" />
-          <EntitySet Name="OficiosAut" EntityType="Self.OficiosAut" Schema="financiamento" store:Type="Tables" />
-          <EntitySet Name="Programa" EntityType="Self.Programa" Schema="financiamento" store:Type="Tables" />
+          <EntitySet Name="Autoriza" EntityType="Self.Autoriza" Schema="financiamiento" store:Type="Tables" />
+          <EntitySet Name="EstructuraFin" EntityType="Self.EstructuraFin" Schema="financiamiento" store:Type="Tables" />
+          <EntitySet Name="FuenteFin" EntityType="Self.FuenteFin" Schema="financiamiento" store:Type="Tables" />
+          <EntitySet Name="MontoFin" EntityType="Self.MontoFin" Schema="financiamiento" store:Type="Tables" />
+          <EntitySet Name="OficiosAut" EntityType="Self.OficiosAut" Schema="financiamiento" store:Type="Tables" />
+          <EntitySet Name="Programa" EntityType="Self.Programa" Schema="financiamiento" store:Type="Tables" />
           <AssociationSet Name="FK_Anticipo_DatosLicitacion" Association="Self.FK_Anticipo_DatosLicitacion">
             <End Role="DatosLicitacion" EntitySet="DatosLicitacion" />
             <End Role="Anticipo" EntitySet="Anticipo" />
@@ -999,6 +1055,14 @@
             <End Role="TipoObra" EntitySet="TipoObra" />
             <End Role="DatosLicitacion" EntitySet="DatosLicitacion" />
           </AssociationSet>
+          <AssociationSet Name="FK_DatosMoral_Contratista" Association="Self.FK_DatosMoral_Contratista">
+            <End Role="Contratista" EntitySet="Contratista" />
+            <End Role="DatosMoral" EntitySet="DatosMoral" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DatosMoral_Municipio" Association="Self.FK_DatosMoral_Municipio">
+            <End Role="Municipio" EntitySet="Municipio" />
+            <End Role="DatosMoral" EntitySet="DatosMoral" />
+          </AssociationSet>
           <AssociationSet Name="FK_DatosPoder_DatosRepresenta" Association="Self.FK_DatosPoder_DatosRepresenta">
             <End Role="DatosRepresenta" EntitySet="DatosRepresenta" />
             <End Role="DatosPoder" EntitySet="DatosPoder" />
@@ -1015,13 +1079,21 @@
             <End Role="TblIdentificacion" EntitySet="TblIdentificacion" />
             <End Role="DatosRepresenta" EntitySet="DatosRepresenta" />
           </AssociationSet>
-          <AssociationSet Name="FK_Entidad_Region" Association="Self.FK_Entidad_Region">
+          <AssociationSet Name="FK_Direccion_Municipio" Association="Self.FK_Direccion_Municipio">
+            <End Role="Municipio" EntitySet="Municipio" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entidad_Municipio" Association="Self.FK_Entidad_Municipio">
             <End Role="Region" EntitySet="Region" />
             <End Role="Municipio" EntitySet="Municipio" />
           </AssociationSet>
           <AssociationSet Name="FK_Fianzas_Contrato" Association="Self.FK_Fianzas_Contrato">
             <End Role="Contrato" EntitySet="Contrato" />
             <End Role="Fianzas" EntitySet="Fianzas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FuenteFin_EstructuraFin" Association="Self.FK_FuenteFin_EstructuraFin">
+            <End Role="EstructuraFin" EntitySet="EstructuraFin" />
+            <End Role="FuenteFin" EntitySet="FuenteFin" />
           </AssociationSet>
           <AssociationSet Name="FK_Inscrito_Contratista" Association="Self.FK_Inscrito_Contratista">
             <End Role="Contratista" EntitySet="Contratista" />
@@ -1039,10 +1111,6 @@
             <End Role="DesicionFalla" EntitySet="DesicionFalla" />
             <End Role="Inscrito" EntitySet="Inscrito" />
           </AssociationSet>
-          <AssociationSet Name="FK_MontoFin_EstructuraFin" Association="Self.FK_MontoFin_EstructuraFin">
-            <End Role="EstructuraFin" EntitySet="EstructuraFin" />
-            <End Role="MontoFin" EntitySet="MontoFin" />
-          </AssociationSet>
           <AssociationSet Name="FK_MontoFin_FuenteFin" Association="Self.FK_MontoFin_FuenteFin">
             <End Role="FuenteFin" EntitySet="FuenteFin" />
             <End Role="MontoFin" EntitySet="MontoFin" />
@@ -1050,10 +1118,6 @@
           <AssociationSet Name="FK_MontoFin_OficiosAut" Association="Self.FK_MontoFin_OficiosAut">
             <End Role="OficiosAut" EntitySet="OficiosAut" />
             <End Role="MontoFin" EntitySet="MontoFin" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Municipio_Entidad" Association="Self.FK_Municipio_Entidad">
-            <End Role="Entidad" EntitySet="Entidad" />
-            <End Role="Municipio" EntitySet="Municipio" />
           </AssociationSet>
           <AssociationSet Name="FK_OficiosAut_Autoriza" Association="Self.FK_OficiosAut_Autoriza">
             <End Role="Autoriza" EntitySet="Autoriza" />
@@ -1067,12 +1131,20 @@
             <End Role="Programa" EntitySet="Programa" />
             <End Role="OficiosAut" EntitySet="OficiosAut" />
           </AssociationSet>
+          <AssociationSet Name="FK_Region_Municipio" Association="Self.FK_Region_Municipio">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Municipio" EntitySet="Municipio" />
+          </AssociationSet>
           <AssociationSet Name="FK_RegistroContratista_Contratista" Association="Self.FK_RegistroContratista_Contratista">
             <End Role="Contratista" EntitySet="Contratista" />
             <End Role="RegistroContratista" EntitySet="RegistroContratista" />
           </AssociationSet>
           <AssociationSet Name="FK_RegistroContratista_Especialidad" Association="Self.FK_RegistroContratista_Especialidad">
             <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="RegistroContratista" EntitySet="RegistroContratista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroContratista_InfoCapital" Association="Self.FK_RegistroContratista_InfoCapital">
+            <End Role="InfoCapital" EntitySet="InfoCapital" />
             <End Role="RegistroContratista" EntitySet="RegistroContratista" />
           </AssociationSet>
           <AssociationSet Name="FK_RegistroContratista_TipoContratista" Association="Self.FK_RegistroContratista_TipoContratista">
@@ -1097,14 +1169,16 @@
     <edmx:ConceptualModels>
       <Schema Namespace="CCDevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CCDevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Especialidads" EntityType="CCDevModel.Especialidad" />
+          <EntitySet Name="TblIdentificacions" EntityType="CCDevModel.TblIdentificacion" />
           <EntitySet Name="Responsabilidads" EntityType="CCDevModel.Responsabilidad" />
           <EntitySet Name="Usuarios" EntityType="CCDevModel.Usuario" />
           <EntitySet Name="Contratistas" EntityType="CCDevModel.Contratista" />
+          <EntitySet Name="DatosMorals" EntityType="CCDevModel.DatosMoral" />
           <EntitySet Name="DatosPoders" EntityType="CCDevModel.DatosPoder" />
           <EntitySet Name="DatosRepresentas" EntityType="CCDevModel.DatosRepresenta" />
-          <EntitySet Name="Especialidads" EntityType="CCDevModel.Especialidad" />
+          <EntitySet Name="InfoCapitals" EntityType="CCDevModel.InfoCapital" />
           <EntitySet Name="RegistroContratistas" EntityType="CCDevModel.RegistroContratista" />
-          <EntitySet Name="TblIdentificacions" EntityType="CCDevModel.TblIdentificacion" />
           <EntitySet Name="TipoContratistas" EntityType="CCDevModel.TipoContratista" />
           <EntitySet Name="Afianzadoras" EntityType="CCDevModel.Afianzadora" />
           <EntitySet Name="Anticipoes" EntityType="CCDevModel.Anticipo" />
@@ -1126,7 +1200,6 @@
           <EntitySet Name="TipoContratoes" EntityType="CCDevModel.TipoContrato" />
           <EntitySet Name="TipoObras" EntityType="CCDevModel.TipoObra" />
           <EntitySet Name="VisitaProgs" EntityType="CCDevModel.VisitaProg" />
-          <EntitySet Name="sysdiagrams" EntityType="CCDevModel.sysdiagram" />
           <EntitySet Name="Entidads" EntityType="CCDevModel.Entidad" />
           <EntitySet Name="Municipios" EntityType="CCDevModel.Municipio" />
           <EntitySet Name="Regions" EntityType="CCDevModel.Region" />
@@ -1144,6 +1217,10 @@
             <End Role="Municipio" EntitySet="Municipios" />
             <End Role="Contratista" EntitySet="Contratistas" />
           </AssociationSet>
+          <AssociationSet Name="FK_DatosMoral_Contratista" Association="CCDevModel.FK_DatosMoral_Contratista">
+            <End Role="Contratista" EntitySet="Contratistas" />
+            <End Role="DatosMoral" EntitySet="DatosMorals" />
+          </AssociationSet>
           <AssociationSet Name="FK_DatosRepresenta_Contratista" Association="CCDevModel.FK_DatosRepresenta_Contratista">
             <End Role="Contratista" EntitySet="Contratistas" />
             <End Role="DatosRepresenta" EntitySet="DatosRepresentas" />
@@ -1155,6 +1232,10 @@
           <AssociationSet Name="FK_RegistroContratista_Contratista" Association="CCDevModel.FK_RegistroContratista_Contratista">
             <End Role="Contratista" EntitySet="Contratistas" />
             <End Role="RegistroContratista" EntitySet="RegistroContratistas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DatosMoral_Municipio" Association="CCDevModel.FK_DatosMoral_Municipio">
+            <End Role="Municipio" EntitySet="Municipios" />
+            <End Role="DatosMoral" EntitySet="DatosMorals" />
           </AssociationSet>
           <AssociationSet Name="FK_DatosPoder_DatosRepresenta" Association="CCDevModel.FK_DatosPoder_DatosRepresenta">
             <End Role="DatosRepresenta" EntitySet="DatosRepresentas" />
@@ -1170,6 +1251,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_RegistroContratista_Especialidad" Association="CCDevModel.FK_RegistroContratista_Especialidad">
             <End Role="Especialidad" EntitySet="Especialidads" />
+            <End Role="RegistroContratista" EntitySet="RegistroContratistas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistroContratista_InfoCapital" Association="CCDevModel.FK_RegistroContratista_InfoCapital">
+            <End Role="InfoCapital" EntitySet="InfoCapitals" />
             <End Role="RegistroContratista" EntitySet="RegistroContratistas" />
           </AssociationSet>
           <AssociationSet Name="FK_RegistroContratista_TipoContratista" Association="CCDevModel.FK_RegistroContratista_TipoContratista">
@@ -1260,11 +1345,15 @@
             <End Role="DesicionFalla" EntitySet="DesicionFallas" />
             <End Role="Inscrito" EntitySet="Inscritoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Municipio_Entidad" Association="CCDevModel.FK_Municipio_Entidad">
+          <AssociationSet Name="FK_Direccion_Municipio" Association="CCDevModel.FK_Direccion_Municipio">
+            <End Role="Municipio" EntitySet="Municipios" />
+            <End Role="Direccion" EntitySet="Direccions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Municipio" Association="CCDevModel.FK_Region_Municipio">
             <End Role="Entidad" EntitySet="Entidads" />
             <End Role="Municipio" EntitySet="Municipios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Entidad_Region" Association="CCDevModel.FK_Entidad_Region">
+          <AssociationSet Name="FK_Entidad_Municipio" Association="CCDevModel.FK_Entidad_Municipio">
             <End Role="Region" EntitySet="Regions" />
             <End Role="Municipio" EntitySet="Municipios" />
           </AssociationSet>
@@ -1276,9 +1365,9 @@
             <End Role="Autoriza" EntitySet="Autorizas" />
             <End Role="OficiosAut" EntitySet="OficiosAuts" />
           </AssociationSet>
-          <AssociationSet Name="FK_MontoFin_EstructuraFin" Association="CCDevModel.FK_MontoFin_EstructuraFin">
+          <AssociationSet Name="FK_FuenteFin_EstructuraFin" Association="CCDevModel.FK_FuenteFin_EstructuraFin">
             <End Role="EstructuraFin" EntitySet="EstructuraFins" />
-            <End Role="MontoFin" EntitySet="MontoFins" />
+            <End Role="FuenteFin" EntitySet="FuenteFins" />
           </AssociationSet>
           <AssociationSet Name="FK_MontoFin_FuenteFin" Association="CCDevModel.FK_MontoFin_FuenteFin">
             <End Role="FuenteFin" EntitySet="FuenteFins" />
@@ -1292,7 +1381,23 @@
             <End Role="Programa" EntitySet="Programas" />
             <End Role="OficiosAut" EntitySet="OficiosAuts" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="IDESPECIALIDAD" />
+          </Key>
+          <Property Name="IDESPECIALIDAD" Type="Int32" Nullable="false" />
+          <Property Name="ESPECIALIDAD1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RegistroContratistas" Relationship="CCDevModel.FK_RegistroContratista_Especialidad" FromRole="Especialidad" ToRole="RegistroContratista" />
+        </EntityType>
+        <EntityType Name="TblIdentificacion">
+          <Key>
+            <PropertyRef Name="IDIDENTIFICACION" />
+          </Key>
+          <Property Name="IDIDENTIFICACION" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DatosRepresentas" Relationship="CCDevModel.FK_DatosRepresenta_TblIdentificacion" FromRole="TblIdentificacion" ToRole="DatosRepresenta" />
+        </EntityType>
         <EntityType Name="Responsabilidad">
           <Key>
             <PropertyRef Name="IDRESPONSABILIDAD" />
@@ -1319,24 +1424,38 @@
             <PropertyRef Name="IDCONTRATISTA" />
           </Key>
           <Property Name="IDCONTRATISTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RFC" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="RAZONSOCIAL" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="RFC" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
           <Property Name="TELEFONO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="FAX" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CALLE" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
           <Property Name="NOEXTERIOR" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="NOINTERIOR" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="COLONIA" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="CP" Type="Int32" />
-          <Property Name="CURP" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="CURP" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
           <Property Name="IDMUNICIPIO" Type="Int32" />
           <Property Name="CORREO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="AÑO" Type="Int32" />
-          <Property Name="ACTIVO" Type="Int32" />
           <NavigationProperty Name="Municipio" Relationship="CCDevModel.FK_Contratista_Municipio" FromRole="Contratista" ToRole="Municipio" />
+          <NavigationProperty Name="DatosMorals" Relationship="CCDevModel.FK_DatosMoral_Contratista" FromRole="Contratista" ToRole="DatosMoral" />
           <NavigationProperty Name="DatosRepresentas" Relationship="CCDevModel.FK_DatosRepresenta_Contratista" FromRole="Contratista" ToRole="DatosRepresenta" />
           <NavigationProperty Name="Inscritoes" Relationship="CCDevModel.FK_Inscrito_Contratista" FromRole="Contratista" ToRole="Inscrito" />
           <NavigationProperty Name="RegistroContratistas" Relationship="CCDevModel.FK_RegistroContratista_Contratista" FromRole="Contratista" ToRole="RegistroContratista" />
+        </EntityType>
+        <EntityType Name="DatosMoral">
+          <Key>
+            <PropertyRef Name="IDDATOSMORAL" />
+          </Key>
+          <Property Name="IDDATOSMORAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACTACONSTITUTIVA" Type="Int32" />
+          <Property Name="FECHAACTA" Type="DateTime" Precision="3" />
+          <Property Name="NOTARIONUM" Type="Int32" />
+          <Property Name="NOTARIONOMBRE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="REGPUBLICO" Type="Int32" />
+          <Property Name="IDMUNICIPIO" Type="Int32" />
+          <Property Name="IDCONTRATISTA" Type="Int32" />
+          <NavigationProperty Name="Contratista" Relationship="CCDevModel.FK_DatosMoral_Contratista" FromRole="DatosMoral" ToRole="Contratista" />
+          <NavigationProperty Name="Municipio" Relationship="CCDevModel.FK_DatosMoral_Municipio" FromRole="DatosMoral" ToRole="Municipio" />
         </EntityType>
         <EntityType Name="DatosPoder">
           <Key>
@@ -1368,19 +1487,19 @@
           <Property Name="NIDEN" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="ACREDITA" Type="Int32" />
           <Property Name="NACREDITA" Type="Int32" />
-          <Property Name="IDCONTRATISTA" Type="Int32" />
           <Property Name="IDIDENTIFICACION" Type="Int32" />
+          <Property Name="IDCONTRATISTA" Type="Int32" />
           <NavigationProperty Name="Contratista" Relationship="CCDevModel.FK_DatosRepresenta_Contratista" FromRole="DatosRepresenta" ToRole="Contratista" />
           <NavigationProperty Name="DatosPoders" Relationship="CCDevModel.FK_DatosPoder_DatosRepresenta" FromRole="DatosRepresenta" ToRole="DatosPoder" />
           <NavigationProperty Name="TblIdentificacion" Relationship="CCDevModel.FK_DatosRepresenta_TblIdentificacion" FromRole="DatosRepresenta" ToRole="TblIdentificacion" />
         </EntityType>
-        <EntityType Name="Especialidad">
+        <EntityType Name="InfoCapital">
           <Key>
-            <PropertyRef Name="IDESPECIALIDAD" />
+            <PropertyRef Name="IDINFOCAPITAL" />
           </Key>
-          <Property Name="IDESPECIALIDAD" Type="Int32" Nullable="false" />
-          <Property Name="ESPECIALIDAD1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RegistroContratistas" Relationship="CCDevModel.FK_RegistroContratista_Especialidad" FromRole="Especialidad" ToRole="RegistroContratista" />
+          <Property Name="IDINFOCAPITAL" Type="Int32" Nullable="false" />
+          <Property Name="INFOCAPITAL1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RegistroContratistas" Relationship="CCDevModel.FK_RegistroContratista_InfoCapital" FromRole="InfoCapital" ToRole="RegistroContratista" />
         </EntityType>
         <EntityType Name="RegistroContratista">
           <Key>
@@ -1391,23 +1510,17 @@
           <Property Name="REGCONTRALORIAINGREGSO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="FECHAEXPEDICION" Type="DateTime" Precision="3" />
           <Property Name="FECHAVIGENCIA" Type="DateTime" Precision="3" />
-          <Property Name="CAPITAL" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="INFCAPITAL" Type="Int32" />
+          <Property Name="CAPITAL" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="IDINFOCAPITAL" Type="Int32" />
           <Property Name="FECHAINF" Type="DateTime" Precision="3" />
           <Property Name="IDCONTRATISTA" Type="Int32" />
           <Property Name="IDTIPO" Type="Int32" />
           <Property Name="IDESPECIALIDAD" Type="Int32" />
+          <Property Name="ACTIVO" Type="Boolean" />
           <NavigationProperty Name="Contratista" Relationship="CCDevModel.FK_RegistroContratista_Contratista" FromRole="RegistroContratista" ToRole="Contratista" />
           <NavigationProperty Name="Especialidad" Relationship="CCDevModel.FK_RegistroContratista_Especialidad" FromRole="RegistroContratista" ToRole="Especialidad" />
+          <NavigationProperty Name="InfoCapital" Relationship="CCDevModel.FK_RegistroContratista_InfoCapital" FromRole="RegistroContratista" ToRole="InfoCapital" />
           <NavigationProperty Name="TipoContratista" Relationship="CCDevModel.FK_RegistroContratista_TipoContratista" FromRole="RegistroContratista" ToRole="TipoContratista" />
-        </EntityType>
-        <EntityType Name="TblIdentificacion">
-          <Key>
-            <PropertyRef Name="IDIDENTIFICACION" />
-          </Key>
-          <Property Name="IDIDENTIFICACION" Type="Int32" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DatosRepresentas" Relationship="CCDevModel.FK_DatosRepresenta_TblIdentificacion" FromRole="TblIdentificacion" ToRole="DatosRepresenta" />
         </EntityType>
         <EntityType Name="TipoContratista">
           <Key>
@@ -1430,11 +1543,11 @@
           </Key>
           <Property Name="IDANTICIPO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDDATOSLICITACION" Type="Int32" />
-          <Property Name="ANTICIPO1" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ANTICIPOINICIO" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ANTICIPOMATERIALES" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="IVA" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="CAPITALMINIMO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ANTICIPO1" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="ANTICIPOINICIO" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="ANTICIPOMATERIALES" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="IVA" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="CAPITALMINIMO" Type="Decimal" Precision="15" Scale="2" />
           <NavigationProperty Name="DatosLicitacion" Relationship="CCDevModel.FK_Anticipo_DatosLicitacion" FromRole="Anticipo" ToRole="DatosLicitacion" />
         </EntityType>
         <EntityType Name="Año">
@@ -1511,11 +1624,11 @@
           <Property Name="NOTASACLARATORIAS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDPROCEDIMIENTO" Type="Int32" />
           <Property Name="IDAÑO" Type="Int32" />
-          <Property Name="IDSOLICITANTETC" Type="Int32" />
           <Property Name="IDTIPOOBRA" Type="Int32" />
           <Property Name="IDNIVELOBRA" Type="Int32" />
           <Property Name="IDESPOBRA" Type="Int32" />
           <Property Name="IDDIRECCION" Type="Int32" />
+          <Property Name="IDSOLICITANTETC" Type="Int32" />
           <NavigationProperty Name="Anticipoes" Relationship="CCDevModel.FK_Anticipo_DatosLicitacion" FromRole="DatosLicitacion" ToRole="Anticipo" />
           <NavigationProperty Name="Año" Relationship="CCDevModel.FK_DatosLicitacion_Año" FromRole="DatosLicitacion" ToRole="Año" />
           <NavigationProperty Name="Canceladoes" Relationship="CCDevModel.FK_Cancelado_DatosLicitacion" FromRole="DatosLicitacion" ToRole="Cancelado" />
@@ -1554,6 +1667,7 @@
           <Property Name="TIPO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDMUNICIPIO" Type="Int32" />
           <NavigationProperty Name="DatosLicitacions" Relationship="CCDevModel.FK_DatosLicitacion_Direccion" FromRole="Direccion" ToRole="DatosLicitacion" />
+          <NavigationProperty Name="Municipio" Relationship="CCDevModel.FK_Direccion_Municipio" FromRole="Direccion" ToRole="Municipio" />
         </EntityType>
         <EntityType Name="EspObra">
           <Key>
@@ -1569,14 +1683,14 @@
           </Key>
           <Property Name="IDFIANZA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ANUM" Type="Int32" />
-          <Property Name="AIMPORTE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AIMPORTE" Type="Decimal" Precision="15" Scale="2" />
           <Property Name="AFECHA" Type="DateTime" Precision="3" />
           <Property Name="IDAFIANZADORAA" Type="Int32" />
           <Property Name="CNUMERO" Type="Int32" />
-          <Property Name="CIMPORTE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CIMPORTE" Type="Decimal" Precision="15" Scale="2" />
           <Property Name="CFECHA" Type="DateTime" Precision="3" />
-          <Property Name="IDAFIAZADORAC" Type="Int32" />
           <Property Name="IDCONTRATO" Type="Int32" />
+          <Property Name="IDAFIAZADORAC" Type="Int32" />
           <NavigationProperty Name="Contrato" Relationship="CCDevModel.FK_Fianzas_Contrato" FromRole="Fianza" ToRole="Contrato" />
         </EntityType>
         <EntityType Name="Inscrito">
@@ -1588,12 +1702,12 @@
           <Property Name="IDCONTRATISTA" Type="Int32" />
           <Property Name="ATECNICA" Type="Int32" />
           <Property Name="AECONOMICA" Type="Int32" />
-          <Property Name="AECONOMICAMONTO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AECONOMICAMONTO" Type="Decimal" Precision="15" Scale="2" />
           <Property Name="AFALLO" Type="Int32" />
           <Property Name="TECMOTIVO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ECOMOTIVO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TIEMPOEJE" Type="Int32" />
-          <Property Name="FALLO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FALLO" Type="Decimal" Precision="15" Scale="2" />
           <Property Name="IDDESICIONFALLA" Type="Int32" />
           <Property Name="IDDESICION" Type="Int32" />
           <Property Name="GANADOR" Type="Int32" />
@@ -1607,7 +1721,7 @@
             <PropertyRef Name="IDMOTIVOCANCELACION" />
           </Key>
           <Property Name="IDMOTIVOCANCELACION" Type="Int32" Nullable="false" />
-          <Property Name="MOTIVOCANCELACION1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MOTIVOCANCELACION1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Canceladoes" Relationship="CCDevModel.FK_Cancelado_MotivoCancelacion" FromRole="MotivoCancelacion" ToRole="Cancelado" />
         </EntityType>
         <EntityType Name="NivelObra">
@@ -1655,7 +1769,7 @@
           </Key>
           <Property Name="IDTIPOCONTRATO" Type="Int32" Nullable="false" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="TIPOCONRTO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TIPOCONTRATO1" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Contratoes" Relationship="CCDevModel.FK_Contrato_TipoContrato" FromRole="TipoContrato" ToRole="Contrato" />
           <NavigationProperty Name="DatosLicitacions" Relationship="CCDevModel.FK_DatosLicitacion_TipoContrato" FromRole="TipoContrato" ToRole="DatosLicitacion" />
         </EntityType>
@@ -1684,38 +1798,29 @@
           <Property Name="ACTFALLAHORA" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DatosLicitacion" Relationship="CCDevModel.FK_VisitaProg_DatosLicitacion" FromRole="VisitaProg" ToRole="DatosLicitacion" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Entidad">
           <Key>
             <PropertyRef Name="IDENTIDAD" />
           </Key>
           <Property Name="IDENTIDAD" Type="Int32" Nullable="false" />
           <Property Name="ENTIDAD1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ABREVIACION" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Municipios" Relationship="CCDevModel.FK_Municipio_Entidad" FromRole="Entidad" ToRole="Municipio" />
+          <NavigationProperty Name="Municipios" Relationship="CCDevModel.FK_Region_Municipio" FromRole="Entidad" ToRole="Municipio" />
         </EntityType>
         <EntityType Name="Municipio">
           <Key>
             <PropertyRef Name="IDMUNICIPIO" />
           </Key>
-          <Property Name="IDMUNICIPIO" Type="Int32" Nullable="false" />
+          <Property Name="IDMUNICIPIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MUNICIPIO1" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="IDREGION" Type="Int32" />
           <Property Name="IDENTIDAD" Type="Int32" />
           <NavigationProperty Name="Contratistas" Relationship="CCDevModel.FK_Contratista_Municipio" FromRole="Municipio" ToRole="Contratista" />
+          <NavigationProperty Name="DatosMorals" Relationship="CCDevModel.FK_DatosMoral_Municipio" FromRole="Municipio" ToRole="DatosMoral" />
           <NavigationProperty Name="DatosPoders" Relationship="CCDevModel.FK_DatosPoder_Municipio" FromRole="Municipio" ToRole="DatosPoder" />
           <NavigationProperty Name="Contratoes" Relationship="CCDevModel.FK_Contrato_Municipio" FromRole="Municipio" ToRole="Contrato" />
-          <NavigationProperty Name="Entidad" Relationship="CCDevModel.FK_Municipio_Entidad" FromRole="Municipio" ToRole="Entidad" />
-          <NavigationProperty Name="Region" Relationship="CCDevModel.FK_Entidad_Region" FromRole="Municipio" ToRole="Region" />
+          <NavigationProperty Name="Direccions" Relationship="CCDevModel.FK_Direccion_Municipio" FromRole="Municipio" ToRole="Direccion" />
+          <NavigationProperty Name="Entidad" Relationship="CCDevModel.FK_Region_Municipio" FromRole="Municipio" ToRole="Entidad" />
+          <NavigationProperty Name="Region" Relationship="CCDevModel.FK_Entidad_Municipio" FromRole="Municipio" ToRole="Region" />
           <NavigationProperty Name="OficiosAuts" Relationship="CCDevModel.FK_OficiosAut_Municipio" FromRole="Municipio" ToRole="OficiosAut" />
         </EntityType>
         <EntityType Name="Region">
@@ -1724,7 +1829,7 @@
           </Key>
           <Property Name="IDREGION" Type="Int32" Nullable="false" />
           <Property Name="REGION1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Municipios" Relationship="CCDevModel.FK_Entidad_Region" FromRole="Region" ToRole="Municipio" />
+          <NavigationProperty Name="Municipios" Relationship="CCDevModel.FK_Entidad_Municipio" FromRole="Region" ToRole="Municipio" />
         </EntityType>
         <EntityType Name="Autoriza">
           <Key>
@@ -1740,27 +1845,26 @@
           </Key>
           <Property Name="IDESTRUCTURAFIN" Type="Int32" Nullable="false" />
           <Property Name="ESTRUCTURAFIN1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MontoFins" Relationship="CCDevModel.FK_MontoFin_EstructuraFin" FromRole="EstructuraFin" ToRole="MontoFin" />
+          <NavigationProperty Name="FuenteFins" Relationship="CCDevModel.FK_FuenteFin_EstructuraFin" FromRole="EstructuraFin" ToRole="FuenteFin" />
         </EntityType>
         <EntityType Name="FuenteFin">
           <Key>
             <PropertyRef Name="IDFUENTEFIN" />
           </Key>
           <Property Name="IDFUENTEFIN" Type="Int32" Nullable="false" />
-          <Property Name="FUENTEFIN1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="ORIGEN" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FUENTEFIN1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="IDESTRUCTURAFIN" Type="Int32" />
+          <NavigationProperty Name="EstructuraFin" Relationship="CCDevModel.FK_FuenteFin_EstructuraFin" FromRole="FuenteFin" ToRole="EstructuraFin" />
           <NavigationProperty Name="MontoFins" Relationship="CCDevModel.FK_MontoFin_FuenteFin" FromRole="FuenteFin" ToRole="MontoFin" />
         </EntityType>
         <EntityType Name="MontoFin">
           <Key>
             <PropertyRef Name="IDMONTOFIN" />
           </Key>
-          <Property Name="IDMONTOFIN" Type="Int32" Nullable="false" />
+          <Property Name="IDMONTOFIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDOFICIOSAUT" Type="Int32" />
           <Property Name="IDFUENTEFIN" Type="Int32" />
-          <Property Name="IDESTRUCTURAFIN" Type="Int32" />
-          <Property Name="MONTO" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="EstructuraFin" Relationship="CCDevModel.FK_MontoFin_EstructuraFin" FromRole="MontoFin" ToRole="EstructuraFin" />
+          <Property Name="MONTO" Type="Decimal" Precision="15" Scale="2" />
           <NavigationProperty Name="FuenteFin" Relationship="CCDevModel.FK_MontoFin_FuenteFin" FromRole="MontoFin" ToRole="FuenteFin" />
           <NavigationProperty Name="OficiosAut" Relationship="CCDevModel.FK_MontoFin_OficiosAut" FromRole="MontoFin" ToRole="OficiosAut" />
         </EntityType>
@@ -1768,7 +1872,7 @@
           <Key>
             <PropertyRef Name="IDOFICIOSAUT" />
           </Key>
-          <Property Name="IDOFICIOSAUT" Type="Int32" Nullable="false" />
+          <Property Name="IDOFICIOSAUT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OFICIOAUT" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="FECAUTORIZACION" Type="DateTime" Precision="3" />
           <Property Name="FECRECIBIDO" Type="DateTime" Precision="3" />
@@ -1776,7 +1880,7 @@
           <Property Name="NUMOBRA" Type="Int32" />
           <Property Name="DESCOBRA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDAUTORIZA" Type="Int32" />
-          <Property Name="MONTOAUTORIZADO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MONTOAUTORIZADO" Type="Decimal" Precision="15" Scale="2" />
           <Property Name="IDPROGRAMA" Type="Int32" />
           <Property Name="IDMUNICIPIO" Type="Int32" />
           <NavigationProperty Name="Contratoes" Relationship="CCDevModel.FK_Contrato_OficiosAut" FromRole="OficiosAut" ToRole="Contrato" />
@@ -1817,6 +1921,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DatosMoral_Contratista">
+          <End Type="CCDevModel.Contratista" Role="Contratista" Multiplicity="0..1" />
+          <End Type="CCDevModel.DatosMoral" Role="DatosMoral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contratista">
+              <PropertyRef Name="IDCONTRATISTA" />
+            </Principal>
+            <Dependent Role="DatosMoral">
+              <PropertyRef Name="IDCONTRATISTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DatosRepresenta_Contratista">
           <End Type="CCDevModel.Contratista" Role="Contratista" Multiplicity="0..1" />
           <End Type="CCDevModel.DatosRepresenta" Role="DatosRepresenta" Multiplicity="*" />
@@ -1850,6 +1966,18 @@
             </Principal>
             <Dependent Role="RegistroContratista">
               <PropertyRef Name="IDCONTRATISTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DatosMoral_Municipio">
+          <End Type="CCDevModel.Municipio" Role="Municipio" Multiplicity="0..1" />
+          <End Type="CCDevModel.DatosMoral" Role="DatosMoral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipio">
+              <PropertyRef Name="IDMUNICIPIO" />
+            </Principal>
+            <Dependent Role="DatosMoral">
+              <PropertyRef Name="IDMUNICIPIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1898,6 +2026,18 @@
             </Principal>
             <Dependent Role="RegistroContratista">
               <PropertyRef Name="IDESPECIALIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistroContratista_InfoCapital">
+          <End Type="CCDevModel.InfoCapital" Role="InfoCapital" Multiplicity="0..1" />
+          <End Type="CCDevModel.RegistroContratista" Role="RegistroContratista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoCapital">
+              <PropertyRef Name="IDINFOCAPITAL" />
+            </Principal>
+            <Dependent Role="RegistroContratista">
+              <PropertyRef Name="IDINFOCAPITAL" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2165,7 +2305,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Municipio_Entidad">
+        <Association Name="FK_Direccion_Municipio">
+          <End Type="CCDevModel.Municipio" Role="Municipio" Multiplicity="0..1" />
+          <End Type="CCDevModel.Direccion" Role="Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipio">
+              <PropertyRef Name="IDMUNICIPIO" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="IDMUNICIPIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Municipio">
           <End Type="CCDevModel.Entidad" Role="Entidad" Multiplicity="0..1" />
           <End Type="CCDevModel.Municipio" Role="Municipio" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2177,7 +2329,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Entidad_Region">
+        <Association Name="FK_Entidad_Municipio">
           <End Type="CCDevModel.Region" Role="Region" Multiplicity="0..1" />
           <End Type="CCDevModel.Municipio" Role="Municipio" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2213,14 +2365,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MontoFin_EstructuraFin">
+        <Association Name="FK_FuenteFin_EstructuraFin">
           <End Type="CCDevModel.EstructuraFin" Role="EstructuraFin" Multiplicity="0..1" />
-          <End Type="CCDevModel.MontoFin" Role="MontoFin" Multiplicity="*" />
+          <End Type="CCDevModel.FuenteFin" Role="FuenteFin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EstructuraFin">
               <PropertyRef Name="IDESTRUCTURAFIN" />
             </Principal>
-            <Dependent Role="MontoFin">
+            <Dependent Role="FuenteFin">
               <PropertyRef Name="IDESTRUCTURAFIN" />
             </Dependent>
           </ReferentialConstraint>
@@ -2267,6 +2419,22 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CCDevModelStoreContainer" CdmEntityContainer="CCDevEntities">
+          <EntitySetMapping Name="Especialidads">
+            <EntityTypeMapping TypeName="CCDevModel.Especialidad">
+              <MappingFragment StoreEntitySet="Especialidad">
+                <ScalarProperty Name="ESPECIALIDAD1" ColumnName="ESPECIALIDAD" />
+                <ScalarProperty Name="IDESPECIALIDAD" ColumnName="IDESPECIALIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblIdentificacions">
+            <EntityTypeMapping TypeName="CCDevModel.TblIdentificacion">
+              <MappingFragment StoreEntitySet="TblIdentificacion">
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="IDIDENTIFICACION" ColumnName="IDIDENTIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Responsabilidads">
             <EntityTypeMapping TypeName="CCDevModel.Responsabilidad">
               <MappingFragment StoreEntitySet="Responsabilidad">
@@ -2291,7 +2459,6 @@
           <EntitySetMapping Name="Contratistas">
             <EntityTypeMapping TypeName="CCDevModel.Contratista">
               <MappingFragment StoreEntitySet="Contratista">
-                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
                 <ScalarProperty Name="AÑO" ColumnName="AÑO" />
                 <ScalarProperty Name="CORREO" ColumnName="CORREO" />
                 <ScalarProperty Name="IDMUNICIPIO" ColumnName="IDMUNICIPIO" />
@@ -2301,11 +2468,24 @@
                 <ScalarProperty Name="NOINTERIOR" ColumnName="NOINTERIOR" />
                 <ScalarProperty Name="NOEXTERIOR" ColumnName="NOEXTERIOR" />
                 <ScalarProperty Name="CALLE" ColumnName="CALLE" />
-                <ScalarProperty Name="FAX" ColumnName="FAX" />
                 <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
-                <ScalarProperty Name="RAZONSOCIAL" ColumnName="RAZONSOCIAL" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="RFC" ColumnName="RFC" />
                 <ScalarProperty Name="IDCONTRATISTA" ColumnName="IDCONTRATISTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatosMorals">
+            <EntityTypeMapping TypeName="CCDevModel.DatosMoral">
+              <MappingFragment StoreEntitySet="DatosMoral">
+                <ScalarProperty Name="IDCONTRATISTA" ColumnName="IDCONTRATISTA" />
+                <ScalarProperty Name="IDMUNICIPIO" ColumnName="IDMUNICIPIO" />
+                <ScalarProperty Name="REGPUBLICO" ColumnName="REGPUBLICO" />
+                <ScalarProperty Name="NOTARIONOMBRE" ColumnName="NOTARIONOMBRE" />
+                <ScalarProperty Name="NOTARIONUM" ColumnName="NOTARIONUM" />
+                <ScalarProperty Name="FECHAACTA" ColumnName="FECHAACTA" />
+                <ScalarProperty Name="ACTACONSTITUTIVA" ColumnName="ACTACONSTITUTIVA" />
+                <ScalarProperty Name="IDDATOSMORAL" ColumnName="IDDATOSMORAL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2331,8 +2511,8 @@
           <EntitySetMapping Name="DatosRepresentas">
             <EntityTypeMapping TypeName="CCDevModel.DatosRepresenta">
               <MappingFragment StoreEntitySet="DatosRepresenta">
-                <ScalarProperty Name="IDIDENTIFICACION" ColumnName="IDIDENTIFICACION" />
                 <ScalarProperty Name="IDCONTRATISTA" ColumnName="IDCONTRATISTA" />
+                <ScalarProperty Name="IDIDENTIFICACION" ColumnName="IDIDENTIFICACION" />
                 <ScalarProperty Name="NACREDITA" ColumnName="NACREDITA" />
                 <ScalarProperty Name="ACREDITA" ColumnName="ACREDITA" />
                 <ScalarProperty Name="NIDEN" ColumnName="NIDEN" />
@@ -2342,36 +2522,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Especialidads">
-            <EntityTypeMapping TypeName="CCDevModel.Especialidad">
-              <MappingFragment StoreEntitySet="Especialidad">
-                <ScalarProperty Name="ESPECIALIDAD1" ColumnName="ESPECIALIDAD" />
-                <ScalarProperty Name="IDESPECIALIDAD" ColumnName="IDESPECIALIDAD" />
+          <EntitySetMapping Name="InfoCapitals">
+            <EntityTypeMapping TypeName="CCDevModel.InfoCapital">
+              <MappingFragment StoreEntitySet="InfoCapital">
+                <ScalarProperty Name="INFOCAPITAL1" ColumnName="INFOCAPITAL" />
+                <ScalarProperty Name="IDINFOCAPITAL" ColumnName="IDINFOCAPITAL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegistroContratistas">
             <EntityTypeMapping TypeName="CCDevModel.RegistroContratista">
               <MappingFragment StoreEntitySet="RegistroContratista">
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
                 <ScalarProperty Name="IDESPECIALIDAD" ColumnName="IDESPECIALIDAD" />
                 <ScalarProperty Name="IDTIPO" ColumnName="IDTIPO" />
                 <ScalarProperty Name="IDCONTRATISTA" ColumnName="IDCONTRATISTA" />
                 <ScalarProperty Name="FECHAINF" ColumnName="FECHAINF" />
-                <ScalarProperty Name="INFCAPITAL" ColumnName="INFCAPITAL" />
+                <ScalarProperty Name="IDINFOCAPITAL" ColumnName="IDINFOCAPITAL" />
                 <ScalarProperty Name="CAPITAL" ColumnName="CAPITAL" />
                 <ScalarProperty Name="FECHAVIGENCIA" ColumnName="FECHAVIGENCIA" />
                 <ScalarProperty Name="FECHAEXPEDICION" ColumnName="FECHAEXPEDICION" />
                 <ScalarProperty Name="REGCONTRALORIAINGREGSO" ColumnName="REGCONTRALORIAINGREGSO" />
                 <ScalarProperty Name="REGCONTRALORIAFOLIO" ColumnName="REGCONTRALORIAFOLIO" />
                 <ScalarProperty Name="IDREGISTRO" ColumnName="IDREGISTRO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TblIdentificacions">
-            <EntityTypeMapping TypeName="CCDevModel.TblIdentificacion">
-              <MappingFragment StoreEntitySet="TblIdentificacion">
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="IDIDENTIFICACION" ColumnName="IDIDENTIFICACION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2462,11 +2635,11 @@
           <EntitySetMapping Name="DatosLicitacions">
             <EntityTypeMapping TypeName="CCDevModel.DatosLicitacion">
               <MappingFragment StoreEntitySet="DatosLicitacion">
+                <ScalarProperty Name="IDSOLICITANTETC" ColumnName="IDSOLICITANTETC" />
                 <ScalarProperty Name="IDDIRECCION" ColumnName="IDDIRECCION" />
                 <ScalarProperty Name="IDESPOBRA" ColumnName="IDESPOBRA" />
                 <ScalarProperty Name="IDNIVELOBRA" ColumnName="IDNIVELOBRA" />
                 <ScalarProperty Name="IDTIPOOBRA" ColumnName="IDTIPOOBRA" />
-                <ScalarProperty Name="IDSOLICITANTETC" ColumnName="IDSOLICITANTETC" />
                 <ScalarProperty Name="IDAÑO" ColumnName="IDAÑO" />
                 <ScalarProperty Name="IDPROCEDIMIENTO" ColumnName="IDPROCEDIMIENTO" />
                 <ScalarProperty Name="NOTASACLARATORIAS" ColumnName="NOTASACLARATORIAS" />
@@ -2515,8 +2688,8 @@
           <EntitySetMapping Name="Fianzas">
             <EntityTypeMapping TypeName="CCDevModel.Fianza">
               <MappingFragment StoreEntitySet="Fianzas">
-                <ScalarProperty Name="IDCONTRATO" ColumnName="IDCONTRATO" />
                 <ScalarProperty Name="IDAFIAZADORAC" ColumnName="IDAFIAZADORAC" />
+                <ScalarProperty Name="IDCONTRATO" ColumnName="IDCONTRATO" />
                 <ScalarProperty Name="CFECHA" ColumnName="CFECHA" />
                 <ScalarProperty Name="CIMPORTE" ColumnName="CIMPORTE" />
                 <ScalarProperty Name="CNUMERO" ColumnName="CNUMERO" />
@@ -2598,7 +2771,7 @@
           <EntitySetMapping Name="TipoContratoes">
             <EntityTypeMapping TypeName="CCDevModel.TipoContrato">
               <MappingFragment StoreEntitySet="TipoContrato">
-                <ScalarProperty Name="TIPOCONRTO" ColumnName="TIPOCONRTO" />
+                <ScalarProperty Name="TIPOCONTRATO1" ColumnName="TIPOCONTRATO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="IDTIPOCONTRATO" ColumnName="IDTIPOCONTRATO" />
               </MappingFragment>
@@ -2629,21 +2802,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CCDevModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Entidads">
             <EntityTypeMapping TypeName="CCDevModel.Entidad">
               <MappingFragment StoreEntitySet="Entidad">
-                <ScalarProperty Name="ABREVIACION" ColumnName="ABREVIACION" />
                 <ScalarProperty Name="ENTIDAD1" ColumnName="ENTIDAD" />
                 <ScalarProperty Name="IDENTIDAD" ColumnName="IDENTIDAD" />
               </MappingFragment>
@@ -2686,7 +2847,7 @@
           <EntitySetMapping Name="FuenteFins">
             <EntityTypeMapping TypeName="CCDevModel.FuenteFin">
               <MappingFragment StoreEntitySet="FuenteFin">
-                <ScalarProperty Name="ORIGEN" ColumnName="ORIGEN" />
+                <ScalarProperty Name="IDESTRUCTURAFIN" ColumnName="IDESTRUCTURAFIN" />
                 <ScalarProperty Name="FUENTEFIN1" ColumnName="FUENTEFIN" />
                 <ScalarProperty Name="IDFUENTEFIN" ColumnName="IDFUENTEFIN" />
               </MappingFragment>
@@ -2696,7 +2857,6 @@
             <EntityTypeMapping TypeName="CCDevModel.MontoFin">
               <MappingFragment StoreEntitySet="MontoFin">
                 <ScalarProperty Name="MONTO" ColumnName="MONTO" />
-                <ScalarProperty Name="IDESTRUCTURAFIN" ColumnName="IDESTRUCTURAFIN" />
                 <ScalarProperty Name="IDFUENTEFIN" ColumnName="IDFUENTEFIN" />
                 <ScalarProperty Name="IDOFICIOSAUT" ColumnName="IDOFICIOSAUT" />
                 <ScalarProperty Name="IDMONTOFIN" ColumnName="IDMONTOFIN" />
@@ -2728,7 +2888,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -79,40 +79,6 @@ namespace ConcursosContratos.Models
         {
             get;set;
         }
-        public int EntidadId
-        {
-            get; set;
-        }
-        public string Entidad
-        {
-            get; set;
-        }
-        public int RegionId
-        {
-            get; set;
-        }
-        public string Region
-        {
-            get; set;
-        }
 
-        ////monto financiamiento
-        public int IdOficioSAut
-        {
-            get; set;
-        }
-        public int IdFuenteFin
-        {
-            get; set;
-        }
-        public int IdEstructuraFin
-        {
-            get; set;
-        }
-        public decimal Monto
-        {
-            get; set;
-        }
-        ///
     }
 }

@@ -23,7 +23,7 @@ namespace ConcursosContratos.Models
     
         public int IDTIPOCONTRATO { get; set; }
         public string DESCRIPCION { get; set; }
-        public string TIPOCONRTO { get; set; }
+        public string TIPOCONTRATO1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contrato> Contratoes { get; set; }

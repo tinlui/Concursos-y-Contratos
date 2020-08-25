@@ -18,8 +18,10 @@ namespace ConcursosContratos.Models
         public Municipio()
         {
             this.Contratistas = new HashSet<Contratista>();
+            this.DatosMorals = new HashSet<DatosMoral>();
             this.DatosPoders = new HashSet<DatosPoder>();
             this.Contratoes = new HashSet<Contrato>();
+            this.Direccions = new HashSet<Direccion>();
             this.OficiosAuts = new HashSet<OficiosAut>();
         }
     
@@ -31,9 +33,13 @@ namespace ConcursosContratos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contratista> Contratistas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DatosMoral> DatosMorals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatosPoder> DatosPoders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contrato> Contratoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Direccion> Direccions { get; set; }
         public virtual Entidad Entidad { get; set; }
         public virtual Region Region { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

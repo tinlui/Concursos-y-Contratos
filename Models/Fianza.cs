@@ -22,8 +22,8 @@ namespace ConcursosContratos.Models
         public Nullable<int> CNUMERO { get; set; }
         public Nullable<decimal> CIMPORTE { get; set; }
         public Nullable<System.DateTime> CFECHA { get; set; }
-        public Nullable<int> IDAFIAZADORAC { get; set; }
         public Nullable<int> IDCONTRATO { get; set; }
+        public Nullable<int> IDAFIAZADORAC { get; set; }
     
         public virtual Contrato Contrato { get; set; }
     }

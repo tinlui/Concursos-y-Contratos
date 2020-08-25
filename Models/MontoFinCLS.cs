@@ -7,21 +7,35 @@ namespace ConcursosContratos.Models
 {
     public class MontoFinCLS
     {
-        public int IdOficioSAut
+        public int IdMontoFin
+        {
+            get;set;
+        }
+        public int? IdOficioSAut
         {
             get; set;
         }
-        public int IdFuenteFin
+        public int? IdFuenteFin
         {
             get; set;
         }
-        public int IdEstructuraFin
+        public int? IdEstructuraFin
         {
             get; set;
         }
-        public decimal Monto
+        public decimal? Monto
         {
             get; set;
         }
+       /////Estructura financiera
+      public string FuenteFin
+        {
+            get;set;
+        }
+       public string EstructuraFin
+        {
+            get;set;
+        }
+       ///
     }
 }

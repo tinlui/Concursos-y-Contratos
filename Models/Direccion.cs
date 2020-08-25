@@ -27,5 +27,6 @@ namespace ConcursosContratos.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatosLicitacion> DatosLicitacions { get; set; }
+        public virtual Municipio Municipio { get; set; }
     }
 }

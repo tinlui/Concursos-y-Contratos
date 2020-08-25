@@ -22,7 +22,6 @@ namespace ConcursosContratos.Models
     
         public int IDENTIDAD { get; set; }
         public string ENTIDAD1 { get; set; }
-        public string ABREVIACION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Municipio> Municipios { get; set; }

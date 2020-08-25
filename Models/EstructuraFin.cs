@@ -17,13 +17,13 @@ namespace ConcursosContratos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EstructuraFin()
         {
-            this.MontoFins = new HashSet<MontoFin>();
+            this.FuenteFins = new HashSet<FuenteFin>();
         }
     
         public int IDESTRUCTURAFIN { get; set; }
         public string ESTRUCTURAFIN1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MontoFin> MontoFins { get; set; }
+        public virtual ICollection<FuenteFin> FuenteFins { get; set; }
     }
 }

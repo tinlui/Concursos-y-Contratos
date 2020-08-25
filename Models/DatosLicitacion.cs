@@ -31,11 +31,11 @@ namespace ConcursosContratos.Models
         public string NOTASACLARATORIAS { get; set; }
         public Nullable<int> IDPROCEDIMIENTO { get; set; }
         public Nullable<int> IDAÑO { get; set; }
-        public Nullable<int> IDSOLICITANTETC { get; set; }
         public Nullable<int> IDTIPOOBRA { get; set; }
         public Nullable<int> IDNIVELOBRA { get; set; }
         public Nullable<int> IDESPOBRA { get; set; }
         public Nullable<int> IDDIRECCION { get; set; }
+        public Nullable<int> IDSOLICITANTETC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Anticipo> Anticipoes { get; set; }
