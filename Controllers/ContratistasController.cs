@@ -8,6 +8,10 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using System.Reflection;
 
 namespace ConcursosContratos.Controllers
 {
@@ -452,5 +456,7 @@ namespace ConcursosContratos.Controllers
             }
             return rpta;
         }
+      
+      
     }
 }

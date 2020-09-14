@@ -338,6 +338,7 @@ function GuardaRepresentante() {
         }
 		);
 }
+
 function GuardaPoder() {
 	$.get('/Contratistas/GuardarPoder', {
 		PoderRep: poderRep.val(), Fecha: fecha.val(), NotarioNo: notarioNo.val(), NotarioNombre: notarioNombre.val(), IdMunPoder: municipio.val(), NombrePod: NombrePod.val()
@@ -504,4 +505,67 @@ function DdlRegistro() {
 	});
 
 
+}
+
+function Pdf() {
+	//$.get('/GeneradorPdf/PdfContratista', { contratista: idC.val() }, function (data) {
+	//	window.open('http://'+data);
+	//})
+	console.log(idC.val() + "  " + consulta.val())
+	$.ajax({
+		cache: false,
+		type: 'GET',
+		url: '/GeneradorPdf/PdfContratista/?contratista=' + idC.val(),
+		contentType: "attachment; filename=cont.pdf",
+		processData: false,
+	
+		//xhrFields is what did the trick to read the blob to pdf
+		xhrFields: {
+			responseType: 'blob'
+		},
+		success: function (response, status, xhr) {
+
+			var filename = "";
+			var disposition = xhr.getResponseHeader('Content-Disposition');
+
+			if (disposition) {
+				var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+				var matches = filenameRegex.exec(disposition);
+				if (matches !== null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+			}
+			var linkelem = document.createElement('a');
+			try {
+				var blob = new Blob([response], { type: 'application/pdf' });
+
+				if (typeof window.navigator.msSaveBlob !== 'undefined') {
+					//   IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+					window.navigator.msSaveBlob(blob, filename);
+				} else {
+					var URL = window.URL || window.webkitURL;
+					var downloadUrl = URL.createObjectURL(blob);
+
+					if (filename) {
+						// use HTML5 a[download] attribute to specify filename
+						var a = document.createElement("a");
+
+						// safari doesn't support this yet
+						if (typeof a.download === 'undefined') {
+							window.location = downloadUrl;
+						} else {
+							a.href = downloadUrl;
+							a.download = filename;
+							document.body.appendChild(a);
+							a.target = "_blank";
+							a.click();
+						}
+					} else {
+						window.location = downloadUrl;
+					}
+				}
+
+			} catch (ex) {
+				console.log(ex);
+			}
+		}
+	});
 }

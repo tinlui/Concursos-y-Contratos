@@ -42,5 +42,9 @@ namespace ConcursosContratos.Models
         {
             get;set;
         }
+        public string Municipio
+        {
+            get;set;
+        }
     }
 }

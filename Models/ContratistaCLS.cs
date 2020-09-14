@@ -9,17 +9,31 @@ namespace ConcursosContratos.Models
     public class ContratistaCLS
        
     {
-        [StringLength(10, ErrorMessage = "Maximo es de {1}")]
-        public string Rfc
+        public int IdContratista
         {
             get;set;
         }
         [Required]
         public string Nombre
         {
+            get; set;
+        }
+        [StringLength(10, ErrorMessage = "Maximo es de {1}")]
+        public string Rfc
+        {
             get;set;
         }
-
+        public string Curp
+        {
+            get; set;
+        }
+            [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        [Display(Name = "E-Mail")]
+        public string Correo
+        {
+            get;set;
+        }
         public string Telefono
         {
             get;set;
@@ -31,8 +45,13 @@ namespace ConcursosContratos.Models
         }
         public string Calle
         {
-            get;set;
+            get; set;
         }
+        public string Colonia
+        {
+            get; set;
+        }
+    
 
         public string NoExterior
         {
@@ -44,17 +63,8 @@ namespace ConcursosContratos.Models
             get;set;        
         }
 
-        public string Colonia
-        {
-            get;set;
-        }
 
         public int Cp
-        {
-            get;set;
-        }
-
-        public string Curp
         {
             get;set;
         }
@@ -63,18 +73,25 @@ namespace ConcursosContratos.Models
         {
             get;set;
         }
-       
-        [DataType(DataType.EmailAddress)]
-        [EmailAddress]
-        [Display(Name = "E-Mail")]
-        public string Correo
+        public int Año
+        {
+            get; set;
+        }
+    
+
+    
+        //
+        public string municipio
         {
             get;set;
         }
-
-        public int Año
+        public string region
         {
-            get;set;
+            get; set;
+        }
+        public string entidad
+        {
+            get; set;
         }
     }
 }
