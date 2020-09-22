@@ -1,0 +1,322 @@
+﻿@using ConcursosContratos.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="container">
+    <img src="~/Content/img/logoSidum.png" class="img-fluid mb-3" alt="Responsive image">
+    <div class="text-center">
+        <h1>Contratista</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <span class="badge badge-danger font-weight-normal mb-1" style="font-size:1.2rem !important">Generales</span>
+            <table class="table table-striped table-sm table-dark rounded-sm shadow p-3 mb-5 rounded">
+                <tbody>
+                    <tr>
+                        <th class="font-weight-bold">Nombre</th>
+                        <td colspan="3" >
+                            <input type="text"  class="form-control form-control-sm" disabled  id="nombre"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">RFC</th>
+                        <td>
+                            <input id="rfc" class="form-control form-control-sm" disabled type="text" >
+                        </td>
+                        <th class="font-weight-bold">CURP</th>
+                        <td>
+                            <input id="curp" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Telefono</th>
+                        <td>
+                            <input id="tel" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Correo</th>
+                        <td>
+                            <input id="correo" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <span class="badge badge-danger font-weight-normal mb-1" style="font-size:1.2rem !important">Domicilio</span>
+            <table class="table table-striped table-sm table-dark shadow p-3 mb-5 rounded">
+                <tbody>
+                    <tr>
+                        <th class="font-weight-bold">Colonia</th>
+                        <td>
+                            <input id="colonia" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">CP</th>
+                        <td>
+                            <input id="cp" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Calle</th>
+                        <td>
+                            <input id="calle" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Numero</th>
+                        <td>
+                            <input id="numero" class="form-control form-control-sm" disabled type="text">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Entidad</th>
+                        <td>
+                            <input id="entidad" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Municipio</th>
+                        <td>
+                            <input id="municipio" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col">
+            <span class="badge badge-danger font-weight-normal mb-1" style="font-size:1.2rem !important">Registro</span>
+            <table class="table table-striped table-sm table-dark shadow p-3 mb-5 rounded">
+                <tbody>
+                    <tr>
+                        <th class="font-weight-bold">Folio</th>
+                        <td>
+                            <input id="folio" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Ingreso</th>
+                        <td>
+                            <input id="ingreso" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Expedicion</th>
+                        <td>
+                            <input id="expedicion" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Vigencia</th>
+                        <td>
+                            <input id="vigencia" class="form-control form-control-sm" disabled type="text">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Capital</th>
+                        <td>
+                            <input id="capital" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Info Capital</th>
+                        <td><input id="infoCap" class="form-control form-control-sm" disabled type="text"></td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Fecha Inf</th>
+                        <td>
+                            <input id="fechaInf" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Tipo</th>
+                        <td><input id="tipo" class="form-control form-control-sm" disabled type="text"></td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold" style="max-width:450px !important;">Especialidad</th>
+                        <td colspan="3">
+                            <textarea id="especialidad" class="form-control form-control-sm" disabled type="text"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Activo</th>
+                        <td><input id="activo" class="form-control form-control-sm" disabled type="checkbox"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col invisible">
+            <span class="badge badge-danger font-weight-normal mb-1" style="font-size:1.2rem !important">Moral</span>
+            <table class="table table-striped table-sm table-dark shadow p-3 mb-5 rounded">
+                <tbody>
+                    <tr>
+                        <th class="font-weight-bold">Acta Constitutiva</th>
+                        <td>
+                            <input id="actaConstitutiva" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Fecha Acta</th>
+                        <td>
+                            <input id="fechaActa" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Numero de Notario</th>
+                        <td>
+                            <input id="numNotario" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Nombre de Notario</th>
+                        <td>
+                            <input id="nombNotario" class="form-control form-control-sm" disabled type="text">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Registro Publico</th>
+                        <td>
+                            <input id="regPub" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Municipio</th>
+                        <td><input id="munMoral" class="form-control form-control-sm" disabled type="text"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <span class="badge badge-danger font-weight-normal mb-1" style="font-size:1.2rem !important">Representa</span>
+            <table class="table table-striped table-sm table-dark shadow p-3 mb-5 rounded">
+                <tbody>
+                    <tr>
+                        <th class="font-weight-bold">Representada</th>
+                        <td>
+                            <input id="representada" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Puesto</th>
+                        <td>
+                            <input id="puesto" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Acredita</th>
+                        <td>
+                            <input id="acredita" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Numero de Acredita</th>
+                        <td>
+                            <input id="nAcredita" class="form-control form-control-sm" disabled type="text">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Identificacion</th>
+                        <td>
+                            <input id="identificacion" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Numero de Identificacion</th>
+                        <td><input id="nIden" class="form-control form-control-sm" disabled type="text"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <span class="badge badge-danger font-weight-normal mb-1" style="font-size:1.2rem !important">Poder</span>
+            <table class="table table-striped table-sm table-dark shadow p-3 mb-5 rounded">
+                <tbody>
+                    <tr>
+                        <th class="font-weight-bold">Poder Representa</th>
+                        <td>
+                            <input id="poderRep" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Fecha</th>
+                        <td>
+                            <input id="fecha" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Numero de Notario</th>
+                        <td>
+                            <input id="notNo" class="form-control form-control-sm" disabled type="text">
+                        </td>
+                        <th class="font-weight-bold">Nombre de Notario</th>
+                        <td>
+                            <input id="notNombre" class="form-control form-control-sm" disabled type="text">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font-weight-bold">Municipio</th>
+                        <td>
+                            <input id="munPoder" class="form-control form-control-sm" disabled type="text">
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    var id = 55;
+    window.onload =  function recuperarInfo() {
+        $.get('/GeneradorPdf/mostrarContratista', { contratista: id }, function (data) {
+            console.log(data);
+            $("#nombre").val(data[0].Nombre)
+            $("#rfc").val(data[0].Rfc)
+            $("#curp").val(data[0].Curp)
+            $("#tel").val(data[0].Tel)
+            $("#correo").val(data[0].Correo)
+
+            $("#colonia").val(data[0].Colonia)
+            $("#cp").val(data[0].Cp)
+            $("#calle").val(data[0].Calle)
+            $("#numero").val(data[0].NoExt)
+            $("#entidad").val(data[0].Entidad)
+            $("#municipio").val(data[0].Municipio)
+
+            if (data[0].ActaConstitutiva != null) {
+                $(".col").removeClass("invisible");
+                $("#actaConstitutiva").val(data[0].ActaConstitutiva);
+                $("#fechaActa").val(parseJsonDate(data[0].FechaActa));
+                $("#numNotario").val(data[0].NotarioNum);
+                $("#nombNotario").val(data[0].NotarioNombre);
+                $("#regPub").val(data[0].RegPublico);
+                $("#munMoral").val(data[0].MunicipioMor);
+            }
+            if (data[1].Folio != null) {
+                $("#folio").val(data[1].Folio);
+                $("#ingreso").val(data[1].Ingreso);
+                $("#expedicion").val(parseJsonDate(data[1].Expedicion));
+                $("#vigencia").val(parseJsonDate(data[1].Vigencia));
+                $("#capital").val(data[1].Capital);
+                $("#infoCap").val(data[1].InfoCapital);
+                $("#fechaInf").val(parseJsonDate(data[1].FechaInf));
+                $("#tipo").val(data[1].Tipo);
+                $("#especialidad").val(data[1].Especialidad);
+                if (data[1].Activo == true) {
+                    $("#activo").prop('checked',true);
+                }
+               // $("#activo").val(data[1].Activo);
+            }
+            if (data[2].Representada != null) {
+                $("#representada").val(data[2].Representada);
+                $("#puesto").val(data[2].Puesto);
+                $("#acredita").val(data[2].Acredita);
+                $("#nAcredita").val(data[2].NAcredita);
+                $("#identificacion").val(data[2].Identificacion);
+                $("#nIden").val(data[2].NIden);
+
+            }
+            if (data[3].PoderRep != null) {
+                $("#poderRep").val(data[3].PoderRep);
+                $("#fecha").val(parseJsonDate(data[3].Fecha));
+                $("#notNo").val(data[3].NotNo);
+                $("#notNombre").val(data[3].NotNombre);
+                $("#munPoder").val(data[3].MunPoder);
+            }
+        })
+    }
+
+    function parseJsonDate(jsonDateString) {
+        return moment(jsonDateString).format("D-MMM-YY").toUpperCase();
+    }
+</script>

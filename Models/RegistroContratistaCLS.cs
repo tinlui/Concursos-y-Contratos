@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -17,11 +18,13 @@ namespace ConcursosContratos.Models
             get;set;
         }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaExpedicion
         {
             get;set;
         }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaVigencia
         {
             get;set;
@@ -37,6 +40,7 @@ namespace ConcursosContratos.Models
             get;set;
         }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime FechaInf
         {
             get;set;
@@ -63,6 +67,20 @@ namespace ConcursosContratos.Models
         }
 
         public string NombreCont
+        {
+            get;set;
+        }
+
+        public string InfoCapital
+        {
+            get;set;
+        }
+
+        public string Tipo
+        {
+            get;set;
+        }
+        public string Especialidad
         {
             get;set;
         }

@@ -24,7 +24,7 @@ body {
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 430px;
 }
 select, Editor,
 .form-control::placeholder,
@@ -162,3 +162,20 @@ li.nav-item:hover {
             background: #27AE60;
             color: white;
         }
+
+
+        /*contratista*/
+textarea.form-control,
+input.form-control{
+    color: white;
+    background-color: rgba(255,255,255,.0) !important;
+    border-color: rgba(255,255,255,.0) !important; 
+}
+    textarea.form-control:active,
+    textarea.form-control:focus,
+    input.form-control:active,
+    input.form-control:focus {
+        color: white;
+        background-color: rgba(255,255,255,.05) !important;
+        border-color: rgba(255,255,255,.05) !important;
+    }

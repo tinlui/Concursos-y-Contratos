@@ -8,11 +8,13 @@ namespace ConcursosContratos.Models
 {
     public class MoralCLS
     {
+        [Display(Name = "Acta Constitutiva")]
         public int? ActaConstitutiva
         {
             get;set;
         }
         [DataType(DataType.Date)]
+        [Display(Name = "Fecha")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? FechaActa
         {

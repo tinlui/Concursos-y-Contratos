@@ -133,7 +133,7 @@ namespace ConcursosContratos.Controllers
                 }
             }catch(Exception ex)
             {
-                rpta = "error" + ex;
+                rpta = "error" + ex.Message;
             }
             return rpta;
         }
@@ -160,7 +160,7 @@ namespace ConcursosContratos.Controllers
                         }
                         else { 
                         int cant = 0;
-                        cant = bd.Contratistas.Where(c => c.NOMBRE.Contains(contratistaCLS.Nombre)).Count();
+                        cant = bd.Contratistas.Where(c => c.NOMBRE.Equals(contratistaCLS.Nombre)).Count();
                         if (cant.Equals(1))
                         {
                             Contratista contratista = bd.Contratistas.Where(c => c.NOMBRE == contratistaCLS.Nombre).First();
@@ -203,7 +203,7 @@ namespace ConcursosContratos.Controllers
                 }
             }catch(Exception ex)
             {
-                rpta = "error" + ex;
+                rpta = "error" + ex.Message;
             }
             return rpta;
         }
@@ -248,7 +248,7 @@ namespace ConcursosContratos.Controllers
                 }
             }catch(Exception ex) 
             {
-                rpta = "error" + ex;
+                rpta = "error" + ex.Message;
             }
             return rpta;
         }
@@ -277,7 +277,7 @@ namespace ConcursosContratos.Controllers
                             registroContratistaCLS.IdContratista = contratista.IDCONTRATISTA;
 
                             int cant = 0;
-                            cant = bd.RegistroContratistas.Where(c => c.IDCONTRATISTA.Equals(registroContratistaCLS.IdContratista)).Count();
+                            cant = bd.RegistroContratistas.Where(c => c.IDCONTRATISTA==registroContratistaCLS.IdContratista).Count();
                             if (cant.Equals(1))
                             {
                                 RegistroContratista registroContratista = bd.RegistroContratistas.Where(c => c.IDCONTRATISTA == registroContratistaCLS.IdContratista).First();
@@ -318,7 +318,7 @@ namespace ConcursosContratos.Controllers
                 }
             }catch(Exception ex)
             {
-                rpta = "error: " + ex;
+                rpta = "error: " + ex.Message;
             }
             return rpta;
         }
@@ -349,7 +349,7 @@ namespace ConcursosContratos.Controllers
                             RepresentaCLS.IdContratista = contratista.IDCONTRATISTA;
 
                             int cant = 0;
-                            cant = bd.DatosRepresentas.Where(c => c.IDCONTRATISTA.Equals(RepresentaCLS.IdContratista)).Count();
+                            cant = bd.DatosRepresentas.Where(c => c.IDCONTRATISTA==RepresentaCLS.IdContratista).Count();
                             if (cant.Equals(1))
                             {
                                 DatosRepresenta datosRepresenta = bd.DatosRepresentas.Where(c => c.IDCONTRATISTA == RepresentaCLS.IdContratista).First();
@@ -384,7 +384,7 @@ namespace ConcursosContratos.Controllers
                 }
             }catch(Exception ex)
             {
-                rpta = "error: " + ex; 
+                rpta = "error: " + ex.Message; 
             }
             return rpta;
         }
@@ -416,7 +416,7 @@ namespace ConcursosContratos.Controllers
                             poderCLS.IdRepresenta = datosRepresenta.IDREPRESENTA;
 
                             int cant = 0;
-                            cant = bd.DatosPoders.Where(c => c.IDREPRESENTA.Equals(poderCLS.IdRepresenta)).Count();
+                            cant = bd.DatosPoders.Where(c => c.IDREPRESENTA==poderCLS.IdRepresenta).Count();
 
                             if (cant.Equals(1))
                             {
@@ -452,7 +452,7 @@ namespace ConcursosContratos.Controllers
             }
             catch(Exception ex)
             {
-                rpta = "error: " + ex;
+                rpta = "error: " + ex.Message;
             }
             return rpta;
         }

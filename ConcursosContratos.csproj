@@ -260,6 +260,7 @@
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moments.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -363,6 +364,7 @@
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ContratistaCLS.cs" />
+    <Compile Include="Models\ContratistaResumenCLS.cs" />
     <Compile Include="Models\Contrato.cs">
       <DependentUpon>ModelConcursosContratos.tt</DependentUpon>
     </Compile>
@@ -517,6 +519,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\GeneradorPdf\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -527,7 +530,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Auxiliar\" />
-    <Folder Include="Views\GeneradorPdf\" />
     <Folder Include="Views\Pdg\" />
   </ItemGroup>
   <ItemGroup>

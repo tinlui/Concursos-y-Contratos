@@ -263,10 +263,11 @@ function GuardaMoral() {
 				icon: 'success',
 				title: 'Guardado'
 			});
+			console.log(nombreCont.val())
+			nombreReg.val(nombreCont.val());
 			$('#staticBackdrop').modal('hide')
 			DdlRegistro();
-			nextForm.trigger('click');
-			
+			$('.next').trigger('click');
 		} else {
 			Toast.fire({
 				icon: 'warning',
