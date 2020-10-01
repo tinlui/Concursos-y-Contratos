@@ -21,7 +21,7 @@ namespace ConcursosContratos.Models
         public string NOTARIONOMBRE { get; set; }
         public Nullable<int> IDMUNICIPIO { get; set; }
         public Nullable<System.DateTime> FECHA { get; set; }
-        public string PARITDA { get; set; }
+        public string PARTIDA { get; set; }
         public string FOLIO { get; set; }
         public string LIBRO { get; set; }
         public string SECCION { get; set; }

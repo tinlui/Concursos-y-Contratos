@@ -16,7 +16,7 @@ namespace ConcursosContratos.Models
     {
         public int IDDATOSMORAL { get; set; }
         public Nullable<int> ACTACONSTITUTIVA { get; set; }
-        public Nullable<System.DateTime> FECHAACTA { get; set; }
+        public Nullable<System.DateTime> FECHA { get; set; }
         public Nullable<int> NOTARIONUM { get; set; }
         public string NOTARIONOMBRE { get; set; }
         public Nullable<int> REGPUBLICO { get; set; }

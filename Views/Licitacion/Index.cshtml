@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container mt-5 ">
+    <div class="row bg-dark rounded pb-2">
+        <div class="col">
+            <small id="tcHelp" class="form-text text-muted">Tipo de Procedimiento</small>
+            <select class="form-control" id="tipoProcedimiento" aria-describedby="tclHelp"></select>
+            <input id="noproc" type="text" class="form-control mt-4" placeholder="Num. Procedimiento" />
+            <input id="idContrato" type="text"  class="form-control mt-4" placeholder="Num. Licitacion/Concurso/Cotizacion" />
+            <small id="añoHelp" class="form-text text-muted mt-4">Año</small>
+            <select class="form-control" id="año" aria-describedby="añoHelp"></select>
+            <small id="solicitanteHelp" class="form-text text-muted mt-4">Solicitante</small>
+            <select class="form-control mb-4" id="solicitante" aria-describedby="solicintanteHelp"></select>
+            <input class="form-check-input ml-2" type="checkbox" value="" id="planos">
+            <label class="form-check-label ml-4" for="planos">
+                Planos
+            </label>
+            <input class="form-check-input ml-2" type="checkbox" value="" id="especificaciones">
+            <label class="form-check-label ml-4" for="especificaciones">
+                Especificaciones
+            </label>
+        </div>
+        <div class="col ">
+            <textarea type="text" class="form-control" placeholder="Notas"></textarea>
+            <small id="nObraHelp" class="form-text text-muted mt-4">Nivel de Obra</small>
+            <select class="form-control" id="nObra" aria-describedby="nObraHelp"></select>
+            <small id="tipoObraHelp" class="form-text text-muted mt-4">Tipo Obra</small>
+            <select class="form-control" id="tipoObra" aria-describedby="tipoObraHelp"></select>
+            <small id="espObraHelp" class="form-text text-muted mt-4">Esp de Obra</small>
+            <select class="form-control" id="espObra" aria-describedby="espObraHelp"></select>
+            <small id="direccionHelp" class="form-text text-muted mt-4">Direccion</small>
+            <select class="form-control" id="direccion" aria-describedby="direccionObraHelp"></select>
+            <div class="text-right">
+                <button  class="btn mt-2  ml-5 btn-outline-success" type="button">Crear</button>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+    <div class="mt-4">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button id="btnLicitacion" type="button"  class="btn btn-secondary">Licitacion</button>
+            <button id="btnContrato" type="button"  class="btn btn-secondary ">Contrato</button>
+            <button id="btnSeguimiento" type="button" class="btn btn-secondary">Seguimiento</button>
+            <button id="btnFianzas" type="button" class="btn btn-secondary">Fianzas</button>
+        </div>
+    </div>
+    <div id="viewList">
+        <div id="licitaciones">  @Html.Partial("_Licitaciones")</div>
+        <div id="contrato">  @Html.Partial("_Contrato")</div>
+        <div id="seguimiento">   @Html.Partial("_Seguimiento")</div>
+        <div id="fianzas">   @Html.Partial("_Fianzas") </div>
+    </div>
+  
+</div>
+<script>
+    var listespObra = $("#espObra");
+    var listtipoObra = $("#tipoObra");
+    var listnObra = $("#nObra");
+    var lisTipoPro = $("#tipoProcedimiento");
+    var listAño = $("#año");
+    var listSolicitante = $("#solicitante");
+    var listOfAut = $("#listOfAut");
+    var listado = $("#viewList div");
+    var botones = $(".btn-group .btn");
+    var tblOfAut = $("#TblOficios");
+    var idcont = $("#idContrato");
+    $(document).ready(function () {
+        listado.hide();
+        listados();
+    });
+    ///dropdownlist's
+    function listadoOfAut() {
+        $.get('/Licitacion/listaOfAutoriza', function (data) {
+            $.each(data, function (index, row) {
+                
+                listOfAut.append("<option value'" + row.Value + "'>" + row.Text+"</option>")
+            })
+        })
+    }
+    function years() {
+        var i;
+        for (i = 2010; i <= 2025; i++) {
+            listAño.append("<option value'" + i + "'>"+i+"</option>");
+        }
+    }
+    function listadoTProc() {
+        $.get('/Licitacion/listaTipoProc', function (data) {
+            $.each(data, function (index, row) {
+                console.log(row.Value+" "+row.Text)
+                lisTipoPro.append("<option value'" + row.Value + "'>" + row.Text + "</option>")
+            })
+        })
+    }
+    function listadoSolicitante() {
+        $.get('/Licitacion/listaTipoCont', function (data) {
+            $.each(data, function (index, row) {
+                listSolicitante.append("<option value'" + row.Value + "'>" + row.Text + "</option>")
+            });
+        });
+    }
+    function listadoNivelObra() {
+        $.get('/Licitacion/listaNivelObra', function (data) {
+            $.each(data, function (index, row) {
+                listnObra.append("<option value'" + row.Value + "'>" + row.Text + "</option>")
+            });
+        });
+    }
+    function listadotipoObra() {
+        $.get('/Licitacion/listaTipoObra', function (data) {
+            $.each(data, function (index, row) {
+                listtipoObra.append("<option value'" + row.Value + "'>" + row.Text + "</option>")
+            });
+        });
+    }
+
+    function listadoEspObra() {
+        $.get('/Licitacion/listaEspObra', function (data) {
+            $.each(data, function (index, row) {
+                listespObra.append("<option value'" + row.Value + "'>" + row.Text + "</option>")
+            });
+        });
+    }
+
+    function listados() {
+        years();
+        listadoTProc();
+        listadoSolicitante();
+        listadoNivelObra();
+        listadotipoObra();
+        listadoEspObra();
+    }
+    function TablaOfAut() {     
+        var lista = "";
+        if (idcont.val() != "") {
+            
+            $.get('/Licitacion/licitacionOficioAut', { idContrato: idcont.val() }, function (data) {
+                $.each(data, function (index, row) {
+                    lista += '<tr>';
+                    lista += '<td>' + row.Value + '</td>';
+                    lista += '</tr>';
+                });
+                tblOfAut.prepend(lista);
+            });
+
+
+        }
+    }
+    function asignarOficios() {
+        if (idcont.val() != "") {
+            $.get('/Licitacion/guardaOficioContrato', { oficioaut: listOfAut.val(), licitacion: idcont.val() }, function (data) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'center',
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+                if (data == "1") {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Asignado: ' + listOfAut.val()
+                    });
+                } else {
+
+                    Toast.fire({
+                        icon: 'warning',
+                        title: data
+                    });
+                }
+            });
+
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'center',
+                timer: 1500,
+                showConfirmButton: false
+            });
+            Toast.fire({
+                icon: 'warning',
+                title: 'Capture el numero de licitacion'
+            });
+        }
+    }
+    function manejadorCallback(evento) {
+
+       // cada vez que clickas un boton. Automaticamente se invoca con un parametro
+       // que es el Evento. el cual tiene una propiedad (entre otras) llamada target
+       // que es el elemento que dispara el evento. Luego buscas el id en target.
+       //  console.log(evento.target.id);
+       
+        if (botones.hasClass("btn-success")){
+            botones.removeClass("btn-success")
+            botones.addClass("btn-secondary")
+        }
+        $("#" + evento.target.id + "").removeClass("btn-secondary")
+            $("#" + evento.target.id + "").addClass("btn-success");
+          
+        vista(evento.target.id)
+
+    }
+
+    var buttons = document.querySelectorAll('.btn')
+
+    for (var i = 0; i < buttons.length; i++) {
+     
+        // aqui generas el equivalente a onclick
+        buttons[i].addEventListener('click', manejadorCallback);
+    }
+  
+    function vista(btn) {
+       
+        if (btn == "btnLicitacion") {
+            listado.hide();
+            listadoOfAut();
+            $("#licitaciones").show();
+        } else if (btn == "btnContrato") {
+            listado.hide();
+            $("#contrato").show();
+        } else if (btn == "btnSeguimiento") {
+            listado.hide();
+            $("#seguimiento").show();
+        } else if (btn == "btnFianzas") {
+            listado.hide();
+            $("#fianzas").show();
+        }
+        }
+        </script>
+
+
+
+    

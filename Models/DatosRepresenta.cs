@@ -23,10 +23,10 @@ namespace ConcursosContratos.Models
         public int IDREPRESENTA { get; set; }
         public string REPRESENTADA { get; set; }
         public string PUESTO { get; set; }
+        public Nullable<int> IDIDENTIFICACION { get; set; }
         public string NIDEN { get; set; }
         public Nullable<int> ACREDITA { get; set; }
-        public Nullable<int> NACREDITA { get; set; }
-        public Nullable<int> IDIDENTIFICACION { get; set; }
+        public string NACREDITA { get; set; }
         public Nullable<int> IDCONTRATISTA { get; set; }
     
         public virtual Contratista Contratista { get; set; }

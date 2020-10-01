@@ -22,8 +22,8 @@ namespace ConcursosContratos.Models
         {
             get;set;
         }
-        //CAMBIAR A STRING CUANDO SE VUELVA A CREAR LA BD
-        public int NAcredita
+       
+        public string NAcredita
         {
             get;set;
         }

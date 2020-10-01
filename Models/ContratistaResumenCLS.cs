@@ -195,7 +195,7 @@ namespace ConcursosContratos.Models
             get;set;
         }
 
-        public int? NAcredita
+        public string NAcredita
         {
             get;set;
         }

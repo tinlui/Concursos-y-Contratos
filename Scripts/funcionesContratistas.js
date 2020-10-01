@@ -16,7 +16,7 @@ var cp = $('#Cp');
 var idMun = $('#IdMunicipio');
 var año = $('#Year');
 var moral = $('#IsMoral');
-var btnGuardarNombre = $('.btn.btn-success.mt-2');
+var btnGuardarNombre = $('.btn.btn-outline-success.mt-2');
 
 	// moral
 var acta = $('#ActaConstitutiva');

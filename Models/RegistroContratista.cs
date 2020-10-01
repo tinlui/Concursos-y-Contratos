@@ -16,12 +16,12 @@ namespace ConcursosContratos.Models
     {
         public int IDREGISTRO { get; set; }
         public string REGCONTRALORIAFOLIO { get; set; }
-        public string REGCONTRALORIAINGREGSO { get; set; }
-        public Nullable<System.DateTime> FECHAEXPEDICION { get; set; }
-        public Nullable<System.DateTime> FECHAVIGENCIA { get; set; }
+        public string REGCONTRALORIAINGREsO { get; set; }
+        public Nullable<System.DateTime> EXPEDICION { get; set; }
+        public Nullable<System.DateTime> VIGENCIA { get; set; }
         public Nullable<decimal> CAPITAL { get; set; }
         public Nullable<int> IDINFOCAPITAL { get; set; }
-        public Nullable<System.DateTime> FECHAINF { get; set; }
+        public Nullable<System.DateTime> INF { get; set; }
         public Nullable<int> IDCONTRATISTA { get; set; }
         public Nullable<int> IDTIPO { get; set; }
         public Nullable<int> IDESPECIALIDAD { get; set; }

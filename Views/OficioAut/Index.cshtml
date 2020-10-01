@@ -13,36 +13,44 @@
 
 <h2>Oficio Autorizacion</h2>
 <span class="btn btn-primary" onclick="VerCM()">Carga Masiva</span>
+<div id="msform">
+    <ul id="progressbar">
+        <li class="active">Oficio</li>
+        <li>Financiamiento</li>
+    </ul>
 
-<div class="list-group list-group-horizontal my-3  col-lg-12 ">
-    <div class="list-group-item border-0  col-lg-2 ">
+    <fieldset>
+        <h3 class="fs-title">Oficio Autorizacion</h3>
+        <input id="OficioAut" type="text" class="form-control" placeholder="No. de Oficio" />
+        <small id="nAutHelp" class="form-text text-muted mt-3 ">Fecha del Oficio</small>
+        @Html.Editor("FecAutorizacion", new { htmlAttributes = new { @class = "form-control  col-lg-12", @type = "date", @aria_describedby = "nAutHelp" } })
+        <small id="nRecHelp" class="form-text text-muted mt-3">Fecha de Recibido</small>
+        @Html.Editor("FecRecibido", new { htmlAttributes = new { @class = "form-control  col-lg-12", @type = "date", @aria_describedby = "nRecHelp" } })
 
-        @Html.TextBox("OficioAut", null, new { placeholder = "No. de Oficio", @class = "form-control-sm my-1 col-lg-12" })
-        @Html.Editor("FecAutorizacion", new { htmlAttributes = new { placeholder = "Fecha del Oficio", @class = "form-control-sm my-1 col-lg-12", @type="date" } })
-        @Html.Editor("FecRecibido", new { htmlAttributes = new { placeholder = "Fecha de Recibido", @class = "form-control-sm my-1 col-lg-12", @type="date" } })
+        @Html.TextBox("NumAsignacion", null, new { placeholder = "No. de Asignación", @class = "form-control my-1 col-lg-12 mt-3" })
 
-        @Html.TextBox("NumAsignacion", null, new { placeholder = "No. de Asignación", @class = "form-control-sm my-1 col-lg-12" })
+        @Html.TextBox("NumObra", null, new { placeholder = "No. de Obra", @class = "form-control  col-lg-12 mt-3" })
 
-        @Html.TextBox("NumObra", null, new { placeholder = "No. de Obra", @class = "form-control-sm my-1 col-lg-12" })
+        @Html.TextArea("DescObra", null, new { placeholder = "Descripcion de Obra", @class = "form-control  col-lg-12 mt-3" })
 
-        @Html.TextArea("DescObra", null, new { placeholder = "Descripcion de Obra", @class = "form-control-sm my-1 col-lg-12" })
-
-        @Html.TextBox("MontoAutorizado", null, new { placeholder = "Monto", @class = "form-control-sm my-1 col-lg-12", @type="number"})
+        @Html.TextBox("MontoAutorizado", null, new { placeholder = "Monto", @class = "form-control  col-lg-12 mt-3", @type = "number" })
         @Html.Hidden("idmunicipio")
-        @Html.TextBox("municipio", null, new { placeholder = "Municipio", @class = "form-control-sm my-1 col-lg-12", id = "municipio" })
+        @Html.TextBox("municipio", null, new { placeholder = "Municipio", @class = "form-control col-lg-12 mt-3", id = "municipio" })
 
 
-        @Html.DropDownList("IdPrograma", listaProg, new { @class = "form-control form-control-sm my-1 col-lg-12" })
+        @Html.DropDownList("IdPrograma", listaProg, new { @class = "form-control   col-lg-12 mt-3" })
         @Html.ValidationMessage("Progamado", new { @class = "text-danger" })
 
-        @Html.DropDownList("IdAutoriza", listaAut, new { @class = "form-control form-control-sm my-1 col-lg-12" })
+
+        @Html.DropDownList("IdAutoriza", listaAut, new { @class = "form-control   col-lg-12 mt-3" })
         @Html.ValidationMessage("Autorizado", new { @class = "text-danger" })
+        <button type="button" onclick="GuardarOficio()" class="mt-4 btn btn-outline-primary  btn-block btn-sm">Fuente financiamento>>>></button>
+        <input id="inv" type="button" name="next" class="next btn btn-info invisible" value="pat" />
+    </fieldset>
+    <fieldset>
+        <h3 class="fs-title">Financiamiento</h3>
 
-
-        <button type="button" class="btn btn-outline-primary  btn-block btn-sm" onclick="GuardarOficio()">Fuente financiamento>>>></button>
-    </div>
-    <div class="list-group-item border-0  col-lg-4 invisible">
-        @Html.TextBox("montoAut",null,new { @class= "form-control-sm border-0 my-1 ", @readonly="readonly"})
+        @Html.TextBox("montoAut", null, new { @class = "form-control-sm border-0 my-1 ", @readonly = "readonly" })
         @Html.Hidden("idOficio")
         @Html.Hidden("idOrigen")
         <div class="form-row">
@@ -66,49 +74,52 @@
             </table>
             @Html.Hidden("totalAcum")
         </div>
-    </div>
-    <div class="list-group-item border-0 col-lg-6 invisible">
-
-        @using (Ajax.BeginForm("CargaMasivaUp", "OficioAut", new AjaxOptions
-        {
-            HttpMethod = "POST",
-            UpdateTargetId = "divCarga",
-            InsertionMode = InsertionMode.Replace
-        }, new
-        {
-            @id = "frmCargaMasiva",
-            enctype = "multipart/form-data"
-        }))
-        {
-
-            <div id="divCarga">
-                @Html.Partial("_CargaMasiva", Model)
-            </div>
-        }
-
-        @using (Ajax.BeginForm("CargaMasivaMup", "OficioAut", new AjaxOptions
-        {
-            HttpMethod = "POST",
-            UpdateTargetId = "divCargaMonto",
-            InsertionMode = InsertionMode.Replace
-        }, new
-        {
-            @id = "frmCargaMasivaMonto",
-            enctype = "multipart/form-data"
-        }))
-        {
-
-            <div id="divCargaMonto">
-                @Html.Partial("_CargaMasivaMonto", Model)
-            </div>
-        }
-
-
-    </div>
+    </fieldset>
 </div>
 
-<script src="~/Scripts/funcionesOficioAut.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"
-        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-        crossorigin="anonymous"></script>
+    @*<div class="list-group list-group-horizontal my-3  col-lg-12 ">
+        <div class="list-group-item border-0 col-lg-6 invisible">
+
+            @using (Ajax.BeginForm("CargaMasivaUp", "OficioAut", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "divCarga",
+                InsertionMode = InsertionMode.Replace
+            }, new
+            {
+                @id = "frmCargaMasiva",
+                enctype = "multipart/form-data"
+            }))
+            {
+
+                <div id="divCarga">
+                    @Html.Partial("_CargaMasiva", Model)
+                </div>
+            }
+
+            @using (Ajax.BeginForm("CargaMasivaMup", "OficioAut", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "divCargaMonto",
+                InsertionMode = InsertionMode.Replace
+            }, new
+            {
+                @id = "frmCargaMasivaMonto",
+                enctype = "multipart/form-data"
+            }))
+            {
+
+                <div id="divCargaMonto">
+                    @Html.Partial("_CargaMasivaMonto", Model)
+                </div>
+            }
+
+
+        </div>
+    </div>*@
+
+    <script src="~/Scripts/funcionesOficioAut.js"></script>
+    @*<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>*@
 

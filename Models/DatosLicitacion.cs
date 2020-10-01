@@ -20,6 +20,7 @@ namespace ConcursosContratos.Models
             this.Anticipoes = new HashSet<Anticipo>();
             this.Canceladoes = new HashSet<Cancelado>();
             this.Convocatorias = new HashSet<Convocatoria>();
+            this.LicitacionOficioAuts = new HashSet<LicitacionOficioAut>();
             this.VisitaProgs = new HashSet<VisitaProg>();
         }
     
@@ -51,6 +52,8 @@ namespace ConcursosContratos.Models
         public virtual Procedimiento Procedimiento { get; set; }
         public virtual TipoContrato TipoContrato { get; set; }
         public virtual TipoObra TipoObra { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LicitacionOficioAut> LicitacionOficioAuts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VisitaProg> VisitaProgs { get; set; }
     }

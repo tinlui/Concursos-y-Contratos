@@ -84,7 +84,7 @@ li.nav-item:hover {
     position: relative;
 }
     #msform fieldset {
-        background: white;
+        background: rgba(0, 0, 0, 0.8);
         border: 0 none;
         border-radius: 3px;
         box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
@@ -103,7 +103,7 @@ li.nav-item:hover {
 .fs-title {
     font-size: 15px;
     text-transform: uppercase;
-    color: #2C3E50;
+    color: #d5c4c4;
     margin-bottom: 1rem;
 }
 
@@ -166,10 +166,12 @@ li.nav-item:hover {
 
         /*contratista*/
 textarea.form-control,
-input.form-control{
+input.form-control,
+select.form-control {
     color: white;
-    background-color: rgba(255,255,255,.0) !important;
-    border-color: rgba(255,255,255,.0) !important; 
+    background-color: rgba(255,255,255,.0) ;
+    border-color: rgba(255,255,255,.0) ;
+    border-bottom-color: rgba(0,0,0,0.8);
 }
     textarea.form-control:active,
     textarea.form-control:focus,

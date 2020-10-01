@@ -105,7 +105,7 @@ namespace ConcursosContratos.Controllers
                                     Entidad = ent.ENTIDAD1,
                                     Region = reg.REGION1,
                                     ActaConstitutiva = moral.ACTACONSTITUTIVA,
-                                    FechaActa = moral.FECHAACTA,
+                                    FechaActa = moral.FECHA,
                                     NotarioNum = moral.NOTARIONUM,
                                     NotarioNombre = moral.NOTARIONOMBRE,
                                     RegPublico = moral.REGPUBLICO,
@@ -153,12 +153,12 @@ namespace ConcursosContratos.Controllers
                                         select new ContratistaResumenCLS
                                         {
                                             Folio= r.REGCONTRALORIAFOLIO,
-                                            Ingreso=r.REGCONTRALORIAINGREGSO,
-                                            Expedicion=r.FECHAEXPEDICION,
-                                            Vigencia =r.FECHAVIGENCIA,
+                                            Ingreso=r.REGCONTRALORIAINGREsO,
+                                            Expedicion=r.EXPEDICION,
+                                            Vigencia =r.VIGENCIA,
                                             Capital=r.CAPITAL,
                                             InfoCapital=ic.INFOCAPITAL1,
-                                            FechaInf=r.FECHAINF,
+                                            FechaInf=r.INF,
                                             Tipo=tc.TIPO,
                                             Especialidad=e.ESPECIALIDAD1,
                                             Activo=r.ACTIVO

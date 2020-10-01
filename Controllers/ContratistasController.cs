@@ -233,7 +233,7 @@ namespace ConcursosContratos.Controllers
                         moralCLS.IdContratista = contratista.IDCONTRATISTA;
                             DatosMoral datosMoral = new DatosMoral();
                             datosMoral.ACTACONSTITUTIVA = moralCLS.ActaConstitutiva;
-                            datosMoral.FECHAACTA = moralCLS.FechaActa;
+                            datosMoral.FECHA = moralCLS.FechaActa;
                             datosMoral.NOTARIONUM = moralCLS.NotarioNum;
                             datosMoral.NOTARIONOMBRE = moralCLS.NotarioNombre;
                             datosMoral.REGPUBLICO = moralCLS.RegPublico;
@@ -282,12 +282,12 @@ namespace ConcursosContratos.Controllers
                             {
                                 RegistroContratista registroContratista = bd.RegistroContratistas.Where(c => c.IDCONTRATISTA == registroContratistaCLS.IdContratista).First();
                                 registroContratista.REGCONTRALORIAFOLIO = registroContratistaCLS.RegContraloriaFolio;
-                                registroContratista.REGCONTRALORIAINGREGSO = registroContratistaCLS.RegContraloriaIngreso;
-                                registroContratista.FECHAEXPEDICION = registroContratistaCLS.FechaExpedicion;
-                                registroContratista.FECHAVIGENCIA = registroContratistaCLS.FechaVigencia;
+                                registroContratista.REGCONTRALORIAINGREsO = registroContratistaCLS.RegContraloriaIngreso;
+                                registroContratista.EXPEDICION = registroContratistaCLS.FechaExpedicion;
+                                registroContratista.VIGENCIA = registroContratistaCLS.FechaVigencia;
                                 registroContratista.CAPITAL = registroContratistaCLS.Capital;
                                 registroContratista.IDINFOCAPITAL = registroContratistaCLS.IdInfoCapital;
-                                registroContratista.FECHAINF = registroContratistaCLS.FechaInf;
+                                registroContratista.INF = registroContratistaCLS.FechaInf;
                                 registroContratista.IDTIPO = registroContratistaCLS.IdTipo;
                                 registroContratista.IDESPECIALIDAD = registroContratistaCLS.IdEspecialidad;
                                 registroContratista.ACTIVO = registroContratistaCLS.Activo;
@@ -298,12 +298,12 @@ namespace ConcursosContratos.Controllers
 
                             RegistroContratista registroContratista = new RegistroContratista();
                             registroContratista.REGCONTRALORIAFOLIO = registroContratistaCLS.RegContraloriaFolio;
-                            registroContratista.REGCONTRALORIAINGREGSO = registroContratistaCLS.RegContraloriaIngreso;
-                            registroContratista.FECHAEXPEDICION = registroContratistaCLS.FechaExpedicion;
-                            registroContratista.FECHAVIGENCIA = registroContratistaCLS.FechaVigencia;
+                            registroContratista.REGCONTRALORIAINGREsO = registroContratistaCLS.RegContraloriaIngreso;
+                            registroContratista.EXPEDICION = registroContratistaCLS.FechaExpedicion;
+                            registroContratista.VIGENCIA = registroContratistaCLS.FechaVigencia;
                             registroContratista.CAPITAL = registroContratistaCLS.Capital;
                             registroContratista.IDINFOCAPITAL = registroContratistaCLS.IdInfoCapital;
-                            registroContratista.FECHAINF = registroContratistaCLS.FechaInf;
+                            registroContratista.INF = registroContratistaCLS.FechaInf;
                             registroContratista.IDCONTRATISTA = registroContratistaCLS.IdContratista;
                             registroContratista.IDTIPO = registroContratistaCLS.IdTipo;
                             registroContratista.IDESPECIALIDAD = registroContratistaCLS.IdEspecialidad;

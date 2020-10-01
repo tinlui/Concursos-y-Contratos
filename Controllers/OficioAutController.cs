@@ -128,7 +128,7 @@ namespace ConcursosContratos.Controllers
         public JsonResult ShowOrigen(int idFuenteFin)
         {
             MontoFinCLS montoFinCLS = new MontoFinCLS();
-            string origen = "";
+            
             using (var bd = new CCDevEntities())
             {
                 FuenteFin fuenteFin = bd.FuenteFins.Where(f => f.IDFUENTEFIN == idFuenteFin).First();
@@ -262,7 +262,7 @@ namespace ConcursosContratos.Controllers
             }
             catch(Exception ex)
             {
-                rpta = "error" + ex;
+                rpta = "error" + ex.Message;
             }
             return rpta;
         }
@@ -309,7 +309,7 @@ namespace ConcursosContratos.Controllers
             }
             catch(Exception ex)
             {
-                rpta = "error" + ex;
+                rpta = "error" + ex.Message;
             }
             return rpta;
         }

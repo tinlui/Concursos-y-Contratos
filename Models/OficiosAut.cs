@@ -18,6 +18,7 @@ namespace ConcursosContratos.Models
         public OficiosAut()
         {
             this.Contratoes = new HashSet<Contrato>();
+            this.LicitacionOficioAuts = new HashSet<LicitacionOficioAut>();
             this.MontoFins = new HashSet<MontoFin>();
         }
     
@@ -35,6 +36,8 @@ namespace ConcursosContratos.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contrato> Contratoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LicitacionOficioAut> LicitacionOficioAuts { get; set; }
         public virtual Municipio Municipio { get; set; }
         public virtual Autoriza Autoriza { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
