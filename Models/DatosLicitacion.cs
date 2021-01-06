@@ -19,6 +19,7 @@ namespace ConcursosContratos.Models
         {
             this.Anticipoes = new HashSet<Anticipo>();
             this.Canceladoes = new HashSet<Cancelado>();
+            this.Contratoes = new HashSet<Contrato>();
             this.Convocatorias = new HashSet<Convocatoria>();
             this.LicitacionOficioAuts = new HashSet<LicitacionOficioAut>();
             this.VisitaProgs = new HashSet<VisitaProg>();
@@ -26,12 +27,11 @@ namespace ConcursosContratos.Models
     
         public int IDDATOSLICITACION { get; set; }
         public string NOPROCESO { get; set; }
-        public Nullable<int> IDCONTRATO { get; set; }
         public Nullable<int> PLANOS { get; set; }
         public Nullable<int> ESPECIFICACIONES { get; set; }
         public string NOTASACLARATORIAS { get; set; }
         public Nullable<int> IDPROCEDIMIENTO { get; set; }
-        public Nullable<int> IDAÑO { get; set; }
+        public Nullable<int> AÑO { get; set; }
         public Nullable<int> IDTIPOOBRA { get; set; }
         public Nullable<int> IDNIVELOBRA { get; set; }
         public Nullable<int> IDESPOBRA { get; set; }
@@ -40,10 +40,10 @@ namespace ConcursosContratos.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Anticipo> Anticipoes { get; set; }
-        public virtual Año Año { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cancelado> Canceladoes { get; set; }
-        public virtual Contrato Contrato { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contrato> Contratoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Convocatoria> Convocatorias { get; set; }
         public virtual Direccion Direccion { get; set; }

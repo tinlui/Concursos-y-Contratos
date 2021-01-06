@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.html.simpleparser;
+//using iTextSharp.text;
+//using iTextSharp.text.pdf;
+//using iTextSharp.text.html.simpleparser;
 using System.IO;
-using System.Web.UI;
+//using System.Web.UI;
 using ConcursosContratos.Models;
-using System.Text;
-using System.Net;
-using iTextSharp.text.xml;
-using System.Drawing;
-using Font = iTextSharp.text.Font;
-using Rectangle = iTextSharp.text.Rectangle;
-using System.Security.Cryptography;
-using System.Configuration;
+//using System.Text;
+//using System.Net;
+//using iTextSharp.text.xml;
+//using System.Drawing;
+//using Font = iTextSharp.text.Font;
+//using Rectangle = iTextSharp.text.Rectangle;
+//using System.Security.Cryptography;
+//using System.Configuration;
+//using System.Reflection;
+//using System.Runtime.InteropServices.WindowsRuntime;
+//using System.Web.Hosting;
 using System.Reflection;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Web.Hosting;
-
+using Word = Microsoft.Office.Interop.Word;
 namespace ConcursosContratos.Controllers
 {
     public class GeneradorPdfController : Controller
@@ -152,8 +153,8 @@ namespace ConcursosContratos.Controllers
                                         where r.IDCONTRATISTA==contratista
                                         select new ContratistaResumenCLS
                                         {
-                                            Folio= r.REGCONTRALORIAFOLIO,
-                                            Ingreso=r.REGCONTRALORIAINGREsO,
+                                            Folio= r.REGCONFOLIO,
+                                            Ingreso=r.REGCONGREsO,
                                             Expedicion=r.EXPEDICION,
                                             Vigencia =r.VIGENCIA,
                                             Capital=r.CAPITAL,
@@ -205,6 +206,46 @@ namespace ConcursosContratos.Controllers
             return Json(elements, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult WordLicitacion(int id)
+        {
+            int valor = id;
+     
+                object oMissing = Missing.Value;
+               
+                object oTemplate = @"C:\Users\tinlu\Source\Repos\ConcursosContratos\Doc\CONTRATO SIDUM LICITACION OBRA.docx";
+                Word._Application oWord;
+                Word._Document oDoc;
+                oWord = new Word.Application();
+                oWord.Visible = true;
+                oDoc = oWord.Documents.Add(ref oTemplate, ref oMissing,
+    ref oMissing, ref oMissing);
+
+                object oBookMark = "m1", oBookMark2 = "m2", oBookMark3 = "m3", oBookMark4 = "m4", oBookMark5 = "m5",
+                       oBookMark6 = "m6",oBookMark7 = "m7", oBookMark8 = "m8", oBookMark9 = "m9", oBookMark10 = "m10",
+                       oBookMark11 = "m11", oBookMark12 = "m12", oBookMark13 = "m13", oBookMark14 = "m14", oBookMark15 = "m15",
+                       oBookMark16 = "m16", oBookMark17 = "m17", oBookMark18 = "m18", oBookMark19 = "m19", oBookMark20 = "m20",
+                       oBookMark21 = "m21", oBookMark22 = "m22";
+            //razon social 1,19 *
+            //representada 2,8,20 *
+            //puesto 3,21 *
+            //no licitacion 4 *
+            //of autorizacion fecha aut 5
+            //esc publica esc fecha 6
+            //notario no, nombre y ciudad 7
+            //poder ep poder fecha 9
+            //poder notario num nombre ciudad 10
+            //reg contraloria folio 11
+            //especialidad 12
+            //rfc 22 *
+            //calle no ext no int colonia cp municipio entidad 13 *
+            //desc obra 14 *
+            //fallo 15
+            //dias inicio_obra fin_obra 16
+            //anticipo 17,23
+            oDoc.Bookmarks[oBookMark].Range.Text = "Some Text Here";
+            return View();
+        }
         //public FileResult PdfContratista(int contratista)
         //{
 

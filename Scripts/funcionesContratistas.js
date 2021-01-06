@@ -209,7 +209,7 @@ function GuardarNombre() {
 	})
 }
 function GuardarContratista() {
-	var retorno = false;
+
 	$.get('/Contratistas/GuardarContratista',
 		{
 			Nombre: nombre.val(), Rfc: rfc.val(), Curp: curp.val(), Telefono: telefono.val(), Correo: correo.val(), Calle: calle.val(), NoExterior: noExt.val(), NoInterior: noInt.val(), Colonia: colonia.val(), Cp: cp.val(), IdMunicipio: idMun.val(), Año: año.val()
@@ -221,11 +221,7 @@ function GuardarContratista() {
 			showConfirmButton: false
 		})
 		if (data == "1") {
-			if (moral.prop('checked')) {
-				
-				$('#NombreCont').val(nombre.val());
-				$('#staticBackdrop').modal('show');
-			} else {
+			
 				Toast.fire({
 					icon: 'success',
 					title: 'Guardado'
@@ -233,12 +229,10 @@ function GuardarContratista() {
 				nombreReg.val(nombre.val());
 				DdlRegistro();
 				$('.next').trigger('click');
-			}
 			nombre.val = "";
 			btnGuardarNombre.addClass('invisible');
 			nombre.addClass('border-danger');
 		} else {
-			console.log("dentro")
 			Toast.fire({
 				icon: 'warning',
 				title: data
@@ -246,6 +240,10 @@ function GuardarContratista() {
 			
         }
 	});
+}
+function nombcont() {
+	GuardarContratista();
+	$('#NombreCont').val(nombre.val());
 }
 function GuardaMoral() {
 	$.get('/Contratistas/GuardarMoral',
@@ -263,7 +261,7 @@ function GuardaMoral() {
 				icon: 'success',
 				title: 'Guardado'
 			});
-			console.log(nombreCont.val())
+			
 			nombreReg.val(nombreCont.val());
 			$('#staticBackdrop').modal('hide')
 			DdlRegistro();

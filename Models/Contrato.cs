@@ -17,7 +17,6 @@ namespace ConcursosContratos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Contrato()
         {
-            this.DatosLicitacions = new HashSet<DatosLicitacion>();
             this.Fianzas = new HashSet<Fianza>();
             this.Inscritoes = new HashSet<Inscrito>();
             this.Seguimientoes = new HashSet<Seguimiento>();
@@ -38,12 +37,12 @@ namespace ConcursosContratos.Models
         public Nullable<int> IDMUNICIPIO { get; set; }
         public Nullable<int> HABILITADO { get; set; }
         public string NOTASACLARATORIAS { get; set; }
+        public Nullable<int> IDDATOSLICITACION { get; set; }
     
+        public virtual DatosLicitacion DatosLicitacion { get; set; }
         public virtual Municipio Municipio { get; set; }
         public virtual OficiosAut OficiosAut { get; set; }
         public virtual TipoContrato TipoContrato { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatosLicitacion> DatosLicitacions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Fianza> Fianzas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

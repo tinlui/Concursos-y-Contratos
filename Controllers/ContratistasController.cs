@@ -281,8 +281,8 @@ namespace ConcursosContratos.Controllers
                             if (cant.Equals(1))
                             {
                                 RegistroContratista registroContratista = bd.RegistroContratistas.Where(c => c.IDCONTRATISTA == registroContratistaCLS.IdContratista).First();
-                                registroContratista.REGCONTRALORIAFOLIO = registroContratistaCLS.RegContraloriaFolio;
-                                registroContratista.REGCONTRALORIAINGREsO = registroContratistaCLS.RegContraloriaIngreso;
+                                registroContratista.REGCONFOLIO = registroContratistaCLS.RegContraloriaFolio;
+                                registroContratista.REGCONGREsO = registroContratistaCLS.RegContraloriaIngreso;
                                 registroContratista.EXPEDICION = registroContratistaCLS.FechaExpedicion;
                                 registroContratista.VIGENCIA = registroContratistaCLS.FechaVigencia;
                                 registroContratista.CAPITAL = registroContratistaCLS.Capital;
@@ -297,8 +297,8 @@ namespace ConcursosContratos.Controllers
                             } else { 
 
                             RegistroContratista registroContratista = new RegistroContratista();
-                            registroContratista.REGCONTRALORIAFOLIO = registroContratistaCLS.RegContraloriaFolio;
-                            registroContratista.REGCONTRALORIAINGREsO = registroContratistaCLS.RegContraloriaIngreso;
+                            registroContratista.REGCONFOLIO = registroContratistaCLS.RegContraloriaFolio;
+                            registroContratista.REGCONGREsO = registroContratistaCLS.RegContraloriaIngreso;
                             registroContratista.EXPEDICION = registroContratistaCLS.FechaExpedicion;
                             registroContratista.VIGENCIA = registroContratistaCLS.FechaVigencia;
                             registroContratista.CAPITAL = registroContratistaCLS.Capital;

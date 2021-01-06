@@ -8,7 +8,7 @@
 
 <div class="consultaCont">
     <h2>Contratistas</h2>
-    <div class="input-group mb-3 ml-4">
+    <div class="input-group bg-dark rounded mb-3 ml-4">
         @Html.TextBox("contratistaConsulta", null, new { placeholder = "Ingrese Razon Social o RFC", @class = "form-control", aria_label = "Ingrese Razon Social o RFC", aria_describedby = "buscar" })
         @Html.Hidden("idCon")
         <div class="input-group-append">
@@ -43,8 +43,7 @@
 
             @Html.TextBox("Year", null, new { placeholder = "AÑO DE REGISTRO", @class = "form-control my-1 col-md-12" })
             <div class="form-group pl-5">
-                @Html.CheckBox("IsMoral", false, new { @class = "" })
-                @Html.Label("Persona Moral", new { @class = "ml-1 badge badge-light" })
+                <input type="button" class="btn btn-outline-secondary mt-2 " onclick="nombcont()" data-toggle="modal" data-target="#staticBackdrop" value="Persona Moral" />
             </div>
         </div>
         <input type="button" class="btn btn-outline-success mt-2 invisible" onclick="GuardarNombre()" value="Guardar" />
@@ -112,9 +111,9 @@
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content col-md-6">
+        <div class="modal-content bg-dark col-md-6">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Persona Moral</h5>
+                <h5 class="modal-title text-white" id="staticBackdropLabel">Persona Moral</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

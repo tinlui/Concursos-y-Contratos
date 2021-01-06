@@ -117,7 +117,8 @@ mun.change(function () {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: '@Html.ActionLink("Si, ir a agregarlo!","Index","Municipio", new{area =""}, new{ @class="text-white mr-2" }) '
+            confirmButtonText:'<a class="text-white mr-2" href="/municipio/index">Si, ir a agregarlo</a>'
+            //confirmButtonText: "@Html.ActionLink('Si, ir a agregarlo!','Index','Municipio', new{area =''}, new{ @class='text-white mr-2' }) "
         })
       
     } else {
@@ -208,6 +209,7 @@ var monto = $('#monto');
 var montosTabla = $('#montos');
 var verTabla = $('.list-group-item.border-0.col-lg-4 div');
 var totalAcumulado = $('#totalAcum');
+var tabla = $('#Tabla');
 Fuente.change(function () {
     $('#Origen').innerHTML = "";
     $.get("/OficioAut/ShowOrigen", { idFuenteFin: Fuente.val() }, function (data) {
@@ -303,7 +305,7 @@ function GuardarMonto() {
                         icon: 'success',
                         title: 'Guardado'
                     })
-                    verTabla.removeClass('invisible');
+                    tabla.removeClass('invisible');
                     ListadoMontoFin();
                 } else {
                     Toast.fire({

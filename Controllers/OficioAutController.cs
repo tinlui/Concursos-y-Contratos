@@ -39,8 +39,8 @@ namespace ConcursosContratos.Controllers
                                       select new OficiosAutCLS
                                       {
                                           OficioAut = oa.OFICIOAUT,
-                                          FecAutorizacion = oa.FECAUTORIZACION,
-                                          FecRecibido = oa.FECRECIBIDO,
+                                          FecAutorizacion = oa.AUTORIZACION,
+                                          FecRecibido = oa.RECIBIDO,
                                           NumAsignacion = oa.NUMASIGNACION,
                                           NumObra = oa.NUMOBRA,
                                           DescObra = oa.DESCOBRA,
@@ -161,9 +161,13 @@ namespace ConcursosContratos.Controllers
                                 join ff in bd.FuenteFins
                                 on mf.IDFUENTEFIN
                                 equals ff.IDFUENTEFIN
+                                join ef in bd.EstructuraFins
+                                on ff.IDESTRUCTURAFIN
+                                equals ef.IDESTRUCTURAFIN
                                 where mf.IDOFICIOSAUT == oficioId
                                 select new MontoFinCLS { 
                                     FuenteFin=ff.FUENTEFIN1,
+                                   EstructuraFin=ef.ESTRUCTURAFIN1,
                                     Monto=mf.MONTO
                               
                                 }).ToList();
@@ -241,8 +245,8 @@ namespace ConcursosContratos.Controllers
                                 OficiosAut oficiosAut = new OficiosAut();
                               
                                 oficiosAut.OFICIOAUT = oficiosAutCLS.OficioAut;
-                                oficiosAut.FECAUTORIZACION = oficiosAutCLS.FecAutorizacion;
-                                oficiosAut.FECRECIBIDO = oficiosAutCLS.FecRecibido;
+                                oficiosAut.AUTORIZACION = oficiosAutCLS.FecAutorizacion;
+                                oficiosAut.RECIBIDO = oficiosAutCLS.FecRecibido;
                                 oficiosAut.NUMASIGNACION = oficiosAutCLS.NumAsignacion;
                                 oficiosAut.NUMOBRA = oficiosAutCLS.NumObra;
                                 oficiosAut.DESCOBRA = oficiosAutCLS.DescObra;

@@ -15,8 +15,8 @@ namespace ConcursosContratos.Models
     public partial class RegistroContratista
     {
         public int IDREGISTRO { get; set; }
-        public string REGCONTRALORIAFOLIO { get; set; }
-        public string REGCONTRALORIAINGREsO { get; set; }
+        public string REGCONFOLIO { get; set; }
+        public string REGCONGREsO { get; set; }
         public Nullable<System.DateTime> EXPEDICION { get; set; }
         public Nullable<System.DateTime> VIGENCIA { get; set; }
         public Nullable<decimal> CAPITAL { get; set; }

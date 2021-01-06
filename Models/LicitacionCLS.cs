@@ -7,22 +7,21 @@ namespace ConcursosContratos.Models
 {
     public class LicitacionCLS
     {
+        public int IdDatosLicitacion
+        {
+            get;set;
+        }
         public string NoProceso
         {
             get;set;
         }
 
-        public int IdContrato
+        public int? Planos
         {
             get;set;
         }
 
-        public int Planos
-        {
-            get;set;
-        }
-
-        public int Especificaciones
+        public int? Especificaciones
         {
             get;set;
         }
@@ -37,7 +36,7 @@ namespace ConcursosContratos.Models
             get;set;
         }
 
-        public int IdAÑo
+        public int AÑo
         {
             get;set;
         }

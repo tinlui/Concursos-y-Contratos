@@ -97,6 +97,10 @@
       <HintPath>packages\itextsharp.xmlworker.5.5.13.1\lib\itextsharp.xmlworker.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -226,6 +230,8 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\funcionesContrato.js" />
+    <Content Include="Scripts\funcionesLicitacion.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -248,6 +254,7 @@
     <Content Include="Models\ModelConcursosCont.edmx.diagram">
       <DependentUpon>ModelConcursosCont.edmx</DependentUpon>
     </Content>
+    <Content Include="Doc\CONTRATO SIDUM LICITACION OBRA.docx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\funcionesContratistas.js" />
     <Content Include="Scripts\funcionesMunicipio.js" />
@@ -338,10 +345,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CargaMasivaController.cs" />
     <Compile Include="Controllers\ContratistasController.cs" />
+    <Compile Include="Controllers\ContratoController.cs" />
     <Compile Include="Controllers\GeneradorPdfController.cs" />
     <Compile Include="Controllers\LicitacionController.cs" />
     <Compile Include="Controllers\MunicipioController.cs" />
     <Compile Include="Controllers\OficioAutController.cs" />
+    <Compile Include="Controllers\PaginaPrincipalController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -352,10 +361,8 @@
     <Compile Include="Models\Anticipo.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnticipoCls.cs" />
     <Compile Include="Models\Autoriza.cs">
-      <DependentUpon>ModelConcursosCont.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Año.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cancelado.cs">
@@ -369,9 +376,11 @@
     <Compile Include="Models\Contrato.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContratoCLS.cs" />
     <Compile Include="Models\Convocatoria.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConvocatoriaCls.cs" />
     <Compile Include="Models\DatosLicitacion.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
@@ -476,6 +485,9 @@
     <Compile Include="Models\Seguimiento.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>ModelConcursosCont.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TblIdentificacion.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
@@ -495,6 +507,7 @@
     <Compile Include="Models\VisitaProg.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VisitaProgCls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -530,6 +543,7 @@
     <Content Include="Views\Licitacion\_Contrato.cshtml" />
     <Content Include="Views\Licitacion\_Seguimiento.cshtml" />
     <Content Include="Views\Licitacion\_Fianzas.cshtml" />
+    <Content Include="Views\PaginaPrincipal\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -540,6 +554,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Auxiliar\" />
+    <Folder Include="Views\Contrato\" />
     <Folder Include="Views\Pdg\" />
   </ItemGroup>
   <ItemGroup>

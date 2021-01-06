@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="mt-3 table table-dark table-striped table-hover text-center" id="tblLicitaciones">
+</table>
+
+<script>
+    
+    var tblLic = $("#tblLicitaciones");
+   
+     
+    //Cuando la página esté cargada ejecutará la función resaltar
+    function Licitacion(id) {
+        window.location.href = "/Licitacion/Index/?id="+id;
+        console.log(id);
+    }
+    $(document).ready(function () {
+        var lista = "";
+
+        $.get('/PaginaPrincipal/listLicitaciones', function (data) {
+            lista += '<tr>';
+            lista += '<td>Proceso</td>';
+            lista += '<td>Planos </td>';
+            lista += '<td>Especificaciones </td>';
+            lista += '<td>Proc </td>';
+            lista += '<td>Año </td>';
+            lista += '<td>Tipo </td>';
+            lista += '<td>Nivel </td>';
+            lista += '<td>Esp </td>';
+            lista += '<td>Tipo </td>';
+            lista += '</tr>';
+            $.each(data, function (index, row) {
+                lista += '<tr  onclick="Licitacion(' + row.id+')">';
+                lista += '<td>' + row.noProceso + '</td>';
+                if (row.planos == 1) {
+                    lista += '<td> <input type="checkbox" checked disabled /></td>'
+                } else {
+                    lista += '<td> <input type="checkbox" disabled /></td>'
+                }
+                if (row.especificaciones == 1) {
+                    lista += '<td> <input type="checkbox" checked disabled  /></td>'
+                } else {
+                    lista += '<td> <input type="checkbox" disabled /></td>'
+                }
+                lista += '<td>' + row.abvProc + '</td>';
+                lista += '<td>' + row.año + '</td>';
+                lista += '<td>' + row.tipoObra + '</td>';
+                lista += '<td>' + row.nvlObra + '</td>';
+                lista += '<td>' + row.espObra + '</td>';
+                lista += '<td>' + row.tipoContrato + '</td>';
+                lista += '</tr>';
+            });
+
+            tblLic.prepend(lista);
+        });
+
+
+    });
+</script>

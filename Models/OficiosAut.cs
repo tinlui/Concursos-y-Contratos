@@ -24,8 +24,8 @@ namespace ConcursosContratos.Models
     
         public int IDOFICIOSAUT { get; set; }
         public string OFICIOAUT { get; set; }
-        public Nullable<System.DateTime> FECAUTORIZACION { get; set; }
-        public Nullable<System.DateTime> FECRECIBIDO { get; set; }
+        public Nullable<System.DateTime> AUTORIZACION { get; set; }
+        public Nullable<System.DateTime> RECIBIDO { get; set; }
         public Nullable<int> NUMASIGNACION { get; set; }
         public Nullable<int> NUMOBRA { get; set; }
         public string DESCOBRA { get; set; }
@@ -34,14 +34,14 @@ namespace ConcursosContratos.Models
         public Nullable<int> IDPROGRAMA { get; set; }
         public Nullable<int> IDMUNICIPIO { get; set; }
     
+        public virtual Autoriza Autoriza { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contrato> Contratoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LicitacionOficioAut> LicitacionOficioAuts { get; set; }
-        public virtual Municipio Municipio { get; set; }
-        public virtual Autoriza Autoriza { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MontoFin> MontoFins { get; set; }
+        public virtual Municipio Municipio { get; set; }
         public virtual Programa Programa { get; set; }
     }
 }

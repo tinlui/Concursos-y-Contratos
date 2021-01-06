@@ -1,1 +1,111 @@
-﻿<h1>Contrato!</h1>
+﻿<div class="card-deck mt-3">
+    <div class="card">
+        <div class="card-header text-center bg-warning">Contrato</div>
+        <div class="card-body bg-dark">
+
+            <small id="helpNoCont" class="form-text text-muted ">Numero de Contrato</small>
+            <input id="NoCont" type="text" class="form-control"  />
+            <small id="helpFechaCont" class="form-text text-muted  mt-4">Fecha de Contrato</small>
+            <input id="FechaCont" type="date" class="form-control" />
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header text-center bg-warning">Oficio de Aprobacion</div>
+        <div class="card-body bg-dark">
+
+            <small id="helpNoOf" class="form-text text-muted">Numero de Oficio</small>
+            <input id="NoOf" type="text" class="form-control"  />
+            <small id="helpFechaOf" class="form-text text-muted  mt-4">Fecha de Oficio</small>
+            <input id="FechaOf" type="date" class="form-control" />
+            <small id="helpFechaRec" class="form-text text-muted  mt-4">Fecha de Recepcion</small>
+            <input id="FechaRec" type="date" class="form-control"/>
+            oficio de autorizacion(si tiene mas de uno que sea un select list para seleccionar el que va con el sino que solo sea texto)
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header text-center bg-warning">Duracion</div>
+        <div class="card-body bg-dark">
+
+            <small id="helpFechaIn" class="form-text text-muted">Fecha de Inicio</small>
+            <input id="FechaIn" type="date" class="form-control" />
+
+            <small id="helpFechaTer" class="form-text text-muted  mt-4">Fecha de Termino</small>
+            <input id="FechaTer" type="date" class="form-control"  />
+            <button type="button" onclick="TablaInscritos()" class="btn btn-primary mt-4">
+                Dias <span class="badge badge-light">4</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<table class="table mt-5">
+    <thead class="bg-danger  text-white">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Contratista/Proveedor</th>
+            <th scope="col">Apertura Técnica y Economica</th>
+            <th scope="col">Fallo</th>
+            <th scope="col">Ganador</th>
+            <th scope="col"><button class="btn btn-outline-success btn-lg btn-block fas fa-plus ml-2" onclick="llenarCombosInscritos()" type="button"   data-toggle="modal" data-target="#staticContratistas">
+</button></th>
+        </tr>
+    </thead>
+    <tbody id="tblInscritos" class="table-danger">
+        <tr>
+            <th scope="row">1</th>
+            <td><label>
+                Contratista
+                </label>
+
+            </td>
+            <td>
+                <label>
+                    Estatus
+                </label>
+                <span>
+                    cant</span>
+            </td>
+            <td>
+                <label>
+                    Estatus
+                </label>
+                <span>
+                    cant</span>
+            </td>
+            <td>
+                <input class="form-check-input ml-2" type="checkbox" value="" id="ganador">
+                
+            </td>
+            <td>
+                <button class="btn btn-outline-primary far fa-edit collapsed"  type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                </button>
+                <button type="button"  class="btn btn-outline-danger far fa-trash-alt" data-toggle="modal" data-target="#Eliminar"></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="staticContratistas" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticContratistaspLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="staticContratistasLabel">Contratista/Proveedor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="text-white" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select class="form-control" id="Contratistas"></select>
+                <select class="form-control" id="Desicion"></select>
+                <select class="form-control" id="Desicion_Falla"></select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+abajo van los inscritos
+tabla que se va agregando los inscritos por contrato
+si hay un ganador aparecera el boton para descargarlo en word si no es asi no aparecera el boton
+Generar contrato con word y los bookmark

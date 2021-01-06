@@ -1,15 +1,212 @@
 ﻿
-<div class="mt-3 d-block">
-    <small id="ofAutHelp" class="form-text text-muted">Oficio de Autorizacion</small>
-    <select class="custom-select-sm w-50" id="listOfAut" aria-describedby="ofAutHelp"></select>
-    <button id="ofaut" class="btn btn-sm btn-outline-success" onclick="asignarOficios()" type="button">Asignar</button>
+<div class="mt-3 row">
+    <div class="col-4">
+        <small id="ofAutHelp" class="form-text text-muted">Oficio de Autorizacion</small>
+        <select class="custom-select-sm " id="listOfAut" aria-describedby="ofAutHelp"></select>
+        <button id="ofaut" class="btn btn-sm btn-outline-success" onclick="asignarOficios()" type="button">Asignar</button>
+    </div>
+    <div class="col-8">
+        <table class="mt-3 table table-striped table-dark table-sm" id="TblOficios">
+        </table>
+    </div>
+</div>
 
-    <table id="TblOficios">
-        <tr>
-            <td>
-            </td>
-        </tr>
-    </table>
+<div class="card-deck">
+    <div class="card shadow  rounded">
+        <div class="card-header text-center bg-warning">Anticipo</div>
+        <div class="card-body bg-dark">
+            <small id="HelpAnticipo" class="form-text text-muted  mt-4">Anticipo</small>
+            <div class="input-group mt-4">
+                <input id="anticipo" type="text" class="form-control " />
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+            <small id="HelpInicio" class="form-text text-muted  mt-4">Inicio</small>
+            <div class="input-group mt-4">
+                <input id="anticipoInicio" type="text" class="form-control " />
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+            <small id="HelpMateriales" class="form-text text-muted  mt-4">Materiales</small>
+            <div class="input-group mt-4">
+                <input id="anticipoMateriales" type="text" class="form-control " />
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+            <small id="HelpIVA" class="form-text text-muted  mt-4">IVA</small>
+            <div class="input-group mt-4">
+                <input id="iva" type="text" class="form-control " />
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+            <small id="HelpCapCon" class="form-text text-muted  mt-4">Capital Contable</small>
+            <div class="input-group mt-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input id="inpCapCont" type="text" class="form-control" />
+
+            </div>
+            <p class="card-text"><small class="text-muted"> <button id="AnticipoBtn" onclick="guardaAnticipo()" class="btn btn-outline-success mt-3" type="button">Guardar</button></small></p>
+        </div>
+    </div>
+    <div class="card shadow  rounded">
+        <div class="card-header text-center bg-warning">Convocatoria</div>
+        <div class="card-body bg-dark">
+            <small id="HelpElaboracion" class="form-text text-muted  mt-4">Elaboracion</small>
+            <input id="Elaboracion" type="date" class="form-control" aria-describedby="HelpElaboracion" />
+
+            <small id="helpPresentacionAutorizacion" class="form-text text-muted  mt-4">Presentacion p/Autorizacion</small>
+            <input id="presAut" type="date" class="form-control" placeholder="helpPresentacionAutorizacion" />
+
+            <small id="periodicoOficial" class="form-text text-muted  mt-4">Evio Diario o Periodico Oficial</small>
+            <div class="input-group">
+                <input id="perOficial" type="date" class="form-control" aria-describedby="periodicoOficial" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="chkPerOficial" aria-label="Checkbox for following text input">
+                    </div>
+                </div>
+            </div>
+
+            <small id="helpcompranet" class="form-text text-muted  mt-4">Envio COMPRANET</small>
+            <div class="input-group">
+                <input id="compranet" type="date" class="form-control" aria-describedby="helpcompranet" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="chkCompranet" aria-label="Checkbox for following text input">
+                    </div>
+                </div>
+            </div>
+
+            <small id="HelPpublicacion" class="form-text text-muted  mt-4">Publicacion</small>
+            <div class="input-group">
+                <input id="publicacion" type="date" class="form-control" aria-describedby="HelPpublicacion" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="chkPublicacion" aria-label="Checkbox for following text input">
+                    </div>
+                </div>
+            </div>
+
+            <small id="helpIninvitaciones" class="form-text text-muted  mt-4">Inicio Invitaciones</small>
+            <div class="input-group">
+                <input id="inInvitaciones" type="date" class="form-control" aria-describedby="helpIninvitaciones" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="chkInInvitaciones" aria-label="Checkbox for following text input">
+                    </div>
+                </div>
+            </div>
+
+            <small id="helpfinvitaciones" class="form-text text-muted  mt-4">Fin Invitaciones</small>
+            <div class="input-group">
+                <input id="fInvitaciones" type="date" class="form-control" required placeholder="helpfinvitaciones" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="chkFInvitaciones" aria-label="Checkbox for following text input">
+                    </div>
+                </div>
+            </div>
+
+            <small id="helprecdocumento" class="form-text text-muted  mt-4">Recepcion Documento</small>
+            <div class="input-group">
+                <input id="recDoc" type="date" class="form-control" required placeholder="helprecdocumento" />
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="chkRecDoc" aria-label="Checkbox for following text input">
+                    </div>
+                </div>
+            </div>
+            <p class="card-text"><small class="text-muted"> <button id="InvitacionBtn" onclick="guardaConvocatoria()" class="btn btn-outline-success mt-3" type="button">Guardar</button></small></p>
+        </div>
+    </div>
+    <div class="card  shadow  rounded">
+        <div class="card-header text-center bg-warning">Visita Programada</div>
+        <div class="card-body bg-dark">
+
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h5><span class="badge badge-info">Visita</span></h5>
+                </div>
+                <div class="col">
+                    <input id="fVisita" type="date" class="form-control-sm" />
+                </div>
+                <div class="col">
+                    <input id="hVisita" type="text" class="form-control-sm" placeholder="Hora" />
+                </div>
+            </div>
+            @Html.Hidden("idDirVisita")
+            <input id="dirVisita" type="text" class="form-control mt-4" placeholder="direccion" />
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <h5><span class="badge badge-info ">Juntas Aclaratorias</span></h5>
+                </div>
+                <div class="col">
+                    <input id="jaFecha" type="date" class="form-control-sm" />
+                </div>
+                <div class="col">
+                    <input id="jaHora" type="text" class="form-control-sm" placeholder="Hora" />
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <h5><span class="badge badge-info ">Apertura Tecnica y Economica</span></h5>
+                </div>
+                <div class="col">
+                    <input id="ateFecha" type="date" class="form-control-sm" />
+                </div>
+                <div class="col">
+                    <input id="ateHora" type="text" class="form-control-sm" placeholder="Hora" />
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <h5><span class="badge badge-info ">Acta Falla</span></h5>
+                </div>
+                <div class="col">
+                    <input id="afFecha" type="date" class="form-control-sm" />
+                </div>
+                <div class="col">
+                    <input id="afHora" type="text" class="form-control-sm" placeholder="Hora" />
+                </div>
+            </div>
+            <p class="card-text"><small class="text-muted"> <button id="VisitaBtn" onclick="guardaVisitaProg()" class="btn btn-outline-success mt-3" type="button">Guardar</button></small></p>
+        </div>
+    </div>
 
 </div>
 
+
+<!-- Button trigger modal -->
+<button type="button" id="agregarDir" class="btn btn-primary" hidden data-toggle="modal" data-target="#staticBackdrop">
+    Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Registrar Direccion</h5>
+            </div>
+            <div class="modal-body">
+                <small id="dirHelp" class="form-text text-muted mt-2">Direccion</small>
+                <textarea class="form-control text-dark" id="dir" placeholder="#, Calle, Colonia, CP" aria-describedby="dirObraHelp"></textarea>
+                <small id="munHelp" class="form-text text-muted mt-4">Municipio</small>
+                <select class="form-control text-dark" id="municipioLicitacion" aria-describedby="munHelp"></select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" onclick="guardaDireccion()" class="btn btn-primary">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>

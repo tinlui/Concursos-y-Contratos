@@ -18,7 +18,7 @@ namespace ConcursosContratos.Models
         {
             get; set;
         }
-        [StringLength(13, ErrorMessage = "Maximo es de {1}")]
+        [StringLength(15, ErrorMessage = "Maximo es de {1}")]
         public string Rfc
         {
             get;set;
@@ -30,6 +30,7 @@ namespace ConcursosContratos.Models
         }
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
+        [StringLength(250)]
         [Display(Name = "E-Mail")]
         public string Correo
         {
@@ -60,16 +61,16 @@ namespace ConcursosContratos.Models
             get;set;        
         }
 
-        public int Cp
+        public int? Cp
         {
             get;set;
         }
 
-        public int IdMunicipio
+        public int? IdMunicipio
         {
             get;set;
         }
-        public int Año
+        public int? Año
         {
             get; set;
         }
