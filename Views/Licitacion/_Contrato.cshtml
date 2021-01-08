@@ -2,11 +2,11 @@
     <div class="card">
         <div class="card-header text-center bg-warning">Contrato</div>
         <div class="card-body bg-dark">
-
             <small id="helpNoCont" class="form-text text-muted ">Numero de Contrato</small>
             <input id="NoCont" type="text" class="form-control"  />
             <small id="helpFechaCont" class="form-text text-muted  mt-4">Fecha de Contrato</small>
             <input id="FechaCont" type="date" class="form-control" />
+             <p class="card-text"><small class="text-muted"> <button id="ContratoBtn" onclick="NuevoContrato()" class="btn btn-outline-success mt-3" type="button">Guardar</button></small></p>
         </div>
     </div>
     <div class="card">
@@ -14,7 +14,8 @@
         <div class="card-body bg-dark">
 
             <small id="helpNoOf" class="form-text text-muted">Numero de Oficio</small>
-            <input id="NoOf" type="text" class="form-control"  />
+             <select class="form-control" id="NoOf"></select>
+          
             <small id="helpFechaOf" class="form-text text-muted  mt-4">Fecha de Oficio</small>
             <input id="FechaOf" type="date" class="form-control" />
             <small id="helpFechaRec" class="form-text text-muted  mt-4">Fecha de Recepcion</small>

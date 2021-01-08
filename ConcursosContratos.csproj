@@ -430,6 +430,7 @@
     <Compile Include="Models\LicitacionOficioAut.cs">
       <DependentUpon>ModelConcursosCont.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LicitacionOficioAutCLS.cs" />
     <Compile Include="Models\ModelConcursosCont.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

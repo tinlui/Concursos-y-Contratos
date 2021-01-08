@@ -3,9 +3,29 @@ var InscritosTabla = $("#tblInscritos");
 var idContratista = $("#Contratistas");
 var idDesicion = $("#Desicion");
 var idDesicionF = $("#Desicion_Falla");
-//$(document).ready(function () {
-//    TablaInscritos();
-//});
+
+var Ncontrato = $("#NoCont");
+var Fcontrato = $("#FechaCont");
+var listaOficios = $("#NoOf")
+
+function listaLicitacionOficio() {
+   
+    if (noProc.val() != "") {
+ 
+    listaOficios.empty();
+    $.get('/Contrato/listaLicitacionOficio', { numProceso: noProc.val()},
+        function (data) {
+            if (data.length > 0) {
+                $.each(data, function (index, row) {
+                    listaOficios.append("<option value= '" + row.Value + "' >" + row.Text + "</option>")
+                });
+            } else {
+                listaOficios.append("<option value= 0 > No hay registrados </option>")
+            }
+        }
+    )
+}
+}
 //id dato licitacion para comprobar que existan inscritos y se pueda crear el contrato
 function llenarCombosInscritos() {
     
@@ -54,7 +74,6 @@ function prueba() {
     console.log("prueba")
 }
 
-
 function TablaInscritos() {
     console.log("tabla inscritos")
     if (idLicitacion.val() != "") {
@@ -83,5 +102,36 @@ function TablaInscritos() {
         lista += '<td colspan=6  class="alert alert-danger text-center" role="alert" >No hay datos para mostrar</td>';
         lista += '</tr>';
         InscritosTabla.prepend(lista);
+    }
+}
+
+function NuevoContrato() {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'center',
+        timer: 1600,
+        showConfirmButton: false
+    });
+
+    if (Ncontrato.val() != "") {
+        $.get('/Contrato/guardaContrato', { NoContrato: Ncontrato.val(), FechaContrato: Fcontrato.val() },
+            function (data) {
+                if (data == "1") {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Guardado!'
+                    });
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: data
+                    });
+                }
+            } )
+    } else {
+        Toast.fire({
+            icon: 'warning',
+            title: 'No Contrato'
+        });
     }
 }

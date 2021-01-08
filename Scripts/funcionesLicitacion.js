@@ -87,6 +87,12 @@ $(document).ready(function () {
         });       
     }
     listadoOfAut();
+    listaLicitacionOficio();
+    if (noProc.val() !="") {
+        $(".nav-link").removeClass('disabled')
+
+    }
+   
 });
 //function WordFill() { poner en contrato
  
@@ -234,6 +240,8 @@ $.fn.requerido = function () {
             if (input.next()[0].className == 'invalid-feedback d-block') {
 
                 input.next().remove();
+              
+                $(".nav-link").removeClass('disabled')
             }
             input.removeClass('border-danger');
         } else {
@@ -250,8 +258,9 @@ $.fn.requerido = function () {
             ayuda += '</span>';
             input.after(ayuda);
             input.addClass('border-danger');
+            $(".nav-link").addClass('disabled')
         } else if (input.next()[0].className == 'invalid-feedback d-block') {
-            
+           
         } else {
             ayuda = '';
             ayuda += '<span class="invalid-feedback d-block">';
@@ -259,6 +268,7 @@ $.fn.requerido = function () {
             ayuda += '</span>';
             input.after(ayuda);
             input.addClass('border-danger');
+            $(".nav-link").addClass('disabled')
         }
     }
 }
